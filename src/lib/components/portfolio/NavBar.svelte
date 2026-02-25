@@ -5,13 +5,13 @@
 <nav class="navbar">
     <div class="navbar-inner page-container">
         <div class="logo">
-            <span class="logo-text">LDD</span>
-            <span class="logo-dot"></span>
+            <!-- <span class="logo-text">LDD</span>
+            <span class="logo-dot"></span> -->
         </div>
         <div class="nav-right">
             <span class="availability">
                 <span class="dot-green"></span>
-                Open to opportunities
+                Open for opportunities
             </span>
             <ThemeToggle />
         </div>

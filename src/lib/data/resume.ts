@@ -1,6 +1,6 @@
 export const personalInfo = {
     name: 'Lowie Dave Dichoson',
-    title: 'Currently an Analyst Programmer',
+    title: 'Backend Developer',
     subtitle: 'Backend Developer · Financial Systems',
     location: 'Taguig City, Philippines',
     email: 'lowiedave30@gmail.com',

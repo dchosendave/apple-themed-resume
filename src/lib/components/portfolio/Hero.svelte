@@ -3,103 +3,115 @@
 </script>
 
 <section class="hero">
-    <!-- Ambient background blobs -->
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-
     <div class="page-container hero-inner">
         <!-- Avatar -->
         <div class="avatar-wrap">
             <div class="avatar">
-                <span class="avatar-initials">LDD</span>
+                <img
+                    src="/solo-picture.jpg"
+                    alt="Lowie Dave Dichoson"
+                    class="avatar-photo"
+                />
             </div>
             <div class="avatar-ring"></div>
         </div>
 
         <!-- Identity -->
         <div class="identity">
-            <p class="greeting">Hello, I'm</p>
-            <h1 class="name">{personalInfo.name}</h1>
-            <p class="title">{personalInfo.title}</p>
+            <div class="name-row">
+                <h1 class="name">{personalInfo.name}</h1>
+                <span class="title-badge">{personalInfo.title}</span>
+            </div>
             <p class="focus">{professionalFocus}</p>
 
-            <!-- Contact chips -->
-            <div class="contact-chips">
-                <a href="mailto:{personalInfo.email}" class="chip">
-                    <svg
-                        width="13"
-                        height="13"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        ><rect x="2" y="4" width="20" height="16" rx="2" /><path
-                            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                        /></svg
+            <!-- Contact + CTAs in one row -->
+            <div class="action-row">
+                <div class="contact-chips">
+                    <a href="mailto:{personalInfo.email}" class="chip">
+                        <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            ><rect
+                                x="2"
+                                y="4"
+                                width="20"
+                                height="16"
+                                rx="2"
+                            /><path
+                                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
+                            /></svg
+                        >
+                        {personalInfo.email}
+                    </a>
+                    <a
+                        href={personalInfo.linkedin}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="chip"
                     >
-                    {personalInfo.email}
-                </a>
-                <a
-                    href={personalInfo.linkedin}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    class="chip"
-                >
-                    <svg
-                        width="13"
-                        height="13"
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        ><path
-                            d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                        /><rect x="2" y="9" width="4" height="12" /><circle
-                            cx="4"
-                            cy="4"
-                            r="2"
-                        /></svg
-                    >
-                    LinkedIn
-                </a>
-                <span class="chip chip-location">
-                    <svg
-                        width="13"
-                        height="13"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        ><path
-                            d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                        /><circle cx="12" cy="10" r="3" /></svg
-                    >
-                    {personalInfo.location}
-                </span>
-            </div>
+                        <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            ><path
+                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
+                            /><rect x="2" y="9" width="4" height="12" /><circle
+                                cx="4"
+                                cy="4"
+                                r="2"
+                            /></svg
+                        >
+                        LinkedIn
+                    </a>
+                    <span class="chip chip-plain">
+                        <svg
+                            width="12"
+                            height="12"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            ><path
+                                d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
+                            /><circle cx="12" cy="10" r="3" /></svg
+                        >
+                        {personalInfo.location}
+                    </span>
+                </div>
 
-            <!-- CTAs -->
-            <div class="cta-row">
-                <a href={personalInfo.resumePdf} download class="btn-primary">
-                    <svg
-                        width="15"
-                        height="15"
-                        viewBox="0 0 24 24"
-                        fill="none"
-                        stroke="currentColor"
-                        stroke-width="2.5"
-                        ><path
-                            d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
-                        /><polyline points="7 10 12 15 17 10" /><line
-                            x1="12"
-                            y1="15"
-                            x2="12"
-                            y2="3"
-                        /></svg
+                <div class="cta-row">
+                    <a
+                        href={personalInfo.resumePdf}
+                        download
+                        class="btn-primary"
                     >
-                    Download Resume
-                </a>
-                <a href="mailto:{personalInfo.email}" class="btn-secondary">
-                    Get in Touch
-                </a>
+                        <svg
+                            width="14"
+                            height="14"
+                            viewBox="0 0 24 24"
+                            fill="none"
+                            stroke="currentColor"
+                            stroke-width="2.5"
+                            ><path
+                                d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"
+                            /><polyline points="7 10 12 15 17 10" /><line
+                                x1="12"
+                                y1="15"
+                                x2="12"
+                                y2="3"
+                            /></svg
+                        >
+                        Download Resume
+                    </a>
+                    <a href="mailto:{personalInfo.email}" class="btn-secondary"
+                        >Get in Touch</a
+                    >
+                </div>
             </div>
         </div>
     </div>
@@ -107,46 +119,14 @@
 
 <style>
     .hero {
-        position: relative;
-        min-height: 100vh;
-        display: flex;
-        align-items: center;
-        padding-top: 56px;
-        overflow: hidden;
-    }
-
-    /* ambient gradient blobs */
-    .blob {
-        position: absolute;
-        border-radius: 50%;
-        filter: blur(80px);
-        opacity: 0.18;
-        pointer-events: none;
-    }
-
-    .blob-1 {
-        width: 500px;
-        height: 500px;
-        background: radial-gradient(circle, #007aff, transparent);
-        top: -100px;
-        right: -100px;
-    }
-
-    .blob-2 {
-        width: 400px;
-        height: 400px;
-        background: radial-gradient(circle, #5e5ce6, transparent);
-        bottom: -50px;
-        left: -100px;
-        opacity: 0.12;
+        padding-top: calc(56px + 32px);
+        padding-bottom: 28px;
     }
 
     .hero-inner {
         display: flex;
         align-items: center;
-        gap: 56px;
-        padding-top: 48px;
-        padding-bottom: 48px;
+        gap: 32px;
     }
 
     /* Avatar */
@@ -156,166 +136,172 @@
     }
 
     .avatar {
-        width: 140px;
-        height: 140px;
+        width: 90px;
+        height: 90px;
         border-radius: 50%;
-        background: linear-gradient(135deg, var(--ios-blue) 0%, #5e5ce6 100%);
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        overflow: hidden;
         position: relative;
         z-index: 1;
+        background: var(--ios-chip-bg);
     }
 
-    .avatar-initials {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #fff;
-        letter-spacing: 0.05em;
+    .avatar-photo {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: center top;
+        display: block;
     }
 
     .avatar-ring {
         position: absolute;
-        inset: -6px;
+        inset: -5px;
         border-radius: 50%;
         border: 2px solid var(--ios-blue);
         opacity: 0.3;
     }
 
-    /* Identity text */
+    /* Identity */
     .identity {
         flex: 1;
+        min-width: 0;
     }
 
-    .greeting {
-        font-size: 0.85rem;
-        font-weight: 500;
-        color: var(--ios-text-secondary);
-        margin-bottom: 6px;
-        letter-spacing: 0.02em;
+    .name-row {
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+        margin-bottom: 8px;
     }
 
     .name {
-        font-size: clamp(2rem, 4vw, 3rem);
+        font-size: clamp(1.5rem, 3vw, 2rem);
         font-weight: 800;
         color: var(--ios-text-primary);
         line-height: 1.1;
-        margin-bottom: 6px;
         letter-spacing: -0.02em;
+        white-space: nowrap;
     }
 
-    .title {
-        font-size: 1rem;
-        font-weight: 500;
+    .title-badge {
+        font-size: 0.75rem;
+        font-weight: 600;
         color: var(--ios-blue);
-        margin-bottom: 14px;
+        background: var(--ios-stat-bg);
+        border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
+        padding: 3px 10px;
+        border-radius: 100px;
+        white-space: nowrap;
     }
 
     .focus {
-        font-size: 0.9rem;
-        line-height: 1.7;
+        font-size: 0.85rem;
+        line-height: 1.65;
         color: var(--ios-text-secondary);
-        max-width: 520px;
-        margin-bottom: 22px;
+        margin-bottom: 16px;
+        max-width: 560px;
+    }
+
+    .action-row {
+        display: flex;
+        align-items: center;
+        gap: 16px;
+        flex-wrap: wrap;
     }
 
     /* Contact chips */
     .contact-chips {
         display: flex;
         flex-wrap: wrap;
-        gap: 8px;
-        margin-bottom: 24px;
+        gap: 6px;
     }
 
     .chip {
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        padding: 5px 12px;
+        padding: 4px 11px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
-        font-size: 0.75rem;
+        font-size: 0.72rem;
         font-weight: 500;
         color: var(--ios-text-secondary);
         text-decoration: none;
         transition: all 0.2s ease;
     }
 
-    .chip:hover:not(.chip-location) {
+    .chip:hover:not(.chip-plain) {
         background: var(--ios-stat-bg);
         border-color: var(--ios-blue);
         color: var(--ios-blue);
     }
 
-    .chip-location {
+    .chip-plain {
         cursor: default;
     }
 
-    /* CTA buttons */
+    /* CTAs */
     .cta-row {
         display: flex;
-        gap: 12px;
+        gap: 8px;
         flex-wrap: wrap;
     }
 
     .btn-primary {
         display: inline-flex;
         align-items: center;
-        gap: 7px;
-        padding: 10px 22px;
+        gap: 6px;
+        padding: 8px 18px;
         border-radius: 100px;
         background: var(--ios-blue);
         color: #fff;
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         font-weight: 600;
         text-decoration: none;
         transition: all 0.2s ease;
+        white-space: nowrap;
     }
 
     .btn-primary:hover {
         background: var(--ios-blue-hover);
         transform: translateY(-1px);
-        box-shadow: 0 8px 24px
+        box-shadow: 0 6px 20px
             color-mix(in srgb, var(--ios-blue) 35%, transparent);
     }
 
     .btn-secondary {
         display: inline-flex;
         align-items: center;
-        padding: 10px 22px;
+        padding: 8px 18px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
         color: var(--ios-text-primary);
-        font-size: 0.875rem;
+        font-size: 0.8rem;
         font-weight: 500;
         text-decoration: none;
         transition: all 0.2s ease;
+        white-space: nowrap;
     }
 
     .btn-secondary:hover {
         border-color: var(--ios-blue);
         color: var(--ios-blue);
-        transform: translateY(-1px);
     }
 
     /* Responsive */
-    @media (max-width: 640px) {
+    @media (max-width: 600px) {
         .hero-inner {
             flex-direction: column;
             align-items: flex-start;
-            gap: 28px;
-            padding-top: 32px;
+            gap: 20px;
         }
 
-        .avatar {
-            width: 100px;
-            height: 100px;
-        }
-
-        .avatar-initials {
-            font-size: 1.5rem;
+        .action-row {
+            flex-direction: column;
+            align-items: flex-start;
         }
     }
 </style>
