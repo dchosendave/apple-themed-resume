@@ -1,9 +1,9 @@
 <script lang="ts">
-	import NavBar from "$lib/components/portfolio/NavBar.svelte";
 	import Hero from "$lib/components/portfolio/Hero.svelte";
 	import StatsBar from "$lib/components/portfolio/StatsBar.svelte";
 	import SkillsSection from "$lib/components/portfolio/SkillsSection.svelte";
 	import ExperienceSection from "$lib/components/portfolio/ExperienceSection.svelte";
+	import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
 	import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
 	import ContactFooter from "$lib/components/portfolio/ContactFooter.svelte";
 </script>
@@ -19,13 +19,12 @@
 	<div class="blob blob-3"></div>
 </div>
 
-<NavBar />
-
 <main>
 	<Hero />
 	<StatsBar />
 	<SkillsSection />
 	<ExperienceSection />
+	<ProjectsSection />
 	<EducationSection />
 	<ContactFooter />
 </main>

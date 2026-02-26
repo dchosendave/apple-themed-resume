@@ -1,5 +1,6 @@
 <script lang="ts">
     import { personalInfo, professionalFocus } from "$lib/data/resume";
+    import ThemeToggle from "./ThemeToggle.svelte";
 </script>
 
 <section class="hero">
@@ -18,6 +19,13 @@
 
         <!-- Identity -->
         <div class="identity">
+            <div class="top-row">
+                <span class="availability-pill">
+                    <span class="pulse-dot"></span>
+                    Open for opportunities
+                </span>
+                <ThemeToggle />
+            </div>
             <div class="name-row">
                 <h1 class="name">{personalInfo.name}</h1>
                 <span class="title-badge">{personalInfo.title}</span>
@@ -119,7 +127,7 @@
 
 <style>
     .hero {
-        padding-top: calc(56px + 32px);
+        padding-top: 32px;
         padding-bottom: 28px;
     }
 
@@ -165,6 +173,51 @@
     .identity {
         flex: 1;
         min-width: 0;
+    }
+
+    /* Top row: availability pill + theme toggle aligned horizontally */
+    .top-row {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        margin-bottom: 10px;
+    }
+
+    /* Availability pill */
+    .availability-pill {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 4px 14px;
+        border-radius: 100px;
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-chip-border);
+        font-size: 0.72rem;
+        font-weight: 600;
+        color: var(--ios-text-secondary);
+        letter-spacing: 0.01em;
+    }
+
+    .pulse-dot {
+        width: 7px;
+        height: 7px;
+        border-radius: 50%;
+        background: #30d158;
+        box-shadow: 0 0 6px #30d15880;
+        animation: pulse 2s ease-in-out infinite;
+        flex-shrink: 0;
+    }
+
+    @keyframes pulse {
+        0%,
+        100% {
+            opacity: 1;
+            transform: scale(1);
+        }
+        50% {
+            opacity: 0.5;
+            transform: scale(0.85);
+        }
     }
 
     .name-row {
