@@ -137,3 +137,42 @@ export const education: Education[] = [
         icon: '📜'
     }
 ];
+
+export interface Project {
+    name: string;
+    tagline: string;
+    category: string;
+    description: string;
+    impact: string;
+    stack: string[];
+}
+
+export const projects: Project[] = [
+    {
+        name: 'Project Alpha',
+        tagline: 'A brief one-liner describing this project and its purpose.',
+        category: 'Client-Facing',
+        description:
+            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
+        impact: 'Quantified business result — e.g. reduced processing time by 40%, served 500+ daily users, etc.',
+        stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF']
+    },
+    {
+        name: 'Project Beta',
+        tagline: 'A brief one-liner describing this project and its purpose.',
+        category: 'Internal Tool',
+        description:
+            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
+        impact: 'Quantified business result — e.g. automated manual checks for an 8-person team, improved accuracy by X%.',
+        stack: ['Alpine.js', 'ASP.NET MVC', 'Oracle SQL', 'RDLC']
+    },
+    {
+        name: 'Project Gamma',
+        tagline: 'A brief one-liner describing this project and its purpose.',
+        category: 'Data Engineering',
+        description:
+            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
+        impact: 'Quantified business result — e.g. migrated 3M+ records, reduced production database load by X%.',
+        stack: ['MS SQL', 'ASP.NET Web Forms', 'VB.NET']
+    }
+];

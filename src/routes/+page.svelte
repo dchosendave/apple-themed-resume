@@ -4,6 +4,7 @@
 	import StatsBar from "$lib/components/portfolio/StatsBar.svelte";
 	import SkillsSection from "$lib/components/portfolio/SkillsSection.svelte";
 	import ExperienceSection from "$lib/components/portfolio/ExperienceSection.svelte";
+	import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
 	import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
 	import ContactFooter from "$lib/components/portfolio/ContactFooter.svelte";
 </script>
@@ -26,9 +27,11 @@
 	<StatsBar />
 	<SkillsSection />
 	<ExperienceSection />
+	<ProjectsSection />
 	<EducationSection />
 	<ContactFooter />
 </main>
+
 
 <style>
 	main {
