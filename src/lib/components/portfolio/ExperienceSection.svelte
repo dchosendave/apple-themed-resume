@@ -6,9 +6,7 @@
     // Build a flat array of open states indexed by [jobIdx][catIdx].
     // First category of first job starts expanded.
     let open: boolean[][] = $state(
-        experience.map((job, ji) =>
-            job.categories.map((_cat, ci) => ji === 0 && ci === 0),
-        ),
+        experience.map((job) => job.categories.map(() => true)),
     );
 
     function toggle(ji: number, ci: number) {
