@@ -36,23 +36,7 @@
             <div class="action-row">
                 <div class="contact-chips">
                     <a href="mailto:{personalInfo.email}" class="chip">
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            ><rect
-                                x="2"
-                                y="4"
-                                width="20"
-                                height="16"
-                                rx="2"
-                            /><path
-                                d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                            /></svg
-                        >
+                        <span class="chip-emoji">✉️</span>
                         {personalInfo.email}
                     </a>
                     <a
@@ -61,19 +45,7 @@
                         rel="noopener noreferrer"
                         class="chip"
                     >
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            ><path
-                                d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"
-                            /><rect x="2" y="9" width="4" height="12" /><circle
-                                cx="4"
-                                cy="4"
-                                r="2"
-                            /></svg
-                        >
+                        <span class="chip-emoji">🔗</span>
                         LinkedIn
                     </a>
                     <a
@@ -82,29 +54,11 @@
                         rel="noopener noreferrer"
                         class="chip"
                     >
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="currentColor"
-                            ><path
-                                d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 1.205.084 1.839 1.237 1.839 1.237 1.07 1.854 2.807 1.326 3.492.102.107-.779.415-1.325.755-1.645-.673-1.218-1.354-1.464-1.758-.486-.195-.996-.36-1.535-.461-1.578-.317-3.144-.771-3.144-3.493 0-.791.281-1.437.749-1.942-.074-.184-.321-1.042.074-2.014 0 0 1.046-.324 3.441 1.234.995-.278 2.063-.417 3.126-.422 1.063.005 2.131.144 3.126.422 2.405-1.558 3.467-1.234 3.467-1.234.396 1.072.149 1.829.075 2.014.468.505.748 1.151.748 1.942 0 2.722-1.567 3.177-3.149 3.485.248.28.465.813.465 1.645v2.23c0 .319.192.694.801.576 4.765-1.589 8.199-6.086 8.199-11.386 0-6.627-5.373-12-12-12z"
-                            /></svg
-                        >
+                        <span class="chip-emoji">🐱</span>
                         GitHub
                     </a>
                     <span class="chip chip-plain">
-                        <svg
-                            width="12"
-                            height="12"
-                            viewBox="0 0 24 24"
-                            fill="none"
-                            stroke="currentColor"
-                            stroke-width="2.5"
-                            ><path
-                                d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"
-                            /><circle cx="12" cy="10" r="3" /></svg
-                        >
+                        <span class="chip-emoji">📍</span>
                         {personalInfo.location}
                     </span>
                 </div>
