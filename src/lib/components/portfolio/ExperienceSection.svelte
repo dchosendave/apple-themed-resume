@@ -1,12 +1,26 @@
 <script lang="ts">
+    import { slide } from "svelte/transition";
     import { experience } from "$lib/data/resume";
+    import ChevronDown from "@lucide/svelte/icons/chevron-down";
+
+    // Build a flat array of open states indexed by [jobIdx][catIdx].
+    // First category of first job starts expanded.
+    let open: boolean[][] = $state(
+        experience.map((job, ji) =>
+            job.categories.map((_cat, ci) => ji === 0 && ci === 0),
+        ),
+    );
+
+    function toggle(ji: number, ci: number) {
+        open[ji][ci] = !open[ji][ci];
+    }
 </script>
 
 <section class="experience-section">
     <div class="page-container">
         <p class="section-title">Work Experience</p>
 
-        {#each experience as job}
+        {#each experience as job, ji (job.company)}
             <div class="job-header glass-card">
                 <div class="job-title-row">
                     <div>
@@ -18,28 +32,49 @@
             </div>
 
             <div class="categories">
-                {#each job.categories as category}
+                {#each job.categories as category, ci (category.title)}
                     <div class="category glass-card">
-                        <h3 class="category-title">{category.title}</h3>
-                        <ul class="bullets">
-                            {#each category.bullets as bullet}
-                                <li class="bullet-item">
-                                    <span class="bullet-dot"></span>
-                                    <div class="bullet-content">
-                                        <p class="bullet-text">{bullet.text}</p>
-                                        {#if bullet.stack.length > 0}
-                                            <div class="stack-row">
-                                                {#each bullet.stack as tech}
-                                                    <span class="stack-chip"
-                                                        >{tech}</span
-                                                    >
-                                                {/each}
-                                            </div>
-                                        {/if}
-                                    </div>
-                                </li>
-                            {/each}
-                        </ul>
+                        <!-- Always-visible accordion header -->
+                        <button
+                            class="category-toggle"
+                            onclick={() => toggle(ji, ci)}
+                            aria-expanded={open[ji][ci]}
+                        >
+                            <h3 class="category-title">{category.title}</h3>
+                            <ChevronDown
+                                size={15}
+                                class="chevron {open[ji][ci]
+                                    ? 'chevron-up'
+                                    : ''}"
+                            />
+                        </button>
+
+                        {#if open[ji][ci]}
+                            <ul
+                                class="bullets"
+                                transition:slide={{ duration: 240 }}
+                            >
+                                {#each category.bullets as bullet (bullet.text)}
+                                    <li class="bullet-item">
+                                        <span class="bullet-dot"></span>
+                                        <div class="bullet-content">
+                                            <p class="bullet-text">
+                                                {bullet.text}
+                                            </p>
+                                            {#if bullet.stack.length > 0}
+                                                <div class="stack-row">
+                                                    {#each bullet.stack as tech (tech)}
+                                                        <span class="stack-chip"
+                                                            >{tech}</span
+                                                        >
+                                                    {/each}
+                                                </div>
+                                            {/if}
+                                        </div>
+                                    </li>
+                                {/each}
+                            </ul>
+                        {/if}
                     </div>
                 {/each}
             </div>
@@ -97,7 +132,27 @@
     }
 
     .category {
-        padding: 20px 24px;
+        padding: 0;
+        overflow: hidden;
+    }
+
+    /* Accordion toggle row */
+    .category-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        width: 100%;
+        padding: 16px 24px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        text-align: left;
+        gap: 12px;
+    }
+
+    .category-toggle:hover .category-title {
+        color: var(--ios-blue);
+        opacity: 1;
     }
 
     .category-title {
@@ -106,8 +161,19 @@
         letter-spacing: 0.06em;
         text-transform: uppercase;
         color: var(--ios-blue);
-        margin-bottom: 14px;
         opacity: 0.85;
+        transition: opacity 0.15s ease;
+        margin: 0;
+    }
+
+    :global(.chevron) {
+        color: var(--ios-text-secondary);
+        flex-shrink: 0;
+        transition: transform 0.25s ease;
+    }
+
+    :global(.chevron-up) {
+        transform: rotate(180deg);
     }
 
     .bullets {
@@ -115,6 +181,9 @@
         display: flex;
         flex-direction: column;
         gap: 14px;
+        padding: 0 24px 20px;
+        border-top: 1px solid var(--ios-separator);
+        padding-top: 16px;
     }
 
     .bullet-item {

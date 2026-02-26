@@ -1,9 +1,17 @@
 <script lang="ts">
-    import { slide } from "svelte/transition";
+    import { slide, fly } from "svelte/transition";
     import { projects } from "$lib/data/resume";
     import ChevronDown from "@lucide/svelte/icons/chevron-down";
 
+    const INITIAL_COUNT = 2;
+
+    let showAll = $state(false);
     let expanded: boolean[] = $state(projects.map(() => false));
+
+    const visibleProjects = $derived(
+        showAll ? projects : projects.slice(0, INITIAL_COUNT),
+    );
+    const hiddenCount = projects.length - INITIAL_COUNT;
 
     function toggle(index: number) {
         expanded[index] = !expanded[index];
@@ -15,8 +23,11 @@
         <p class="section-title">Featured Projects</p>
 
         <div class="projects-list">
-            {#each projects as project, i (project.name)}
-                <div class="project-card glass-card">
+            {#each visibleProjects as project, i (project.name)}
+                <div
+                    class="project-card glass-card"
+                    transition:fly={{ y: 16, duration: 260 }}
+                >
                     <div class="project-header">
                         <div>
                             <h2 class="project-name">{project.name}</h2>
@@ -126,6 +137,30 @@
                 </div>
             {/each}
         </div>
+
+        {#if !showAll && hiddenCount > 0}
+            <div class="show-more-row">
+                <button class="show-more-btn" onclick={() => (showAll = true)}>
+                    <svg
+                        width="14"
+                        height="14"
+                        viewBox="0 0 24 24"
+                        fill="none"
+                        stroke="currentColor"
+                        stroke-width="2.5"
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                    >
+                        <circle cx="12" cy="12" r="10" />
+                        <line x1="12" y1="8" x2="12" y2="16" />
+                        <line x1="8" y1="12" x2="16" y2="12" />
+                    </svg>
+                    Show {hiddenCount} more {hiddenCount === 1
+                        ? "project"
+                        : "projects"}
+                </button>
+            </div>
+        {/if}
     </div>
 </section>
 
@@ -165,6 +200,15 @@
         color: var(--ios-text-secondary);
     }
 
+    .project-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
     .project-category {
         font-size: 0.7rem;
         font-weight: 600;
@@ -177,15 +221,6 @@
         border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
         border-radius: 100px;
         flex-shrink: 0;
-    }
-
-    .project-badges {
-        display: flex;
-        align-items: center;
-        gap: 6px;
-        flex-shrink: 0;
-        flex-wrap: wrap;
-        justify-content: flex-end;
     }
 
     .project-role {
@@ -322,6 +357,34 @@
         font-weight: 500;
         color: var(--ios-text-secondary);
         letter-spacing: 0.01em;
+    }
+
+    /* Show more button */
+    .show-more-row {
+        margin-top: 12px;
+        display: flex;
+        justify-content: center;
+    }
+
+    .show-more-btn {
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+        padding: 9px 20px;
+        border-radius: 100px;
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-chip-border);
+        color: var(--ios-text-secondary);
+        font-size: 0.78rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+
+    .show-more-btn:hover {
+        background: var(--ios-stat-bg);
+        border-color: var(--ios-blue);
+        color: var(--ios-blue);
     }
 
     @media (max-width: 600px) {
