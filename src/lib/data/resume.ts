@@ -142,37 +142,55 @@ export interface Project {
     name: string;
     tagline: string;
     category: string;
+    role?: string; // e.g. 'Sole Developer' | 'Contributor' — omit if not applicable
     description: string;
     impact: string;
     stack: string[];
+    url?: string; // omit for internal/confidential projects
 }
 
 export const projects: Project[] = [
     {
-        name: 'Project Alpha',
-        tagline: 'A brief one-liner describing this project and its purpose.',
+        name: 'PEMI ClientEase',
+        tagline: 'A client-facing web application that automates the creation or update of investor accounts.',
         category: 'Client-Facing',
+        role: 'API & Database Developer',
         description:
             'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
-        impact: 'Quantified business result — e.g. reduced processing time by 40%, served 500+ daily users, etc.',
-        stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF']
+        impact: 'Reduced the manual process of creating or updating investor accounts by automating the process. Leading to faster, easier, and more maintainable process.',
+        stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF'],
+        url: 'https://www.philequity.net/portal/'
     },
     {
-        name: 'Project Beta',
-        tagline: 'A brief one-liner describing this project and its purpose.',
+        name: 'Letter of Intent Generator',
+        tagline: 'An internally used web application that automates the generation of Letter of Intent document of the transactions.',
         category: 'Internal Tool',
+        role: 'Full-stack Developer',
         description:
-            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
-        impact: 'Quantified business result — e.g. automated manual checks for an 8-person team, improved accuracy by X%.',
+            'LOIs were previously manually created using word and/or excel sheets which was time-consuming and prone to errors. This application automates the process of generating LOIs by using a template and populating it with data from the database.',
+        impact: 'Improved accuracy and efficiency of an 8-person department.',
         stack: ['Alpine.js', 'ASP.NET MVC', 'Oracle SQL', 'RDLC']
     },
     {
-        name: 'Project Gamma',
-        tagline: 'A brief one-liner describing this project and its purpose.',
-        category: 'Data Engineering',
+        name: 'Report Generator',
+        tagline: 'Internal reporting platform used by Accounting, Treasury, and Compliance departments.',
+        category: 'Internal Tool',
+        role: 'Contributor',
         description:
-            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
-        impact: 'Quantified business result — e.g. migrated 3M+ records, reduced production database load by X%.',
-        stack: ['MS SQL', 'ASP.NET Web Forms', 'VB.NET']
+            'Contributed to an existing internal reporting system by introducing a centralized IAM module with RBAC, dynamic permission mapping, and secure password recovery — replacing manual SQL-based user provisioning.',
+        impact:
+            'Improved security, eliminated manual account setup, and standardized access control across departments.',
+        stack: ['HTML/CSS/jQuery', 'ASP.NET Web Forms', 'MS SQL', 'RDLC']
+    },
+    {
+        name: 'Dave Delivers',
+        tagline: 'An interactive personal portfolio with several features such as macOs-like desktop, command-line interface, and more.',
+        category: 'Personal Project',
+        role: 'Full-stack Developer',
+        description:
+            'An experimental project with the goal of attracting both technical and non-technical recruiters.',
+        impact: 'Learned new technologies and gained experience in building a personal portfolio.',
+        stack: ['SvelteKit', 'Turso SQLite', 'TailwindCSS'],
+        url: 'https://dave-delivers.vercel.app/'
     }
 ];

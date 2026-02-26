@@ -22,7 +22,14 @@
                             <h2 class="project-name">{project.name}</h2>
                             <p class="project-tagline">{project.tagline}</p>
                         </div>
-                        <span class="project-category">{project.category}</span>
+                        <div class="project-badges">
+                            {#if project.role}
+                                <span class="project-role">{project.role}</span>
+                            {/if}
+                            <span class="project-category"
+                                >{project.category}</span
+                            >
+                        </div>
                     </div>
 
                     <div class="project-stack-row">
@@ -31,11 +38,12 @@
                         {/each}
                     </div>
 
-                    <button
-                        class="toggle-btn"
-                        onclick={() => toggle(i)}
-                    >
-                        <span>{expanded[i] ? 'Hide Details' : 'View Details'}</span>
+                    <button class="toggle-btn" onclick={() => toggle(i)}>
+                        <span
+                            >{expanded[i]
+                                ? "Hide Details"
+                                : "View Details"}</span
+                        >
                         <ChevronDown
                             size={14}
                             class="chevron {expanded[i] ? 'chevron-up' : ''}"
@@ -43,11 +51,75 @@
                     </button>
 
                     {#if expanded[i]}
-                        <div class="project-detail" transition:slide={{ duration: 250 }}>
-                            <p class="project-description">{project.description}</p>
+                        <div
+                            class="project-detail"
+                            transition:slide={{ duration: 250 }}
+                        >
+                            <p class="project-description">
+                                {project.description}
+                            </p>
                             <div class="project-impact">
                                 <span class="impact-label">Impact</span>
                                 <p class="impact-text">{project.impact}</p>
+                            </div>
+                            <div class="project-footer">
+                                {#if project.url}
+                                    <a
+                                        href={project.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        class="project-link"
+                                    >
+                                        View Project
+                                        <svg
+                                            width="13"
+                                            height="13"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <path
+                                                d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"
+                                            />
+                                            <polyline points="15 3 21 3 21 9" />
+                                            <line
+                                                x1="10"
+                                                y1="14"
+                                                x2="21"
+                                                y2="3"
+                                            />
+                                        </svg>
+                                    </a>
+                                {:else}
+                                    <span class="internal-badge">
+                                        <svg
+                                            width="11"
+                                            height="11"
+                                            viewBox="0 0 24 24"
+                                            fill="none"
+                                            stroke="currentColor"
+                                            stroke-width="2.5"
+                                            stroke-linecap="round"
+                                            stroke-linejoin="round"
+                                        >
+                                            <rect
+                                                x="3"
+                                                y="11"
+                                                width="18"
+                                                height="11"
+                                                rx="2"
+                                                ry="2"
+                                            />
+                                            <path
+                                                d="M7 11V7a5 5 0 0 1 10 0v4"
+                                            />
+                                        </svg>
+                                        Internal · Confidential
+                                    </span>
+                                {/if}
                             </div>
                         </div>
                     {/if}
@@ -103,6 +175,28 @@
         padding: 4px 10px;
         background: var(--ios-stat-bg);
         border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
+        border-radius: 100px;
+        flex-shrink: 0;
+    }
+
+    .project-badges {
+        display: flex;
+        align-items: center;
+        gap: 6px;
+        flex-shrink: 0;
+        flex-wrap: wrap;
+        justify-content: flex-end;
+    }
+
+    .project-role {
+        font-size: 0.68rem;
+        font-weight: 500;
+        letter-spacing: 0.03em;
+        color: var(--ios-text-secondary);
+        white-space: nowrap;
+        padding: 4px 10px;
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-chip-border);
         border-radius: 100px;
         flex-shrink: 0;
     }
@@ -187,6 +281,47 @@
         font-size: 0.85rem;
         line-height: 1.55;
         color: var(--ios-text-primary);
+    }
+
+    .project-footer {
+        margin-top: 14px;
+        display: flex;
+        align-items: center;
+    }
+
+    .project-link {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 6px 14px;
+        border-radius: 100px;
+        background: var(--ios-blue);
+        color: #fff;
+        font-size: 0.75rem;
+        font-weight: 600;
+        text-decoration: none;
+        transition: all 0.2s ease;
+    }
+
+    .project-link:hover {
+        background: var(--ios-blue-hover);
+        transform: translateY(-1px);
+        box-shadow: 0 4px 16px
+            color-mix(in srgb, var(--ios-blue) 35%, transparent);
+    }
+
+    .internal-badge {
+        display: inline-flex;
+        align-items: center;
+        gap: 5px;
+        padding: 5px 12px;
+        border-radius: 100px;
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-chip-border);
+        font-size: 0.72rem;
+        font-weight: 500;
+        color: var(--ios-text-secondary);
+        letter-spacing: 0.01em;
     }
 
     @media (max-width: 600px) {
