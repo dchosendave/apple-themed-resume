@@ -46,20 +46,6 @@
         gap: 6px;
     }
 
-    .logo-text {
-        font-size: 1rem;
-        font-weight: 700;
-        letter-spacing: 0.05em;
-        color: var(--ios-text-primary);
-    }
-
-    .logo-dot {
-        width: 6px;
-        height: 6px;
-        border-radius: 50%;
-        background: var(--ios-blue);
-    }
-
     .nav-right {
         display: flex;
         align-items: center;
