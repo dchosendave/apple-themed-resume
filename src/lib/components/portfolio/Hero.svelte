@@ -266,6 +266,12 @@
         cursor: default;
     }
 
+    .chip-emoji {
+        font-size: 0.85em;
+        color: initial;
+        line-height: 1;
+    }
+
     /* CTAs */
     .cta-row {
         display: flex;
