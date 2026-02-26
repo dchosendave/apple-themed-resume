@@ -9,7 +9,7 @@
 </script>
 
 <svelte:head>
-	<title>Lowie Dave Dichoson · Portfolio</title>
+	<title>Get to know Lowie</title>
 </svelte:head>
 
 <!-- Global ambient blobs — fixed so they persist across the whole page on scroll -->
