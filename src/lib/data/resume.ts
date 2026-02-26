@@ -6,6 +6,7 @@ export const personalInfo = {
     email: 'lowiedave30@gmail.com',
     phone: '+63 915 083 3518',
     linkedin: 'https://www.linkedin.com/in/davedichoson',
+    github: 'https://github.com/lowiedichoson',
     resumePdf: '/ldd-resume-january-2026-v2.pdf'
 };
 
@@ -154,7 +155,7 @@ export const projects: Project[] = [
         name: 'PEMI ClientEase',
         tagline: 'A client-facing web application that automates the creation or update of investor accounts.',
         category: 'Client-Facing',
-        role: 'API & Database Developer',
+        role: 'API Developer & Database Engineer',
         description:
             'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
         impact: 'Reduced the manual process of creating or updating investor accounts by automating the process. Leading to faster, easier, and more maintainable process.',
@@ -175,7 +176,7 @@ export const projects: Project[] = [
         name: 'Report Generator',
         tagline: 'Internal reporting platform used by Accounting, Treasury, and Compliance departments.',
         category: 'Internal Tool',
-        role: 'Contributor',
+        role: 'Full-stack Developer',
         description:
             'Contributed to an existing internal reporting system by introducing a centralized IAM module with RBAC, dynamic permission mapping, and secure password recovery — replacing manual SQL-based user provisioning.',
         impact:
