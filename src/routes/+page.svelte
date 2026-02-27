@@ -6,22 +6,38 @@
 	import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
 	import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
 	import ContactFooter from "$lib/components/portfolio/ContactFooter.svelte";
+	import SectionNav from "$lib/components/portfolio/SectionNav.svelte";
 </script>
 
 <svelte:head>
-	<title>Lowie Dave Dichoson · Backend Developer</title>
-	<meta name="description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications. Open for Backend, Full-Stack, and Financial Systems roles." />
+	<title>Lowie Dichoson · Backend Developer</title>
+	<meta
+		name="description"
+		content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications. Open for Backend, Full-Stack, and Financial Systems roles."
+	/>
 
 	<!-- Open Graph -->
 	<meta property="og:type" content="website" />
-	<meta property="og:title" content="Lowie Dave Dichoson · Backend Developer" />
-	<meta property="og:description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications." />
+	<meta
+		property="og:title"
+		content="Lowie Dave Dichoson · Backend Developer"
+	/>
+	<meta
+		property="og:description"
+		content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications."
+	/>
 	<meta property="og:url" content="https://dave-delivers.vercel.app/" />
 
 	<!-- Twitter Card -->
 	<meta name="twitter:card" content="summary" />
-	<meta name="twitter:title" content="Lowie Dave Dichoson · Backend Developer" />
-	<meta name="twitter:description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications." />
+	<meta
+		name="twitter:title"
+		content="Lowie Dave Dichoson · Backend Developer"
+	/>
+	<meta
+		name="twitter:description"
+		content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications."
+	/>
 </svelte:head>
 
 <!-- Global ambient blobs — fixed so they persist across the whole page on scroll -->
@@ -31,14 +47,17 @@
 	<div class="blob blob-3"></div>
 </div>
 
+<!-- Section navigation: dots on desktop, progress bar on mobile -->
+<SectionNav />
+
 <main>
-	<Hero />
+	<section id="hero"><Hero /></section>
 	<StatsBar />
-	<SkillsSection />
-	<ExperienceSection />
-	<ProjectsSection />
-	<EducationSection />
-	<ContactFooter />
+	<section id="skills"><SkillsSection /></section>
+	<section id="experience"><ExperienceSection /></section>
+	<section id="projects"><ProjectsSection /></section>
+	<section id="education"><EducationSection /></section>
+	<section id="contact"><ContactFooter /></section>
 </main>
 
 <style>
