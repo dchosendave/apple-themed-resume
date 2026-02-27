@@ -3,6 +3,7 @@
     import { experience } from "$lib/data/resume";
     import ChevronDown from "@lucide/svelte/icons/chevron-down";
     import { reveal } from "$lib/actions/reveal";
+    import { getIcon } from "$lib/utils/techIcons";
 
     // Build a flat array of open states indexed by [jobIdx][catIdx].
     // First category of first job starts expanded.
@@ -66,9 +67,20 @@
                                             {#if bullet.stack.length > 0}
                                                 <div class="stack-row">
                                                     {#each bullet.stack as tech (tech)}
-                                                        <span class="stack-chip"
-                                                            >{tech}</span
+                                                        {@const icon =
+                                                            getIcon(tech)}
+                                                        <span
+                                                            class="stack-chip"
                                                         >
+                                                            {#if icon}
+                                                                <img
+                                                                    src={icon}
+                                                                    alt={tech}
+                                                                    class="tech-icon"
+                                                                />
+                                                            {/if}
+                                                            {tech}
+                                                        </span>
                                                     {/each}
                                                 </div>
                                             {/if}
@@ -223,6 +235,8 @@
 
     .stack-chip {
         display: inline-flex;
+        align-items: center;
+        gap: 5px;
         padding: 2px 9px;
         border-radius: 100px;
         background: var(--ios-stat-bg);
@@ -231,6 +245,15 @@
         font-weight: 600;
         color: var(--ios-blue);
         letter-spacing: 0.02em;
+    }
+
+    /* ── Tech icon inside chips ── */
+    .tech-icon {
+        width: 13px;
+        height: 13px;
+        object-fit: contain;
+        flex-shrink: 0;
+        display: block;
     }
 
     @media (max-width: 600px) {

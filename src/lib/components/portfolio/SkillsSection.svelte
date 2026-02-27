@@ -1,6 +1,7 @@
 <script lang="ts">
     import { skills } from "$lib/data/resume";
     import { reveal } from "$lib/actions/reveal";
+    import { getIcon } from "$lib/utils/techIcons";
 </script>
 
 <section class="skills-section">
@@ -12,7 +13,17 @@
                     <span class="group-label">{category}</span>
                     <div class="chip-row">
                         {#each items as skill}
-                            <span class="skill-chip">{skill}</span>
+                            {@const icon = getIcon(skill)}
+                            <span class="skill-chip">
+                                {#if icon}
+                                    <img
+                                        src={icon}
+                                        alt={skill}
+                                        class="tech-icon"
+                                    />
+                                {/if}
+                                {skill}
+                            </span>
                         {/each}
                     </div>
                 </div>

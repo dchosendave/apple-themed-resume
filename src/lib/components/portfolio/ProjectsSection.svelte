@@ -1,6 +1,7 @@
 <script lang="ts">
     import { projects } from "$lib/data/resume";
     import { reveal } from "$lib/actions/reveal";
+    import { getIcon } from "$lib/utils/techIcons";
 </script>
 
 <section class="projects-section">
@@ -29,7 +30,17 @@
                     <!-- Stack -->
                     <div class="project-stack-row">
                         {#each project.stack as tech (tech)}
-                            <span class="stack-chip">{tech}</span>
+                            {@const icon = getIcon(tech)}
+                            <span class="stack-chip">
+                                {#if icon}
+                                    <img
+                                        src={icon}
+                                        alt={tech}
+                                        class="tech-icon"
+                                    />
+                                {/if}
+                                {tech}
+                            </span>
                         {/each}
                     </div>
 

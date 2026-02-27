@@ -1,6 +1,7 @@
 <script lang="ts">
     import { stats } from "$lib/data/resume";
     import { reveal } from "$lib/actions/reveal";
+    import { countUp } from "$lib/actions/countUp";
 </script>
 
 <section class="stats-section">
@@ -8,7 +9,7 @@
         <div class="stats-grid glass-card" use:reveal>
             {#each stats as stat, i}
                 <div class="stat-item">
-                    <span class="stat-value">{stat.value}</span>
+                    <span class="stat-value" use:countUp={stat.value}></span>
                     <span class="stat-label">{stat.label}</span>
                 </div>
                 {#if i < stats.length - 1}

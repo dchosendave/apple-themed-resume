@@ -219,3 +219,19 @@
         transition: none;
     }
 }
+
+/* ─── Tech icon inside skill / stack chips ─── */
+.skill-chip,
+.stack-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tech-icon {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
