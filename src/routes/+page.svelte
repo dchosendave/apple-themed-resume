@@ -9,7 +9,19 @@
 </script>
 
 <svelte:head>
-	<title>Get to know Lowie</title>
+	<title>Lowie Dave Dichoson · Backend Developer</title>
+	<meta name="description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications. Open for Backend, Full-Stack, and Financial Systems roles." />
+
+	<!-- Open Graph -->
+	<meta property="og:type" content="website" />
+	<meta property="og:title" content="Lowie Dave Dichoson · Backend Developer" />
+	<meta property="og:description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications." />
+	<meta property="og:url" content="https://dave-delivers.vercel.app/" />
+
+	<!-- Twitter Card -->
+	<meta name="twitter:card" content="summary" />
+	<meta name="twitter:title" content="Lowie Dave Dichoson · Backend Developer" />
+	<meta name="twitter:description" content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications." />
 </svelte:head>
 
 <!-- Global ambient blobs — fixed so they persist across the whole page on scroll -->

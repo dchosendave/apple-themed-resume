@@ -1,6 +1,20 @@
 <script lang="ts">
     import { personalInfo, professionalFocus } from "$lib/data/resume";
     import ThemeToggle from "./ThemeToggle.svelte";
+
+    let emailCopied = $state(false);
+    let copyTimer: ReturnType<typeof setTimeout>;
+
+    function copyEmail(e: MouseEvent) {
+        // If it's a right-click or middle-click, let the browser handle href
+        if (e.button !== 0) return;
+        e.preventDefault();
+        navigator.clipboard.writeText(personalInfo.email).then(() => {
+            emailCopied = true;
+            clearTimeout(copyTimer);
+            copyTimer = setTimeout(() => (emailCopied = false), 2000);
+        });
+    }
 </script>
 
 <section class="hero">
@@ -35,9 +49,17 @@
             <!-- Contact + CTAs in one row -->
             <div class="action-row">
                 <div class="contact-chips">
-                    <a href="mailto:{personalInfo.email}" class="chip">
-                        <span class="chip-emoji">✉️</span>
-                        {personalInfo.email}
+                    <a
+                        href="mailto:{personalInfo.email}"
+                        class="chip chip-email"
+                        class:chip-copied={emailCopied}
+                        onclick={copyEmail}
+                        title="Click to copy email"
+                    >
+                        <span class="chip-emoji"
+                            >{emailCopied ? "✓" : "✉️"}</span
+                        >
+                        {emailCopied ? "Copied!" : personalInfo.email}
                     </a>
                     <a
                         href={personalInfo.linkedin}
@@ -260,6 +282,13 @@
         background: var(--ios-stat-bg);
         border-color: var(--ios-blue);
         color: var(--ios-blue);
+    }
+
+    .chip-copied {
+        background: rgba(48, 209, 88, 0.12) !important;
+        border-color: #30d158 !important;
+        color: #30d158 !important;
+        transition: all 0.2s ease;
     }
 
     .chip-plain {

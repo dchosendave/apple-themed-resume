@@ -1,13 +1,14 @@
 <script lang="ts">
     import { education } from "$lib/data/resume";
+    import { reveal } from "$lib/actions/reveal";
 </script>
 
 <section class="education-section">
     <div class="page-container">
         <p class="section-title">Education & Certification</p>
         <div class="edu-grid">
-            {#each education as item}
-                <div class="edu-card glass-card">
+            {#each education as item, i}
+                <div class="edu-card glass-card" use:reveal={{ delay: i * 60 }}>
                     <span class="edu-icon">{item.icon}</span>
                     <div class="edu-info">
                         <h3 class="edu-degree">{item.degree}</h3>

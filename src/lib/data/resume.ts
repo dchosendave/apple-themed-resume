@@ -157,7 +157,7 @@ export const projects: Project[] = [
         category: 'Client-Facing',
         role: 'API Developer & Database Engineer',
         description:
-            'A more detailed description of the project, explaining the problem it solved, your role in building it, and the technical decisions behind the implementation. This is where you tell the full story.',
+            'Investor account creation and updates were previously handled entirely through manual back-office processes, requiring in-person coordination and paperwork. PEMI ClientEase shifts this to a self-service model — investors can submit account creation or update requests directly through the web portal, with the backend validating, processing, and persisting the data automatically.',
         impact: 'Reduced the manual process of creating or updating investor accounts by automating the process. Leading to faster, easier, and more maintainable process.',
         stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF'],
         url: 'https://www.philequity.net/portal/'

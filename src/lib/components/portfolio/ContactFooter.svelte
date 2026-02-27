@@ -1,9 +1,23 @@
 <script lang="ts">
     import { personalInfo } from "$lib/data/resume";
+    import { reveal } from "$lib/actions/reveal";
+
+    let emailCopied = $state(false);
+    let copyTimer: ReturnType<typeof setTimeout>;
+
+    function copyEmail(e: MouseEvent) {
+        if (e.button !== 0) return;
+        e.preventDefault();
+        navigator.clipboard.writeText(personalInfo.email).then(() => {
+            emailCopied = true;
+            clearTimeout(copyTimer);
+            copyTimer = setTimeout(() => (emailCopied = false), 2000);
+        });
+    }
 </script>
 
 <footer class="contact-footer">
-    <div class="page-container footer-inner">
+    <div class="page-container footer-inner" use:reveal>
         <div class="footer-left">
             <p class="footer-name">{personalInfo.name}</p>
             <p class="footer-tagline">
@@ -11,7 +25,13 @@
             </p>
         </div>
         <div class="footer-links">
-            <a href="mailto:{personalInfo.email}" class="footer-link">
+            <a
+                href="mailto:{personalInfo.email}"
+                class="footer-link"
+                class:footer-link-copied={emailCopied}
+                onclick={copyEmail}
+                title="Click to copy email"
+            >
                 <svg
                     width="15"
                     height="15"
@@ -23,7 +43,7 @@
                         d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
                     /></svg
                 >
-                Email
+                {emailCopied ? "✓ Copied" : "Email"}
             </a>
             <a
                 href={personalInfo.linkedin}
@@ -129,6 +149,13 @@
         background: var(--ios-stat-bg);
         border-color: var(--ios-blue);
         color: var(--ios-blue);
+    }
+
+    .footer-link-copied {
+        background: rgba(48, 209, 88, 0.12) !important;
+        border-color: #30d158 !important;
+        color: #30d158 !important;
+        transition: all 0.2s ease;
     }
 
     .footer-download {

@@ -196,3 +196,42 @@
     color: var(--ios-blue);
     margin-bottom: 1rem;
 }
+
+/* ─── Scroll-reveal ─── */
+.reveal {
+    opacity: 0;
+    transform: translateY(16px);
+    transition:
+        opacity 0.4s ease-out var(--reveal-delay, 0ms),
+        transform 0.4s ease-out var(--reveal-delay, 0ms);
+}
+
+.reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Skip animation for users who prefer reduced motion */
+@media (prefers-reduced-motion: reduce) {
+    .reveal {
+        opacity: 1;
+        transform: none;
+        transition: none;
+    }
+}
+
+/* ─── Tech icon inside skill / stack chips ─── */
+.skill-chip,
+.stack-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.tech-icon {
+    width: 13px;
+    height: 13px;
+    object-fit: contain;
+    flex-shrink: 0;
+    display: block;
+}
