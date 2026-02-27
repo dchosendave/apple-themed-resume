@@ -2,6 +2,7 @@
     import { slide } from "svelte/transition";
     import { experience } from "$lib/data/resume";
     import ChevronDown from "@lucide/svelte/icons/chevron-down";
+    import { reveal } from "$lib/actions/reveal";
 
     // Build a flat array of open states indexed by [jobIdx][catIdx].
     // First category of first job starts expanded.
@@ -19,7 +20,7 @@
         <p class="section-title">Work Experience</p>
 
         {#each experience as job, ji (job.company)}
-            <div class="job-header glass-card">
+            <div class="job-header glass-card" use:reveal={{ delay: ji * 60 }}>
                 <div class="job-title-row">
                     <div>
                         <h2 class="company">{job.company}</h2>
@@ -31,7 +32,10 @@
 
             <div class="categories">
                 {#each job.categories as category, ci (category.title)}
-                    <div class="category glass-card">
+                    <div
+                        class="category glass-card"
+                        use:reveal={{ delay: ji * 60 + ci * 50 + 80 }}
+                    >
                         <!-- Always-visible accordion header -->
                         <button
                             class="category-toggle"

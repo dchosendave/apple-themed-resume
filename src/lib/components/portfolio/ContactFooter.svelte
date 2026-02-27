@@ -1,9 +1,10 @@
 <script lang="ts">
     import { personalInfo } from "$lib/data/resume";
+    import { reveal } from "$lib/actions/reveal";
 </script>
 
 <footer class="contact-footer">
-    <div class="page-container footer-inner">
+    <div class="page-container footer-inner" use:reveal>
         <div class="footer-left">
             <p class="footer-name">{personalInfo.name}</p>
             <p class="footer-tagline">

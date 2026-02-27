@@ -1,6 +1,6 @@
 <script lang="ts">
     import { projects } from "$lib/data/resume";
-    import { fly } from "svelte/transition";
+    import { reveal } from "$lib/actions/reveal";
 </script>
 
 <section class="projects-section">
@@ -8,10 +8,10 @@
         <p class="section-title">Featured Projects</p>
 
         <div class="projects-list">
-            {#each projects as project (project.name)}
+            {#each projects as project, i (project.name)}
                 <div
                     class="project-card glass-card"
-                    transition:fly={{ y: 16, duration: 260 }}
+                    use:reveal={{ delay: i * 60 }}
                 >
                     <!-- Header: name + badges -->
                     <div class="project-header">

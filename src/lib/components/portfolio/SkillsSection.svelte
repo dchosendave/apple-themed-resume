@@ -1,11 +1,12 @@
 <script lang="ts">
     import { skills } from "$lib/data/resume";
+    import { reveal } from "$lib/actions/reveal";
 </script>
 
 <section class="skills-section">
     <div class="page-container">
         <p class="section-title">Skills & Stack</p>
-        <div class="skills-grid glass-card">
+        <div class="skills-grid glass-card" use:reveal>
             {#each Object.entries(skills) as [category, items]}
                 <div class="skill-group">
                     <span class="group-label">{category}</span>

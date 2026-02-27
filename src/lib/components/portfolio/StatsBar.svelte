@@ -1,10 +1,11 @@
 <script lang="ts">
     import { stats } from "$lib/data/resume";
+    import { reveal } from "$lib/actions/reveal";
 </script>
 
 <section class="stats-section">
     <div class="page-container">
-        <div class="stats-grid glass-card">
+        <div class="stats-grid glass-card" use:reveal>
             {#each stats as stat, i}
                 <div class="stat-item">
                     <span class="stat-value">{stat.value}</span>
