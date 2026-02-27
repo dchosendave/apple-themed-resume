@@ -1,4 +1,10 @@
-export const personalInfo = {
+import type { Education } from "$lib/types/education";
+import type { Experience } from "$lib/types/experience";
+import type { Project } from "$lib/types/project";
+import type { PersonalInformation } from "$lib/types/personal-information";
+import type { Statistics } from "$lib/types/statistics";
+
+export const personalInfo: PersonalInformation = {
     name: 'Lowie Dave Dichoson',
     title: 'Backend Developer',
     subtitle: 'Backend Developer · Financial Systems',
@@ -10,7 +16,7 @@ export const personalInfo = {
     resumePdf: '/ldd-resume-january-2026-v2.pdf'
 };
 
-export const stats = [
+export const stats: Statistics[] = [
     { value: '3M+', label: 'Records Migrated' },
     { value: '60+', label: 'Production Deployments' },
     { value: '4', label: 'Legacy Systems Supported' },
@@ -36,22 +42,7 @@ export const skills: Record<string, string[]> = {
     Others: ['Git', 'GitHub', 'Postman', 'Docs-as-Code', 'RDLC', 'Technical Documentation', 'Production Support']
 };
 
-export interface Bullet {
-    text: string;
-    stack: string[];
-}
 
-export interface ExperienceCategory {
-    title: string;
-    bullets: Bullet[];
-}
-
-export interface Experience {
-    company: string;
-    role: string;
-    period: string;
-    categories: ExperienceCategory[];
-}
 
 export const experience: Experience[] = [
     {
@@ -114,13 +105,7 @@ export const experience: Experience[] = [
     }
 ];
 
-export interface Education {
-    degree: string;
-    major: string;
-    school: string;
-    period: string;
-    icon: string;
-}
+
 
 export const education: Education[] = [
     {
@@ -138,17 +123,6 @@ export const education: Education[] = [
         icon: '📜'
     }
 ];
-
-export interface Project {
-    name: string;
-    tagline: string;
-    category: string;
-    role?: string; // e.g. 'Sole Developer' | 'Contributor' — omit if not applicable
-    description: string;
-    impact: string;
-    stack: string[];
-    url?: string; // omit for internal/confidential projects
-}
 
 export const projects: Project[] = [
     {
