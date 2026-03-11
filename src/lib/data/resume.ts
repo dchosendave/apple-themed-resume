@@ -17,7 +17,7 @@ export const personalInfo: PersonalInformation = {
 };
 
 export const stats: Statistics[] = [
-    { value: '3M+', label: 'Records Migrated' },
+    { value: '8+', label: 'Systems Built & Enhanced' },
     { value: '60+', label: 'Production Deployments' },
     { value: '4', label: 'Legacy Systems Supported' },
     { value: '300+', label: 'Modules Documented' }
@@ -34,6 +34,7 @@ export const skills: Record<string, string[]> = {
         'ASP.NET MVC',
         'ASP.NET Web Forms',
         'Angular',
+        'SvelteKit',
         'Alpine.js',
         'jQuery',
         'QuestPDF'
@@ -119,8 +120,29 @@ export const education: Education[] = [
         degree: 'IT Specialist – Databases',
         major: 'Certification',
         school: 'Certiport',
-        period: 'August 2023',
-        icon: '📜'
+        period: 'January 2023',
+        icon: '🏅'
+    },
+    {
+        degree: 'Introduction to Responsible AI',
+        major: 'Certification',
+        school: 'Google Skills',
+        period: 'January 2026',
+        icon: '🏅'
+    },
+    {
+        degree: 'Introduction to Large Language Models',
+        major: 'Certification',
+        school: 'Google Skills',
+        period: 'January 2026',
+        icon: '🏅'
+    },
+    {
+        degree: 'Introduction to Generative AI',
+        major: 'Certification',
+        school: 'Google Skills',
+        period: 'January 2026',
+        icon: '🏅'
     }
 ];
 
