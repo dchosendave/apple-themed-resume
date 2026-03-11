@@ -180,21 +180,72 @@
     transition: background 0.3s ease, border-color 0.3s ease;
 }
 
+/* ─── Bento Grid Layout ─── */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto auto auto;
+    gap: 12px;
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 24px 24px 0;
+}
+
+.bento-tile {
+    border-radius: 20px;
+    overflow: hidden;
+    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease, border-color 0.3s ease;
+}
+
+.bento-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+}
+
+.dark .bento-tile:hover {
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+}
+
+/* Nested glass for inner cards (e.g., project mini-cards) */
+.glass-card-inner {
+    background: var(--ios-chip-bg);
+    border: 1px solid var(--ios-glass-border);
+    border-radius: 14px;
+    transition: background 0.3s ease, border-color 0.3s ease;
+}
+
+/* Responsive bento breakpoints */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 16px 16px 0;
+        gap: 10px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        padding: 12px 12px 0;
+        gap: 10px;
+    }
+}
+
 /* ─── Page layout ─── */
 .page-container {
-    max-width: 900px;
+    max-width: 960px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* ─── Section title style ─── */
+/* ─── Section title style (tile-inline) ─── */
 .section-title {
-    font-size: 0.7rem;
+    font-size: 0.65rem;
     font-weight: 600;
     letter-spacing: 0.08em;
     text-transform: uppercase;
     color: var(--ios-blue);
-    margin-bottom: 1rem;
+    margin-bottom: 10px;
 }
 
 /* ─── Scroll-reveal ─── */
@@ -234,4 +285,26 @@
     object-fit: contain;
     flex-shrink: 0;
     display: block;
+}
+
+/* ─── Easter egg animations ─── */
+@keyframes wobble {
+    0% { transform: rotate(0deg); }
+    15% { transform: rotate(-12deg); }
+    30% { transform: rotate(10deg); }
+    45% { transform: rotate(-8deg); }
+    60% { transform: rotate(6deg); }
+    75% { transform: rotate(-3deg); }
+    90% { transform: rotate(2deg); }
+    100% { transform: rotate(0deg); }
+}
+
+@keyframes toast-in {
+    0% { opacity: 0; transform: translateY(8px) scale(0.95); }
+    100% { opacity: 1; transform: translateY(0) scale(1); }
+}
+
+@keyframes toast-out {
+    0% { opacity: 1; transform: translateY(0) scale(1); }
+    100% { opacity: 0; transform: translateY(-8px) scale(0.95); }
 }

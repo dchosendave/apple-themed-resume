@@ -103,6 +103,42 @@ export const experience: Experience[] = [
                 ]
             }
         ]
+    },
+    {
+        company: 'EastWest Banking Corporation',
+        role: 'Software QA Tester Intern',
+        period: 'April 2023 – July 2023',
+        categories: [
+            {
+                title: 'Testing & Quality Assurance',
+                bullets: [
+                    {
+                        text: 'Conducted manual and automated testing of software applications, identifying and documenting bugs and issues.',
+                        stack: []
+                    },
+                    {
+                        text: 'Collaborated with development teams to ensure quality standards and compliance with project requirements.',
+                        stack: []
+                    }
+                ]
+            }
+        ]
+    },
+    {
+        company: 'University of Makati',
+        role: 'Computer Science Student',
+        period: 'August 2022 – August 2023',
+        categories: [
+            {
+                title: 'Thesis Project: Educational Game Development',
+                bullets: [
+                    {
+                        text: 'Designed and developed a 2D game using Unity and C#, implementing educational gameplay mechanics targeting pre-school students.',
+                        stack: ['Unity', 'C#', 'Pathfinding Algorithms']
+                    }
+                ]
+            }
+        ]
     }
 ];
 
@@ -149,44 +185,27 @@ export const education: Education[] = [
 export const projects: Project[] = [
     {
         name: 'PEMI ClientEase',
-        tagline: 'A client-facing web application that automates the creation or update of investor accounts.',
+        description: 'Self-service investor portal automating account creation and updates — replaced manual back-office workflows.',
         category: 'Client-Facing',
-        role: 'API Developer & Database Engineer',
-        description:
-            'Investor account creation and updates were previously handled entirely through manual back-office processes, requiring in-person coordination and paperwork. PEMI ClientEase shifts this to a self-service model — investors can submit account creation or update requests directly through the web portal, with the backend validating, processing, and persisting the data automatically.',
-        impact: 'Reduced the manual process of creating or updating investor accounts by automating the process. Leading to faster, easier, and more maintainable process.',
         stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF'],
         url: 'https://www.philequity.net/portal/'
     },
     {
-        name: 'Letter of Intent Generator',
-        tagline: 'An internally used web application that automates the generation of Letter of Intent document of the transactions.',
+        name: 'LOI Generator',
+        description: 'Automated Letter of Intent generation from database records — improved accuracy for an 8-person department.',
         category: 'Internal Tool',
-        role: 'Full-stack Developer',
-        description:
-            'LOIs were previously manually created using word and/or excel sheets which was time-consuming and prone to errors. This application automates the process of generating LOIs by using a template and populating it with data from the database.',
-        impact: 'Improved accuracy and efficiency of an 8-person department.',
         stack: ['Alpine.js', 'ASP.NET MVC', 'Oracle SQL', 'RDLC']
     },
     {
         name: 'Report Generator',
-        tagline: 'Internal reporting platform used by Accounting, Treasury, and Compliance departments.',
+        description: 'Centralized IAM module with RBAC and dynamic permissions — replaced manual SQL-based user provisioning.',
         category: 'Internal Tool',
-        role: 'Full-stack Developer',
-        description:
-            'Contributed to an existing internal reporting system by introducing a centralized IAM module with RBAC, dynamic permission mapping, and secure password recovery — replacing manual SQL-based user provisioning.',
-        impact:
-            'Improved security, eliminated manual account setup, and standardized access control across departments.',
         stack: ['HTML/CSS/jQuery', 'ASP.NET Web Forms', 'MS SQL', 'RDLC']
     },
     {
         name: 'Dave Delivers',
-        tagline: 'An interactive personal portfolio with several features such as macOs-like desktop, command-line interface, and more.',
-        category: 'Personal Project',
-        role: 'Full-stack Developer',
-        description:
-            'An experimental project with the goal of attracting both technical and non-technical recruiters.',
-        impact: 'Learned new technologies and gained experience in building a personal portfolio.',
+        description: 'Experimental macOS-inspired portfolio with CLI, desktop sim, and interactive easter eggs.',
+        category: 'Personal',
         stack: ['SvelteKit', 'Turso SQLite', 'TailwindCSS'],
         url: 'https://dave-delivers.vercel.app/'
     }
