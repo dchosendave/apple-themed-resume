@@ -21,7 +21,7 @@
         <div class="footer-left">
             <p class="footer-name">{personalInfo.name}</p>
             <p class="footer-tagline">
-                Available for Backend · Full-Stack · Financial Systems roles
+                Available for Backend · Full-Stack · AI Engineering Roles
             </p>
         </div>
         <div class="footer-links">
