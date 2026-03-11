@@ -48,7 +48,7 @@
     <div class="top-bar">
         <span class="availability-pill">
             <span class="pulse-dot"></span>
-            Open for opportunities
+            Open to opportunities
         </span>
         <ThemeToggle />
     </div>

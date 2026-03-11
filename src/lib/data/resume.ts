@@ -24,13 +24,13 @@ export const stats: Statistics[] = [
 ];
 
 export const professionalFocus =
-    'Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications.';
+    'What sets me apart is my drive to understand business problems first, then craft technical solutions that are efficient, maintainable, and aligned with business goals.';
 
 export const skills: Record<string, string[]> = {
     Languages: ['C#', 'JavaScript', 'TypeScript', 'SQL', 'PHP', 'VB.NET', 'HTML', 'CSS'],
     'Libraries & Frameworks': [
         '.NET 8 / .NET Core',
-        'ASP.NET Web API',
+        '.NET Web API',
         'ASP.NET MVC',
         'ASP.NET Web Forms',
         'Angular',
@@ -40,7 +40,7 @@ export const skills: Record<string, string[]> = {
         'QuestPDF'
     ],
     Databases: ['MS SQL', 'PostgreSQL', 'Oracle SQL', 'MySQL'],
-    Others: ['Git', 'GitHub', 'Postman', 'Docs-as-Code', 'RDLC', 'Technical Documentation', 'Production Support']
+    Others: ['Git', 'GitHub', 'Postman', 'Technical Documentation', 'Production Support']
 };
 
 
