@@ -59,7 +59,7 @@
         font-weight: 600;
         letter-spacing: 0.04em;
         color: var(--ios-text-secondary);
-        min-width: 110px;
+        min-width: 70px;
         flex-shrink: 0;
         padding-top: 3px;
     }

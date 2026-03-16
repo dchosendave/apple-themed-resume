@@ -27,20 +27,10 @@ export const professionalFocus =
     'What sets me apart is my drive to understand business problems first, then craft technical solutions that are efficient, maintainable, and aligned with business goals.';
 
 export const skills: Record<string, string[]> = {
-    Languages: ['C#', 'JavaScript', 'TypeScript', 'SQL', 'PHP', 'VB.NET', 'HTML', 'CSS'],
-    'Libraries & Frameworks': [
-        '.NET 8 / .NET Core',
-        '.NET Web API',
-        'ASP.NET MVC',
-        'ASP.NET Web Forms',
-        'Angular',
-        'SvelteKit',
-        'Alpine.js',
-        'jQuery',
-        'QuestPDF'
-    ],
+    Backend: ['C#', '.NET Core', 'Node.js', 'VB.NET', 'PHP'],
+    Frontend: ['JavaScript', 'TypeScript', 'Angular', 'SvelteKit', 'Alpine.js', 'jQuery'],
     Databases: ['MS SQL', 'PostgreSQL', 'Oracle SQL', 'MySQL'],
-    Others: ['Git', 'GitHub', 'Postman', 'Technical Documentation', 'Production Support']
+    Tooling: ['Git', 'GitHub', 'Postman', 'QuestPDF', 'RDLC', 'Technical Documentation', 'Production Support']
 };
 
 
@@ -127,7 +117,7 @@ export const experience: Experience[] = [
     {
         company: 'University of Makati',
         role: 'Computer Science Student',
-        period: 'August 2022 – August 2023',
+        period: 'August 2019 – August 2023',
         categories: [
             {
                 title: 'Thesis Project: Educational Game Development',
@@ -209,4 +199,11 @@ export const projects: Project[] = [
         stack: ['SvelteKit', 'Turso SQLite', 'TailwindCSS'],
         url: 'https://dave-delivers.vercel.app/'
     }
+];
+
+export const exploring: { icon: string; label: string; note: string }[] = [
+    { icon: '🐳', label: 'Docker & Containerization', note: 'Packaging applications for consistent deployments' },
+    { icon: '☁️', label: 'Azure Fundamentals', note: 'Cloud hosting, storage, and managed services' },
+    { icon: '🤖', label: 'AI / LLM Integration', note: 'Embedding LLM-powered features into backend services' },
+    { icon: '📨', label: 'AI-assisted Development', note: 'Utilizing AI tools to enhance development workflows' },
 ];

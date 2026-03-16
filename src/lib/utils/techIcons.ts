@@ -12,13 +12,14 @@ const iconMap: Record<string, string> = {
     'CSS': `${BASE}/css3/css3-original.svg`,
 
     // Libraries & Frameworks
-    '.NET 8 / .NET Core': `${BASE}/dotnetcore/dotnetcore-original.svg`,
+    '.NET Core': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET Web API': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET MVC': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET Web Forms': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'Angular': `${BASE}/angular/angular-original.svg`,
     'Alpine.js': `${BASE}/alpinejs/alpinejs-original.svg`,
     'jQuery': `${BASE}/jquery/jquery-original.svg`,
+    'Node.js': `${BASE}/nodejs/nodejs-original.svg`,
 
     // Databases
     'MS SQL': `${BASE}/microsoftsqlserver/microsoftsqlserver-original.svg`,

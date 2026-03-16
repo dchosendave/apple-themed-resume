@@ -2,6 +2,7 @@
 	import Hero from "$lib/components/portfolio/Hero.svelte";
 	import StatsBar from "$lib/components/portfolio/StatsBar.svelte";
 	import SkillsSection from "$lib/components/portfolio/SkillsSection.svelte";
+	import ExploringSection from "$lib/components/portfolio/ExploringSection.svelte";
 	import ExperienceSection from "$lib/components/portfolio/ExperienceSection.svelte";
 	import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
 	import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
@@ -53,7 +54,10 @@
 
 	<!-- Row 2: Experience (3fr) + Skills (2fr) -->
 	<div class="tile-experience"><ExperienceSection /></div>
-	<div class="tile-skills"><SkillsSection /></div>
+	<div class="tile-right-col-2">
+		<div class="tile-skills"><SkillsSection /></div>
+		<div class="tile-exploring"><ExploringSection /></div>
+	</div>
 
 	<!-- Row 3: Projects (3fr) + Education (2fr) -->
 	<div class="tile-projects"><ProjectsSection /></div>
@@ -71,18 +75,37 @@
 		padding-bottom: 12px;
 	}
 
-	/* Tile wrappers ensure children fill grid cells */
-	.tile-hero, .tile-stats, .tile-experience, .tile-skills,
-	.tile-projects, .tile-education {
+	.tile-hero,
+	.tile-stats,
+	.tile-experience,
+	.tile-projects,
+	.tile-education {
 		display: flex;
 	}
 
 	.tile-hero > :global(*),
 	.tile-stats > :global(*),
 	.tile-experience > :global(*),
-	.tile-skills > :global(*),
 	.tile-projects > :global(*),
 	.tile-education > :global(*) {
+		flex: 1;
+		min-width: 0;
+	}
+
+	.tile-right-col-2 {
+		display: flex;
+		flex-direction: column;
+		gap: 12px;
+		align-self: start;
+	}
+
+	.tile-skills,
+	.tile-exploring {
+		display: flex;
+	}
+
+	.tile-skills > :global(*),
+	.tile-exploring > :global(*) {
 		flex: 1;
 		min-width: 0;
 	}
