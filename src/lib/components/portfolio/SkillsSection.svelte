@@ -4,82 +4,81 @@
     import { getIcon } from "$lib/utils/techIcons";
 </script>
 
-<section class="skills-section">
-    <div class="page-container">
-        <p class="section-title">Skills & Stack</p>
-        <div class="skills-grid glass-card" use:reveal>
-            {#each Object.entries(skills) as [category, items]}
-                <div class="skill-group">
-                    <span class="group-label">{category}</span>
-                    <div class="chip-row">
-                        {#each items as skill}
-                            {@const icon = getIcon(skill)}
-                            <span class="skill-chip">
-                                {#if icon}
-                                    <img
-                                        src={icon}
-                                        alt={skill}
-                                        class="tech-icon"
-                                    />
-                                {/if}
-                                {skill}
-                            </span>
-                        {/each}
-                    </div>
+<div class="skills-tile glass-card bento-tile" use:reveal>
+    <p class="section-title">Skills & Stack</p>
+    <div class="skills-grid">
+        {#each Object.entries(skills) as [category, items]}
+            <div class="skill-group">
+                <span class="group-label">{category}</span>
+                <div class="chip-row">
+                    {#each items as skill}
+                        {@const icon = getIcon(skill)}
+                        <span class="skill-chip">
+                            {#if icon}
+                                <img src={icon} alt={skill} class="tech-icon" />
+                            {/if}
+                            {skill}
+                        </span>
+                    {/each}
                 </div>
-            {/each}
-        </div>
+            </div>
+        {/each}
     </div>
-</section>
+</div>
 
 <style>
-    .skills-section {
-        padding: 0 0 32px;
+    .skills-tile {
+        padding: 18px 22px;
     }
 
     .skills-grid {
         display: flex;
         flex-direction: column;
         gap: 0;
-        overflow: hidden;
     }
 
     .skill-group {
         display: flex;
         align-items: flex-start;
-        gap: 16px;
-        padding: 16px 24px;
+        gap: 12px;
+        padding: 10px 0;
         border-bottom: 1px solid var(--ios-separator);
+    }
+
+    .skill-group:first-child {
+        padding-top: 0;
     }
 
     .skill-group:last-child {
         border-bottom: none;
+        padding-bottom: 0;
     }
 
     .group-label {
-        font-size: 0.7rem;
+        font-size: 0.65rem;
         font-weight: 600;
         letter-spacing: 0.04em;
         color: var(--ios-text-secondary);
-        min-width: 130px;
+        min-width: 70px;
         flex-shrink: 0;
-        padding-top: 4px;
+        padding-top: 3px;
     }
 
     .chip-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 6px;
+        gap: 4px;
     }
 
     .skill-chip {
         display: inline-flex;
         align-items: center;
-        padding: 4px 11px;
+        gap: 4px;
+        padding: 3px 9px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
-        font-size: 0.75rem;
+        font-size: 0.7rem;
         font-weight: 500;
         color: var(--ios-text-primary);
         transition: all 0.15s ease;
@@ -94,7 +93,7 @@
     @media (max-width: 600px) {
         .skill-group {
             flex-direction: column;
-            gap: 10px;
+            gap: 6px;
         }
 
         .group-label {
