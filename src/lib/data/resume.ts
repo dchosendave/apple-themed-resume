@@ -67,7 +67,7 @@ export const experience: Experience[] = [
         company: 'Vantage Financial Corp.',
         role: 'Analyst Programmer',
         period: 'August 2023 – Present',
-        highlights: ['8+ Systems Built & Enhanced', '60+ Production Deployments', '3M+ Records Migrated', '300+ Modules Documented'],
+        highlights: ['Solo Backend Developer', 'Financial Systems', 'Cross-team Liaison'],
         categories: [
             {
                 title: 'System Development',
