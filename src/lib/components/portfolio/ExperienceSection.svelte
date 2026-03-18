@@ -24,6 +24,13 @@
             <div class="job-info">
                 <h2 class="company">{job.company}</h2>
                 <span class="role">{job.role}</span>
+                {#if job.highlights && job.highlights.length > 0}
+                    <div class="highlights-row">
+                        {#each job.highlights as highlight}
+                            <span class="highlight-chip">{highlight}</span>
+                        {/each}
+                    </div>
+                {/if}
             </div>
             <span class="period">{job.period}</span>
         </div>
@@ -119,6 +126,24 @@
         border: 1px solid var(--ios-chip-border);
         border-radius: 100px;
         flex-shrink: 0;
+    }
+
+    .highlights-row {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 4px;
+        margin-top: 6px;
+    }
+
+    .highlight-chip {
+        font-size: 0.62rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--ios-text-secondary);
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-chip-border);
+        border-radius: 100px;
+        padding: 2px 8px;
     }
 
     .categories {

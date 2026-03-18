@@ -4,4 +4,7 @@ export interface Project {
     category: string;
     stack: string[];
     url?: string; // omit for internal/confidential projects
+    problem?: string;
+    solution?: string;
+    impact?: string;
 }

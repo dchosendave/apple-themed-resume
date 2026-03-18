@@ -3,6 +3,7 @@ import type { Experience } from "$lib/types/experience";
 import type { Project } from "$lib/types/project";
 import type { PersonalInformation } from "$lib/types/personal-information";
 import type { Statistics } from "$lib/types/statistics";
+import type { Skill } from "$lib/types/skill";
 
 export const personalInfo: PersonalInformation = {
     name: 'Lowie Dave Dichoson',
@@ -26,11 +27,37 @@ export const stats: Statistics[] = [
 export const professionalFocus =
     'What sets me apart is my drive to understand business problems first, then craft technical solutions that are efficient, maintainable, and aligned with business goals.';
 
-export const skills: Record<string, string[]> = {
-    Backend: ['C#', '.NET Core', 'Node.js', 'VB.NET', 'PHP'],
-    Frontend: ['JavaScript', 'TypeScript', 'Angular', 'SvelteKit', 'Alpine.js', 'jQuery'],
-    Databases: ['MS SQL', 'PostgreSQL', 'Oracle SQL', 'MySQL'],
-    Tooling: ['Git', 'GitHub', 'Postman', 'QuestPDF', 'RDLC', 'Technical Documentation', 'Production Support']
+export const skills: Record<string, Skill[]> = {
+    Backend: [
+        { name: 'C#', level: 'expert' },
+        { name: '.NET Core', level: 'expert' },
+        { name: 'Node.js', level: 'proficient' },
+        { name: 'VB.NET', level: 'proficient' },
+        { name: 'PHP', level: 'familiar' },
+    ],
+    Frontend: [
+        { name: 'JavaScript', level: 'proficient' },
+        { name: 'TypeScript', level: 'proficient' },
+        { name: 'Angular', level: 'proficient' },
+        { name: 'SvelteKit', level: 'familiar' },
+        { name: 'Alpine.js', level: 'familiar' },
+        { name: 'jQuery', level: 'proficient' },
+    ],
+    Databases: [
+        { name: 'MS SQL', level: 'expert' },
+        { name: 'PostgreSQL', level: 'proficient' },
+        { name: 'Oracle SQL', level: 'proficient' },
+        { name: 'MySQL', level: 'familiar' },
+    ],
+    Tooling: [
+        { name: 'Git', level: 'proficient' },
+        { name: 'GitHub', level: 'proficient' },
+        { name: 'Postman', level: 'proficient' },
+        { name: 'QuestPDF', level: 'proficient' },
+        { name: 'RDLC', level: 'proficient' },
+        { name: 'Technical Documentation', level: 'expert' },
+        { name: 'Production Support', level: 'expert' },
+    ],
 };
 
 
@@ -40,6 +67,7 @@ export const experience: Experience[] = [
         company: 'Vantage Financial Corp.',
         role: 'Analyst Programmer',
         period: 'August 2023 – Present',
+        highlights: ['8+ Systems Built & Enhanced', '60+ Production Deployments', '3M+ Records Migrated', '300+ Modules Documented'],
         categories: [
             {
                 title: 'System Development',
@@ -98,6 +126,7 @@ export const experience: Experience[] = [
         company: 'EastWest Banking Corporation',
         role: 'Software QA Tester Intern',
         period: 'April 2023 – July 2023',
+        highlights: ['Manual & Automated Testing', 'Bug Documentation', 'Cross-team Collaboration'],
         categories: [
             {
                 title: 'Testing & Quality Assurance',
@@ -118,6 +147,7 @@ export const experience: Experience[] = [
         company: 'University of Makati',
         role: 'Computer Science Student',
         period: 'August 2019 – August 2023',
+        highlights: ['BS Computer Science', 'Unity 2D Thesis Game', 'Application Development Major'],
         categories: [
             {
                 title: 'Thesis Project: Educational Game Development',
@@ -178,26 +208,38 @@ export const projects: Project[] = [
         description: 'Self-service investor portal automating account creation and updates — replaced manual back-office workflows.',
         category: 'Client-Facing',
         stack: ['Angular', '.NET Web API', 'PostgreSQL', 'QuestPDF'],
-        url: 'https://www.philequity.net/portal/'
+        url: 'https://www.philequity.net/portal/',
+        problem: 'Investor account creation and updates were handled entirely through manual back-office operations, creating bottlenecks, delays, and a high risk of data entry errors.',
+        solution: 'Built a full-stack self-service portal end-to-end — sole developer on backend API design, data modeling, business logic, frontend integration, and PDF report generation using QuestPDF.',
+        impact: 'Fully replaced manual back-office workflows for investor account management. Live in production at Philequity, serving real investors.'
     },
     {
         name: 'LOI Generator',
         description: 'Automated Letter of Intent generation from database records — improved accuracy for an 8-person department.',
         category: 'Internal Tool',
-        stack: ['Alpine.js', 'ASP.NET MVC', 'Oracle SQL', 'RDLC']
+        stack: ['Alpine.js', 'ASP.NET MVC', 'Oracle SQL', 'RDLC'],
+        problem: 'An 8-person operations team manually drafted Letters of Intent, cross-checking transaction records from a legacy Oracle database — a slow, error-prone process prone to discrepancies.',
+        solution: 'Designed and built an in-house system integrated with the legacy Oracle database that automates transaction counter-checks, approval validation, and LOI document generation.',
+        impact: 'Eliminated manual LOI drafting for the team, improving accuracy and reducing turnaround time on a daily operational workflow.'
     },
     {
         name: 'Report Generator',
         description: 'Centralized IAM module with RBAC and dynamic permissions — replaced manual SQL-based user provisioning.',
         category: 'Internal Tool',
-        stack: ['HTML/CSS/jQuery', 'ASP.NET Web Forms', 'MS SQL', 'RDLC']
+        stack: ['HTML/CSS/jQuery', 'ASP.NET Web Forms', 'MS SQL', 'RDLC'],
+        problem: 'User access to internal reports was managed ad hoc via direct SQL changes, with no centralized interface for provisioning, role assignment, or password management.',
+        solution: 'Designed and implemented core access-control modules including user account management, RBAC, password recovery and enforcement, and dynamic role-driven navigation.',
+        impact: 'Replaced fragile manual SQL-based provisioning with a proper IAM system, improving security posture and reducing admin overhead for the internal reporting platform.'
     },
     {
         name: 'Dave Delivers',
         description: 'Experimental macOS-inspired portfolio with CLI, desktop sim, and interactive easter eggs.',
         category: 'Personal',
         stack: ['SvelteKit', 'Turso SQLite', 'TailwindCSS'],
-        url: 'https://dave-delivers.vercel.app/'
+        url: 'https://dave-delivers.vercel.app/',
+        problem: 'A static PDF resume doesn\'t reflect how a developer actually thinks or builds. Wanted a portfolio that itself demonstrates frontend craft, creativity, and product sensibility.',
+        solution: 'Built a macOS-inspired interactive portfolio with a simulated desktop environment, a working CLI interface, easter eggs, and a persistent SQLite backend via Turso.',
+        impact: 'A living showcase of skills beyond what a resume communicates — used as a conversation starter in job applications and technical interviews.'
     }
 ];
 

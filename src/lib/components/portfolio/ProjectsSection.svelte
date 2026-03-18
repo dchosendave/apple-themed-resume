@@ -2,6 +2,10 @@
     import { projects } from "$lib/data/resume";
     import { reveal } from "$lib/actions/reveal";
     import { getIcon } from "$lib/utils/techIcons";
+    import ProjectDrawer from "$lib/components/portfolio/ProjectDrawer.svelte";
+    import type { Project } from "$lib/types/project";
+
+    let selectedProject = $state<Project | null>(null);
 </script>
 
 <div class="projects-tile glass-card bento-tile" use:reveal>
@@ -9,7 +13,11 @@
 
     <div class="projects-grid">
         {#each projects as project (project.name)}
-            <div class="project-card glass-card-inner">
+            <button
+                class="project-card glass-card-inner"
+                onclick={() => selectedProject = project}
+                aria-label="View {project.name} case study"
+            >
                 <div class="project-header">
                     <h2 class="project-name">{project.name}</h2>
                     <span class="project-category">{project.category}</span>
@@ -31,7 +39,14 @@
                     </div>
 
                     {#if project.url}
-                        <a href={project.url} target="_blank" rel="noopener noreferrer" class="project-link" title="View project">
+                        <a
+                            href={project.url}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            class="project-link"
+                            title="View project"
+                            onclick={(e) => e.stopPropagation()}
+                        >
                             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6" /><polyline points="15 3 21 3 21 9" /><line x1="10" y1="14" x2="21" y2="3" /></svg>
                         </a>
                     {:else}
@@ -40,10 +55,14 @@
                         </span>
                     {/if}
                 </div>
-            </div>
+
+                <span class="card-hint">Click for case study</span>
+            </button>
         {/each}
     </div>
 </div>
+
+<ProjectDrawer project={selectedProject} onclose={() => selectedProject = null} />
 
 <style>
     .projects-tile {
@@ -61,6 +80,34 @@
         display: flex;
         flex-direction: column;
         gap: 8px;
+        /* Reset button defaults */
+        background: var(--ios-chip-bg);
+        border: 1px solid var(--ios-glass-border);
+        border-radius: 14px;
+        text-align: left;
+        cursor: pointer;
+        font: inherit;
+        width: 100%;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+        position: relative;
+    }
+
+    .project-card:hover {
+        background: color-mix(in srgb, var(--ios-chip-bg) 80%, var(--ios-stat-bg));
+        border-color: color-mix(in srgb, var(--ios-blue) 35%, transparent);
+        transform: translateY(-1px);
+    }
+
+    .project-card:hover .card-hint {
+        opacity: 1;
+    }
+
+    .card-hint {
+        font-size: 0.6rem;
+        color: var(--ios-blue);
+        opacity: 0;
+        transition: opacity 0.15s ease;
+        margin-top: auto;
     }
 
     .project-header {
