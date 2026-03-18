@@ -52,6 +52,7 @@
     --ios-chip-border: rgba(0, 0, 0, 0.1);
     --ios-nav-bg: rgba(242, 242, 247, 0.8);
     --ios-separator: rgba(0, 0, 0, 0.1);
+    --ios-text-tertiary: rgba(29, 29, 31, 0.35);
 }
 
 .dark {
@@ -101,6 +102,7 @@
     --ios-chip-border: rgba(255, 255, 255, 0.1);
     --ios-nav-bg: rgba(10, 10, 14, 0.8);
     --ios-separator: rgba(255, 255, 255, 0.1);
+    --ios-text-tertiary: rgba(245, 245, 247, 0.35);
 }
 
 @theme inline {
@@ -307,4 +309,9 @@
 @keyframes toast-out {
     0% { opacity: 1; transform: translateY(0) scale(1); }
     100% { opacity: 0; transform: translateY(-8px) scale(0.95); }
+}
+
+@keyframes palette-in {
+    from { opacity: 0; transform: translate(-50%, calc(-30% - 12px)) scale(0.95); }
+    to { opacity: 1; transform: translate(-50%, -30%) scale(1); }
 }

@@ -7,6 +7,7 @@
 	import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
 	import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
 	import ContactFooter from "$lib/components/portfolio/ContactFooter.svelte";
+	import CommandPalette from "$lib/components/portfolio/CommandPalette.svelte";
 </script>
 
 <svelte:head>
@@ -49,23 +50,25 @@
 
 <main class="bento-grid">
 	<!-- Row 1: Hero (3fr) + Stats (2fr) -->
-	<div class="tile-hero"><Hero /></div>
+	<div id="tile-hero" class="tile-hero"><Hero /></div>
 	<div class="tile-stats"><StatsBar /></div>
 
 	<!-- Row 2: Experience (3fr) + Skills (2fr) -->
-	<div class="tile-experience"><ExperienceSection /></div>
+	<div id="tile-experience" class="tile-experience"><ExperienceSection /></div>
 	<div class="tile-right-col-2">
-		<div class="tile-skills"><SkillsSection /></div>
+		<div id="tile-skills" class="tile-skills"><SkillsSection /></div>
 		<div class="tile-exploring"><ExploringSection /></div>
 	</div>
 
 	<!-- Row 3: Projects (3fr) + Education (2fr) -->
-	<div class="tile-projects"><ProjectsSection /></div>
-	<div class="tile-education"><EducationSection /></div>
+	<div id="tile-projects" class="tile-projects"><ProjectsSection /></div>
+	<div id="tile-education" class="tile-education"><EducationSection /></div>
 
 	<!-- Row 4: Full-width footer -->
 	<ContactFooter />
 </main>
+
+<CommandPalette />
 
 <style>
 	main {
