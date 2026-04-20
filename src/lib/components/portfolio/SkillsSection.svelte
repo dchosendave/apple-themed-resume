@@ -15,11 +15,11 @@
 <div class="skills-tile glass-card bento-tile" use:reveal>
     <p class="section-title">Skills & Stack</p>
     <div class="skills-grid">
-        {#each Object.entries(skills) as [category, items]}
+        {#each Object.entries(skills) as [category, items] (category)}
             <div class="skill-group">
                 <span class="group-label">{category}</span>
                 <div class="chip-row">
-                    {#each items as skill}
+                    {#each items as skill (skill.name)}
                         {@const icon = getIcon(skill.name)}
                         <span class="skill-chip">
                             {#if icon}
@@ -41,57 +41,48 @@
 
 <style>
     .skills-tile {
-        padding: 18px 22px;
+        padding: 22px 24px;
     }
 
     .skills-grid {
         display: flex;
         flex-direction: column;
-        gap: 0;
+        gap: 14px;
     }
 
     .skill-group {
         display: flex;
-        align-items: flex-start;
-        gap: 12px;
-        padding: 10px 0;
-        border-bottom: 1px solid var(--ios-separator);
-    }
-
-    .skill-group:first-child {
-        padding-top: 0;
-    }
-
-    .skill-group:last-child {
-        border-bottom: none;
-        padding-bottom: 0;
+        flex-direction: column;
+        gap: 10px;
+        padding: 14px;
+        border: 1px solid var(--ios-glass-border);
+        border-radius: 18px;
+        background: color-mix(in srgb, var(--ios-chip-bg) 92%, transparent);
     }
 
     .group-label {
-        font-size: 0.65rem;
+        font-size: 0.72rem;
         font-weight: 600;
-        letter-spacing: 0.04em;
+        letter-spacing: 0.08em;
         color: var(--ios-text-secondary);
-        min-width: 70px;
-        flex-shrink: 0;
-        padding-top: 3px;
+        text-transform: uppercase;
     }
 
     .chip-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 4px;
+        gap: 6px;
     }
 
     .skill-chip {
         display: inline-flex;
         align-items: center;
-        gap: 4px;
-        padding: 3px 9px;
+        gap: 5px;
+        padding: 5px 10px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
-        font-size: 0.7rem;
+        font-size: 0.76rem;
         font-weight: 500;
         color: var(--ios-text-primary);
         transition: all 0.15s ease;
@@ -107,18 +98,18 @@
         display: inline-flex;
         align-items: center;
         gap: 2px;
-        margin-left: 2px;
+        margin-left: 4px;
     }
 
     .dot {
-        width: 3px;
-        height: 3px;
+        width: 4px;
+        height: 4px;
         border-radius: 50%;
         background: var(--ios-separator);
         transition: background 0.15s ease;
     }
 
-    .dot.filled {
+    .filled {
         background: var(--ios-blue);
     }
 
@@ -131,13 +122,17 @@
     }
 
     @media (max-width: 600px) {
-        .skill-group {
-            flex-direction: column;
-            gap: 6px;
+        .skills-tile {
+            padding: 20px 18px;
         }
 
-        .group-label {
-            min-width: unset;
+        .skills-grid {
+            gap: 10px;
+        }
+
+        .skill-group {
+            gap: 8px;
+            padding: 12px;
         }
     }
 </style>
