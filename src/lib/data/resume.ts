@@ -7,8 +7,8 @@ import type { Skill } from "$lib/types/skill";
 
 export const personalInfo: PersonalInformation = {
     name: "Lowie Dave Dichoson",
-    title: "Backend Developer",
-    subtitle: "Backend Developer · Financial Systems",
+    title: "Software Engineer",
+    subtitle: "Software Engineer · Financial Systems",
     location: "Taguig City, Philippines",
     email: "lowiedave30@gmail.com",
     phone: "+63 915 083 3518",

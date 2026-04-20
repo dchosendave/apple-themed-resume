@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-    <title>Lowie Dichoson · Backend Developer</title>
+    <title>Lowie Dichoson · Software Engineer</title>
     <meta
         name="description"
         content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications. Open for Backend, Full-Stack, and Financial Systems roles."

@@ -154,14 +154,14 @@
     showCloseButton={false}
     label="Quick actions"
     loop
-    class="apple-panel-surface top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! rounded-[24px]! border p-0 ring-0"
+    class="apple-panel-surface top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! rounded-3xl! border p-0 ring-0"
 >
     <div
-        class="flex items-start justify-between gap-4 border-b px-4 py-3 sm:px-5 [border-color:var(--ios-separator)]"
+        class="flex items-start justify-between gap-4 border-b px-4 py-3 sm:px-5 border-(--ios-separator)"
     >
         <div class="min-w-0">
             <p class="apple-section-title mb-1">Quick Actions</p>
-            <p class="text-sm leading-5 [color:var(--ios-text-secondary)]">
+            <p class="text-sm leading-5 text-(--ios-text-secondary)">
                 Jump between sections, copy contact details, or open external links.
             </p>
         </div>
@@ -174,8 +174,8 @@
         class="px-1 pb-1 text-[0.85rem]"
     />
 
-    <Command.List class="max-h-[22rem] px-2 pb-2">
-        <Command.Empty class="px-4 py-10 text-center text-sm [color:var(--ios-text-secondary)]">
+    <Command.List class="max-h-88 px-2 pb-2">
+        <Command.Empty class="px-4 py-10 text-center text-sm text-(--ios-text-secondary)">
             No quick action matches that search.
         </Command.Empty>
 
@@ -189,13 +189,13 @@
                         class="apple-command-item rounded-[18px] px-3 py-3"
                     >
                         <span
-                            class="apple-command-icon apple-chip h-8 min-w-8 justify-center px-2.5 text-[0.64rem] uppercase [color:var(--ios-blue)]"
+                            class="apple-command-icon apple-chip h-8 min-w-8 justify-center px-2.5 text-[0.64rem] uppercase text-(--ios-blue)"
                         >
                             {action.category.slice(0, 2)}
                         </span>
 
                         <div class="min-w-0 grow">
-                            <div class="truncate text-[0.84rem] font-medium [color:inherit]">
+                            <div class="truncate text-[0.84rem] font-medium text-inherit">
                                 {action.label}
                             </div>
                         </div>
@@ -206,13 +206,13 @@
             </Command.Group>
 
             {#if groupIndex < actionGroups.length - 1}
-                <Command.Separator class="mx-2 my-1 [background-color:var(--ios-separator)]" />
+                <Command.Separator class="mx-2 my-1 bg-(--ios-separator)" />
             {/if}
         {/each}
     </Command.List>
 
     <div
-        class="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 border-t px-4 py-3 text-[0.68rem] [border-color:var(--ios-separator)] [color:var(--ios-text-tertiary)]"
+        class="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 border-t px-4 py-3 text-[0.68rem] border-(--ios-separator) text-(--ios-text-tertiary)"
     >
         <span>Arrow keys to navigate</span>
         <span>Enter to run</span>
