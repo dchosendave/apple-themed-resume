@@ -3,7 +3,7 @@
 
 @custom-variant dark (&:is(.dark *));
 
-/* ─── shadcn-svelte tokens ─── */
+/* shadcn-svelte tokens */
 :root {
     --radius: 0.625rem;
     --background: oklch(1 0 0);
@@ -38,7 +38,7 @@
     --sidebar-border: oklch(0.929 0.013 255.508);
     --sidebar-ring: oklch(0.704 0.04 256.788);
 
-    /* ─── iOS Portfolio tokens (light) ─── */
+    /* Apple portfolio tokens (light) */
     --ios-bg: #f2f2f7;
     --ios-bg-secondary: #ffffff;
     --ios-glass: rgba(255, 255, 255, 0.75);
@@ -88,7 +88,7 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.551 0.027 264.364);
 
-    /* ─── iOS Portfolio tokens (dark) ─── */
+    /* Apple portfolio tokens (dark) */
     --ios-bg: #0a0a0e;
     --ios-bg-secondary: #1c1c1e;
     --ios-glass: rgba(28, 28, 30, 0.65);
@@ -144,7 +144,6 @@
 }
 
 @layer base {
-
     *,
     *::before,
     *::after {
@@ -159,11 +158,13 @@
         -moz-osx-font-smoothing: grayscale;
     }
 
-    body {
-        font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'SF Pro Display', sans-serif;
+body {
+        font-family: "Inter", -apple-system, BlinkMacSystemFont, "SF Pro Display", sans-serif;
         background-color: var(--ios-bg);
         color: var(--ios-text-primary);
         min-height: 100vh;
+        line-height: 1.5;
+        text-rendering: optimizeLegibility;
         transition: background-color 0.3s ease, color 0.3s ease;
     }
 
@@ -172,85 +173,247 @@
     }
 }
 
-/* ─── iOS Glass Card Utility ─── */
+/* Shared Apple theme primitives */
+.apple-card,
 .glass-card {
     background: var(--ios-glass);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--ios-glass-border);
-    border-radius: 20px;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    border-radius: 24px;
+    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
-/* ─── Bento Grid Layout ─── */
-.bento-grid {
-    display: grid;
-    grid-template-columns: 3fr 2fr;
-    grid-template-rows: auto auto auto;
-    gap: 12px;
-    max-width: 1200px;
-    margin: 0 auto;
-    padding: 24px 24px 0;
-}
-
-.bento-tile {
-    border-radius: 20px;
-    overflow: hidden;
-    transition: transform 0.25s ease, box-shadow 0.25s ease, background 0.3s ease, border-color 0.3s ease;
-}
-
-.bento-tile:hover {
-    transform: translateY(-2px);
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
-}
-
-.dark .bento-tile:hover {
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
-}
-
-/* Nested glass for inner cards (e.g., project mini-cards) */
+.apple-card-inner,
 .glass-card-inner {
     background: var(--ios-chip-bg);
     border: 1px solid var(--ios-glass-border);
-    border-radius: 14px;
-    transition: background 0.3s ease, border-color 0.3s ease;
+    border-radius: 16px;
+    transition:
+        background 0.3s ease,
+        border-color 0.3s ease,
+        box-shadow 0.3s ease,
+        transform 0.3s ease;
 }
 
-/* Responsive bento breakpoints */
-@media (max-width: 768px) {
-    .bento-grid {
-        grid-template-columns: 1fr 1fr;
-        padding: 16px 16px 0;
-        gap: 10px;
-    }
+.apple-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 999px;
+    background: var(--ios-chip-bg);
+    border: 1px solid var(--ios-chip-border);
+    color: var(--ios-text-secondary);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.01em;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
 }
 
-@media (max-width: 600px) {
-    .bento-grid {
-        grid-template-columns: 1fr;
-        padding: 12px 12px 0;
-        gap: 10px;
-    }
+.apple-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.2rem 0.65rem;
+    border-radius: 999px;
+    background: var(--ios-stat-bg);
+    border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
+    color: var(--ios-blue);
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
 }
 
-/* ─── Page layout ─── */
+.apple-icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 2.25rem;
+    height: 2.25rem;
+    border-radius: 999px;
+    background: var(--ios-chip-bg);
+    border: 1px solid var(--ios-chip-border);
+    color: var(--ios-text-primary);
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.apple-icon-button:hover {
+    background: var(--ios-stat-bg);
+    border-color: color-mix(in srgb, var(--ios-blue) 45%, transparent);
+    color: var(--ios-blue);
+    transform: scale(1.04);
+}
+
+.apple-button-primary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: var(--ios-blue);
+    color: #fff;
+    font-size: 0.78rem;
+    font-weight: 600;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        transform 0.2s ease,
+        box-shadow 0.2s ease;
+}
+
+.apple-button-primary:hover {
+    background: var(--ios-blue-hover);
+    transform: translateY(-1px);
+    box-shadow: 0 12px 28px color-mix(in srgb, var(--ios-blue) 30%, transparent);
+}
+
+.apple-button-secondary {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.7rem 1rem;
+    border-radius: 999px;
+    background: var(--ios-chip-bg);
+    border: 1px solid var(--ios-chip-border);
+    color: var(--ios-text-primary);
+    font-size: 0.78rem;
+    font-weight: 500;
+    text-decoration: none;
+    transition:
+        background 0.2s ease,
+        border-color 0.2s ease,
+        color 0.2s ease,
+        transform 0.2s ease;
+}
+
+.apple-button-secondary:hover {
+    border-color: color-mix(in srgb, var(--ios-blue) 45%, transparent);
+    color: var(--ios-blue);
+    transform: translateY(-1px);
+}
+
+.apple-panel-surface {
+    background: color-mix(in srgb, var(--ios-glass) 92%, transparent);
+    backdrop-filter: blur(28px);
+    -webkit-backdrop-filter: blur(28px);
+    border: 1px solid var(--ios-glass-border);
+    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+}
+
+.dark .apple-panel-surface {
+    box-shadow: 0 24px 64px rgba(0, 0, 0, 0.4);
+}
+
+.apple-command-item {
+    transition:
+        background 0.15s ease,
+        color 0.15s ease,
+        transform 0.15s ease;
+}
+
+.apple-command-item[data-selected="true"] {
+    background: var(--ios-blue);
+    color: #fff;
+}
+
+.apple-command-item[data-selected="true"] [data-slot="command-shortcut"] {
+    color: rgba(255, 255, 255, 0.72);
+}
+
+.apple-command-item[data-selected="true"] .apple-command-icon {
+    background: rgba(255, 255, 255, 0.18);
+    border-color: rgba(255, 255, 255, 0.22);
+    color: #fff;
+}
+
+.apple-section-title,
+.section-title {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: var(--ios-blue);
+    margin-bottom: 12px;
+}
+
 .page-container {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 24px;
 }
 
-/* ─── Section title style (tile-inline) ─── */
-.section-title {
-    font-size: 0.65rem;
-    font-weight: 600;
-    letter-spacing: 0.08em;
-    text-transform: uppercase;
-    color: var(--ios-blue);
-    margin-bottom: 10px;
+.no-scrollbar {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
 }
 
-/* ─── Scroll-reveal ─── */
+.no-scrollbar::-webkit-scrollbar {
+    display: none;
+}
+
+/* Bento grid layout */
+.bento-grid {
+    display: grid;
+    grid-template-columns: 3fr 2fr;
+    grid-template-rows: auto auto auto;
+    gap: 16px;
+    max-width: 1240px;
+    margin: 0 auto;
+    padding: 28px 28px 0;
+}
+
+.bento-tile {
+    border-radius: 24px;
+    overflow: hidden;
+    transition:
+        transform 0.25s ease,
+        box-shadow 0.25s ease,
+        background 0.3s ease,
+        border-color 0.3s ease;
+}
+
+.bento-tile:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+}
+
+.dark .bento-tile:hover {
+    box-shadow: 0 16px 40px rgba(0, 0, 0, 0.35);
+}
+
+/* Responsive bento breakpoints */
+@media (max-width: 768px) {
+    .bento-grid {
+        grid-template-columns: 1fr 1fr;
+        padding: 18px 18px 0;
+        gap: 12px;
+    }
+}
+
+@media (max-width: 600px) {
+    .bento-grid {
+        grid-template-columns: 1fr;
+        padding: 14px 14px 0;
+        gap: 12px;
+    }
+}
+
+/* Scroll reveal */
 .reveal {
     opacity: 0;
     transform: translateY(16px);
@@ -264,7 +427,6 @@
     transform: translateY(0);
 }
 
-/* Skip animation for users who prefer reduced motion */
 @media (prefers-reduced-motion: reduce) {
     .reveal {
         opacity: 1;
@@ -273,7 +435,7 @@
     }
 }
 
-/* ─── Tech icon inside skill / stack chips ─── */
+/* Tech icon inside skill or stack chips */
 .skill-chip,
 .stack-chip {
     display: inline-flex;
@@ -289,29 +451,61 @@
     display: block;
 }
 
-/* ─── Easter egg animations ─── */
+/* Easter egg animations */
 @keyframes wobble {
-    0% { transform: rotate(0deg); }
-    15% { transform: rotate(-12deg); }
-    30% { transform: rotate(10deg); }
-    45% { transform: rotate(-8deg); }
-    60% { transform: rotate(6deg); }
-    75% { transform: rotate(-3deg); }
-    90% { transform: rotate(2deg); }
-    100% { transform: rotate(0deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+
+    15% {
+        transform: rotate(-12deg);
+    }
+
+    30% {
+        transform: rotate(10deg);
+    }
+
+    45% {
+        transform: rotate(-8deg);
+    }
+
+    60% {
+        transform: rotate(6deg);
+    }
+
+    75% {
+        transform: rotate(-3deg);
+    }
+
+    90% {
+        transform: rotate(2deg);
+    }
+
+    100% {
+        transform: rotate(0deg);
+    }
 }
 
 @keyframes toast-in {
-    0% { opacity: 0; transform: translateY(8px) scale(0.95); }
-    100% { opacity: 1; transform: translateY(0) scale(1); }
+    0% {
+        opacity: 0;
+        transform: translateY(8px) scale(0.95);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 @keyframes toast-out {
-    0% { opacity: 1; transform: translateY(0) scale(1); }
-    100% { opacity: 0; transform: translateY(-8px) scale(0.95); }
-}
+    0% {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 
-@keyframes palette-in {
-    from { opacity: 0; transform: translate(-50%, calc(-30% - 12px)) scale(0.95); }
-    to { opacity: 1; transform: translate(-50%, -30%) scale(1); }
+    100% {
+        opacity: 0;
+        transform: translateY(-8px) scale(0.95);
+    }
 }

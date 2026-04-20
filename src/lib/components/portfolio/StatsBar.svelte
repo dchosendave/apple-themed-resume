@@ -6,86 +6,76 @@
 
 <div class="stats-tile glass-card bento-tile" use:reveal>
     <p class="section-title">Key Metrics</p>
-    <div class="stats-list">
-        {#each stats as stat, i}
-            <div class="stat-row">
+    <div class="stats-grid">
+        {#each stats as stat (stat.label)}
+            <div class="stat-card">
                 <span class="stat-value" use:countUp={stat.value}></span>
                 <span class="stat-label">{stat.label}</span>
             </div>
-            {#if i < stats.length - 1}
-                <div class="stat-separator"></div>
-            {/if}
         {/each}
     </div>
 </div>
 
 <style>
     .stats-tile {
-        padding: 18px 22px;
+        padding: 22px 24px;
         display: flex;
         flex-direction: column;
     }
 
-    .stats-list {
-        display: flex;
-        flex-direction: column;
-        gap: 0;
-        flex: 1;
+    .stats-grid {
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        gap: 10px;
     }
 
-    .stat-row {
+    .stat-card {
         display: flex;
-        align-items: center;
-        gap: 12px;
-        padding: 10px 0;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+        padding: 14px;
+        background: color-mix(in srgb, var(--ios-chip-bg) 92%, transparent);
+        border: 1px solid var(--ios-glass-border);
+        border-radius: 18px;
     }
 
     .stat-value {
-        font-size: 1.5rem;
+        font-size: 1.75rem;
         font-weight: 800;
         color: var(--ios-blue);
         letter-spacing: -0.02em;
         line-height: 1;
-        min-width: 52px;
     }
 
     .stat-label {
-        font-size: 0.72rem;
+        font-size: 0.82rem;
         font-weight: 500;
         color: var(--ios-text-secondary);
-        line-height: 1.3;
-    }
-
-    .stat-separator {
-        height: 1px;
-        background: var(--ios-separator);
+        line-height: 1.45;
     }
 
     @media (max-width: 768px) {
         .stats-tile {
-            padding: 16px 20px;
+            padding: 20px 20px;
         }
 
-        .stats-list {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
+        .stats-grid {
             gap: 8px;
         }
 
-        .stat-separator {
-            display: none;
+        .stat-card {
+            padding: 13px;
+        }
+    }
+
+    @media (max-width: 420px) {
+        .stats-grid {
+            grid-template-columns: 1fr;
         }
 
-        .stat-row {
-            flex-direction: column;
-            align-items: center;
-            text-align: center;
-            gap: 4px;
-            padding: 8px 0;
-        }
-
-        .stat-value {
-            min-width: unset;
+        .stat-card {
+            gap: 6px;
         }
     }
 </style>

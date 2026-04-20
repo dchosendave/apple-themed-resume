@@ -66,29 +66,29 @@
 
 <style>
     .projects-tile {
-        padding: 18px 22px;
+        padding: 22px 24px;
     }
 
     .projects-grid {
         display: grid;
         grid-template-columns: 1fr 1fr;
-        gap: 8px;
+        gap: 12px;
     }
 
     .project-card {
-        padding: 14px 16px;
+        padding: 16px 18px;
         display: flex;
         flex-direction: column;
-        gap: 8px;
+        gap: 10px;
         /* Reset button defaults */
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-glass-border);
-        border-radius: 14px;
+        border-radius: 18px;
         text-align: left;
         cursor: pointer;
         font: inherit;
         width: 100%;
-        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
+        transition: background 0.15s ease, border-color 0.15s ease, transform 0.15s ease, box-shadow 0.15s ease;
         position: relative;
     }
 
@@ -96,6 +96,7 @@
         background: color-mix(in srgb, var(--ios-chip-bg) 80%, var(--ios-stat-bg));
         border-color: color-mix(in srgb, var(--ios-blue) 35%, transparent);
         transform: translateY(-1px);
+        box-shadow: 0 16px 28px rgba(15, 23, 42, 0.1);
     }
 
     .project-card:hover .card-hint {
@@ -103,11 +104,16 @@
     }
 
     .card-hint {
-        font-size: 0.6rem;
+        font-size: 0.68rem;
         color: var(--ios-blue);
-        opacity: 0;
-        transition: opacity 0.15s ease;
+        opacity: 0.72;
+        transition: opacity 0.15s ease, transform 0.15s ease;
         margin-top: auto;
+        transform: translateY(2px);
+    }
+
+    .project-card:hover .card-hint {
+        transform: translateY(0);
     }
 
     .project-header {
@@ -118,14 +124,14 @@
     }
 
     .project-name {
-        font-size: 0.82rem;
+        font-size: 0.94rem;
         font-weight: 700;
         color: var(--ios-text-primary);
         line-height: 1.2;
     }
 
     .project-category {
-        font-size: 0.6rem;
+        font-size: 0.66rem;
         font-weight: 600;
         letter-spacing: 0.04em;
         text-transform: uppercase;
@@ -139,8 +145,8 @@
     }
 
     .project-description {
-        font-size: 0.72rem;
-        line-height: 1.5;
+        font-size: 0.8rem;
+        line-height: 1.6;
         color: var(--ios-text-secondary);
         flex: 1;
     }
@@ -156,26 +162,26 @@
     .project-stack-row {
         display: flex;
         flex-wrap: wrap;
-        gap: 3px;
+        gap: 5px;
     }
 
     .stack-chip {
         display: inline-flex;
         align-items: center;
-        gap: 3px;
-        padding: 1px 7px;
+        gap: 4px;
+        padding: 3px 8px;
         border-radius: 100px;
         background: var(--ios-stat-bg);
         border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
-        font-size: 0.6rem;
+        font-size: 0.68rem;
         font-weight: 600;
         color: var(--ios-blue);
         letter-spacing: 0.02em;
     }
 
     .tech-icon {
-        width: 11px;
-        height: 11px;
+        width: 12px;
+        height: 12px;
         object-fit: contain;
         flex-shrink: 0;
         display: block;
@@ -212,9 +218,19 @@
         flex-shrink: 0;
     }
 
-    @media (max-width: 600px) {
+    @media (max-width: 900px) {
         .projects-grid {
             grid-template-columns: 1fr;
+        }
+    }
+
+    @media (max-width: 600px) {
+        .projects-tile {
+            padding: 20px 18px;
+        }
+
+        .project-card {
+            padding: 15px 16px;
         }
     }
 </style>

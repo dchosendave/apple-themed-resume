@@ -128,28 +128,29 @@
 
 <style>
     .hero-tile {
-        padding: 18px 22px;
+        padding: 22px 24px;
         display: flex;
         flex-direction: column;
-        gap: 14px;
+        gap: 18px;
     }
 
     .top-bar {
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 8px;
+        gap: 12px;
+        flex-wrap: wrap;
     }
 
     .availability-pill {
         display: inline-flex;
         align-items: center;
         gap: 7px;
-        padding: 3px 12px;
+        padding: 5px 13px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 600;
         color: var(--ios-text-secondary);
         letter-spacing: 0.01em;
@@ -173,7 +174,7 @@
     .hero-body {
         display: flex;
         align-items: center;
-        gap: 20px;
+        gap: 22px;
     }
 
     /* Avatar */
@@ -201,8 +202,8 @@
     }
 
     .avatar {
-        width: 72px;
-        height: 72px;
+        width: 78px;
+        height: 78px;
         border-radius: 50%;
         overflow: hidden;
         position: relative;
@@ -254,41 +255,41 @@
     .identity {
         flex: 1;
         min-width: 0;
+        max-width: 56ch;
     }
 
     .name-row {
         display: flex;
         align-items: baseline;
-        gap: 10px;
+        gap: 12px;
         flex-wrap: wrap;
-        margin-bottom: 6px;
+        margin-bottom: 8px;
     }
 
     .name {
-        font-size: clamp(1.25rem, 2.5vw, 1.6rem);
+        font-size: clamp(1.5rem, 3vw, 2rem);
         font-weight: 800;
         color: var(--ios-text-primary);
         line-height: 1.1;
         letter-spacing: -0.02em;
-        white-space: nowrap;
     }
 
     .title-badge {
-        font-size: 0.68rem;
+        font-size: 0.72rem;
         font-weight: 600;
         color: var(--ios-blue);
         background: var(--ios-stat-bg);
         border: 1px solid color-mix(in srgb, var(--ios-blue) 25%, transparent);
-        padding: 2px 9px;
+        padding: 4px 10px;
         border-radius: 100px;
         white-space: nowrap;
     }
 
     .focus {
-        font-size: 0.78rem;
-        line-height: 1.55;
+        font-size: 0.9rem;
+        line-height: 1.65;
         color: var(--ios-text-secondary);
-        max-width: 520px;
+        max-width: 58ch;
     }
 
     /* Action bar */
@@ -296,22 +297,24 @@
         display: flex;
         align-items: center;
         justify-content: space-between;
-        gap: 12px;
+        gap: 16px;
         border-top: 1px solid var(--ios-separator);
-        padding-top: 12px;
+        padding-top: 16px;
+        flex-wrap: wrap;
     }
 
     .contact-icons {
         display: flex;
-        gap: 6px;
+        gap: 8px;
+        flex-wrap: wrap;
     }
 
     .icon-chip {
         display: inline-flex;
         align-items: center;
         justify-content: center;
-        width: 32px;
-        height: 32px;
+        width: 34px;
+        height: 34px;
         border-radius: 50%;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
@@ -340,18 +343,19 @@
 
     .cta-row {
         display: flex;
-        gap: 6px;
+        gap: 8px;
+        flex-wrap: wrap;
     }
 
     .btn-primary {
         display: inline-flex;
         align-items: center;
         gap: 5px;
-        padding: 7px 16px;
+        padding: 8px 16px;
         border-radius: 100px;
         background: var(--ios-blue);
         color: #fff;
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         font-weight: 600;
         text-decoration: none;
         transition: all 0.2s ease;
@@ -367,12 +371,12 @@
     .btn-secondary {
         display: inline-flex;
         align-items: center;
-        padding: 7px 16px;
+        padding: 8px 16px;
         border-radius: 100px;
         background: var(--ios-chip-bg);
         border: 1px solid var(--ios-chip-border);
         color: var(--ios-text-primary);
-        font-size: 0.75rem;
+        font-size: 0.8rem;
         font-weight: 500;
         text-decoration: none;
         transition: all 0.2s ease;
@@ -385,21 +389,31 @@
     }
 
     @media (max-width: 600px) {
+        .hero-tile {
+            padding: 20px 18px;
+            gap: 16px;
+        }
+
         .hero-body {
             flex-direction: column;
             align-items: flex-start;
-            gap: 12px;
+            gap: 14px;
         }
 
         .action-bar {
             flex-direction: column;
             align-items: flex-start;
-            gap: 10px;
+            gap: 12px;
         }
 
         .avatar {
-            width: 64px;
-            height: 64px;
+            width: 68px;
+            height: 68px;
+        }
+
+        .focus {
+            font-size: 0.84rem;
+            line-height: 1.6;
         }
     }
 </style>
