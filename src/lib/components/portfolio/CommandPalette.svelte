@@ -1,280 +1,221 @@
 <script lang="ts">
-    import { onMount } from 'svelte';
-    import { personalInfo } from '$lib/data/resume';
-    import { trapFocus } from '$lib/actions/trapFocus';
+    import { personalInfo } from "$lib/data/resume";
+    import * as Command from "$lib/components/ui/command/index.js";
+
+    type Action = {
+        value: string;
+        label: string;
+        category: string;
+        meta: string;
+        keywords: string[];
+        run: () => void;
+    };
+
+    type ActionGroup = {
+        label: string;
+        actions: Action[];
+    };
 
     let open = $state(false);
-    let activeIndex = $state(0);
-    let listRef = $state<HTMLUListElement | null>(null);
+    let search = $state("");
 
-    type Action = { label: string; category: string; run: () => void };
+    function scrollToTile(id: string) {
+        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
 
-    const actions: Action[] = [
+    async function copyEmail() {
+        try {
+            await navigator.clipboard.writeText(personalInfo.email);
+        } catch {
+            window.location.href = `mailto:${personalInfo.email}`;
+        }
+    }
+
+    function downloadResume() {
+        const link = document.createElement("a");
+        link.href = personalInfo.resumePdf;
+        link.download = "";
+        link.click();
+    }
+
+    const actionGroups: ActionGroup[] = [
         {
-            label: 'Hero',
-            category: 'Navigate',
-            run: () => document.getElementById('tile-hero')?.scrollIntoView({ behavior: 'smooth' })
+            label: "Navigate",
+            actions: [
+                {
+                    value: "hero",
+                    label: "Jump to hero section",
+                    category: "Navigate",
+                    meta: "Hero",
+                    keywords: ["intro", "top", "hero", "profile"],
+                    run: () => scrollToTile("tile-hero")
+                },
+                {
+                    value: "experience",
+                    label: "Jump to work experience",
+                    category: "Navigate",
+                    meta: "Work",
+                    keywords: ["experience", "work", "career", "resume"],
+                    run: () => scrollToTile("tile-experience")
+                },
+                {
+                    value: "skills",
+                    label: "Jump to skills section",
+                    category: "Navigate",
+                    meta: "Skills",
+                    keywords: ["skills", "stack", "tools", "tech"],
+                    run: () => scrollToTile("tile-skills")
+                },
+                {
+                    value: "projects",
+                    label: "Jump to featured projects",
+                    category: "Navigate",
+                    meta: "Projects",
+                    keywords: ["projects", "portfolio", "case study"],
+                    run: () => scrollToTile("tile-projects")
+                },
+                {
+                    value: "education",
+                    label: "Jump to education",
+                    category: "Navigate",
+                    meta: "Education",
+                    keywords: ["education", "certifications", "school"],
+                    run: () => scrollToTile("tile-education")
+                }
+            ]
         },
         {
-            label: 'Experience',
-            category: 'Navigate',
-            run: () => document.getElementById('tile-experience')?.scrollIntoView({ behavior: 'smooth' })
-        },
-        {
-            label: 'Skills',
-            category: 'Navigate',
-            run: () => document.getElementById('tile-skills')?.scrollIntoView({ behavior: 'smooth' })
-        },
-        {
-            label: 'Projects',
-            category: 'Navigate',
-            run: () => document.getElementById('tile-projects')?.scrollIntoView({ behavior: 'smooth' })
-        },
-        {
-            label: 'Education',
-            category: 'Navigate',
-            run: () => document.getElementById('tile-education')?.scrollIntoView({ behavior: 'smooth' })
-        },
-        {
-            label: 'Copy Email',
-            category: 'Contact',
-            run: () => navigator.clipboard.writeText(personalInfo.email)
-        },
-        {
-            label: 'Download Resume',
-            category: 'Contact',
-            run: () => {
-                const a = document.createElement('a');
-                a.href = personalInfo.resumePdf;
-                a.download = '';
-                a.click();
-            }
-        },
-        {
-            label: 'Open LinkedIn',
-            category: 'Contact',
-            run: () => window.open(personalInfo.linkedin, '_blank', 'noopener,noreferrer')
-        },
-        {
-            label: 'Open GitHub',
-            category: 'Contact',
-            run: () => window.open(personalInfo.github, '_blank', 'noopener,noreferrer')
-        },
+            label: "Contact",
+            actions: [
+                {
+                    value: "copy-email",
+                    label: "Copy email address",
+                    category: "Contact",
+                    meta: "Copy",
+                    keywords: ["email", "mail", "copy", "contact"],
+                    run: copyEmail
+                },
+                {
+                    value: "download-resume",
+                    label: "Download resume PDF",
+                    category: "Contact",
+                    meta: "PDF",
+                    keywords: ["resume", "cv", "download", "pdf"],
+                    run: downloadResume
+                },
+                {
+                    value: "open-linkedin",
+                    label: "Open LinkedIn profile",
+                    category: "Contact",
+                    meta: "Open",
+                    keywords: ["linkedin", "profile", "social"],
+                    run: () => window.open(personalInfo.linkedin, "_blank", "noopener,noreferrer")
+                },
+                {
+                    value: "open-github",
+                    label: "Open GitHub profile",
+                    category: "Contact",
+                    meta: "Open",
+                    keywords: ["github", "code", "repositories"],
+                    run: () => window.open(personalInfo.github, "_blank", "noopener,noreferrer")
+                }
+            ]
+        }
     ];
 
-    function execute(index: number) {
-        actions[index].run();
-        close();
+    function execute(action: Action) {
+        handleOpenChange(false);
+        action.run();
     }
 
-    function close() {
-        open = false;
-        document.body.style.overflow = '';
+    function handleOpenChange(nextOpen: boolean) {
+        open = nextOpen;
+
+        if (!nextOpen) {
+            search = "";
+        }
     }
 
-    // Scroll active item into view on arrow key navigation
-    $effect(() => {
-        if (open && listRef) {
-            const item = listRef.children[activeIndex] as HTMLElement | undefined;
-            item?.scrollIntoView({ block: 'nearest' });
+    function handleWindowKeydown(event: KeyboardEvent) {
+        if ((event.metaKey || event.ctrlKey) && event.key.toLowerCase() === "k") {
+            event.preventDefault();
+            handleOpenChange(!open);
         }
-    });
-
-    onMount(() => {
-        function handleKeydown(e: KeyboardEvent) {
-            if ((e.metaKey || e.ctrlKey) && e.key === 'k') {
-                e.preventDefault();
-                open = true;
-                activeIndex = 0;
-                document.body.style.overflow = 'hidden';
-                return;
-            }
-
-            if (!open) return;
-
-            if (e.key === 'ArrowDown') {
-                e.preventDefault();
-                activeIndex = (activeIndex + 1) % actions.length;
-            } else if (e.key === 'ArrowUp') {
-                e.preventDefault();
-                activeIndex = (activeIndex - 1 + actions.length) % actions.length;
-            } else if (e.key === 'Enter') {
-                e.preventDefault();
-                execute(activeIndex);
-            } else if (e.key === 'Escape') {
-                close();
-            }
-        }
-
-        window.addEventListener('keydown', handleKeydown);
-        return () => window.removeEventListener('keydown', handleKeydown);
-    });
+    }
 </script>
 
-{#if open}
-    <!-- Backdrop -->
-    <div
-        class="palette-backdrop"
-        role="presentation"
-        onclick={close}
-    ></div>
+<svelte:window onkeydown={handleWindowKeydown} />
 
-    <!-- Modal -->
+<Command.Dialog
+    {open}
+    onOpenChange={handleOpenChange}
+    title="Quick actions"
+    description="Search sections, links, and resume actions."
+    showCloseButton={false}
+    label="Quick actions"
+    loop
+    class="apple-panel-surface top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! rounded-[24px]! border p-0 ring-0"
+>
     <div
-        class="palette-modal glass-card"
-        role="dialog"
-        aria-modal="true"
-        aria-label="Command palette"
-        use:trapFocus
+        class="flex items-start justify-between gap-4 border-b px-4 py-3 sm:px-5 [border-color:var(--ios-separator)]"
     >
-        <!-- Header -->
-        <div class="palette-header">
-            <span class="palette-title">Quick Actions</span>
-            <kbd class="palette-kbd">⌘K</kbd>
+        <div class="min-w-0">
+            <p class="apple-section-title mb-1">Quick Actions</p>
+            <p class="text-sm leading-5 [color:var(--ios-text-secondary)]">
+                Jump between sections, copy contact details, or open external links.
+            </p>
         </div>
-
-        <!-- Actions list -->
-        <ul
-            class="palette-list"
-            role="listbox"
-            bind:this={listRef}
-        >
-            {#each actions as action, i}
-                <button
-                    role="option"
-                    aria-selected={i === activeIndex}
-                    class="palette-item"
-                    class:active={i === activeIndex}
-                    onclick={() => execute(i)}
-                    onmouseenter={() => activeIndex = i}
-                >
-                    <span class="item-category">{action.category}</span>
-                    <span class="item-label">{action.label}</span>
-                </button>
-            {/each}
-        </ul>
-
-        <!-- Footer hint -->
-        <div class="palette-footer">
-            <span>↑↓ navigate</span>
-            <span>·</span>
-            <span>Enter select</span>
-            <span>·</span>
-            <span>Esc close</span>
-        </div>
+        <kbd class="apple-chip shrink-0 text-[0.68rem]">Cmd/Ctrl K</kbd>
     </div>
-{/if}
 
-<style>
-    .palette-backdrop {
-        position: fixed;
-        inset: 0;
-        background: rgba(0, 0, 0, 0.45);
-        backdrop-filter: blur(4px);
-        -webkit-backdrop-filter: blur(4px);
-        z-index: 600;
-    }
+    <Command.Input
+        bind:value={search}
+        placeholder="Search sections, actions, and links..."
+        class="px-1 pb-1 text-[0.85rem]"
+    />
 
-    .palette-modal {
-        position: fixed;
-        top: 30%;
-        left: 50%;
-        transform: translate(-50%, -30%);
-        width: min(520px, 90vw);
-        max-height: 420px;
-        z-index: 601;
-        border-radius: 16px;
-        overflow: hidden;
-        display: flex;
-        flex-direction: column;
-        animation: palette-in 0.2s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
-    }
+    <Command.List class="max-h-[22rem] px-2 pb-2">
+        <Command.Empty class="px-4 py-10 text-center text-sm [color:var(--ios-text-secondary)]">
+            No quick action matches that search.
+        </Command.Empty>
 
-    .palette-header {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        padding: 14px 16px 10px;
-        border-bottom: 1px solid var(--ios-separator);
-        flex-shrink: 0;
-    }
+        {#each actionGroups as group, groupIndex (group.label)}
+            <Command.Group heading={group.label} class="px-1 py-1">
+                {#each group.actions as action (action.value)}
+                    <Command.Item
+                        value={action.value}
+                        keywords={action.keywords}
+                        onSelect={() => execute(action)}
+                        class="apple-command-item rounded-[18px] px-3 py-3"
+                    >
+                        <span
+                            class="apple-command-icon apple-chip h-8 min-w-8 justify-center px-2.5 text-[0.64rem] uppercase [color:var(--ios-blue)]"
+                        >
+                            {action.category.slice(0, 2)}
+                        </span>
 
-    .palette-title {
-        font-size: 0.7rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--ios-text-secondary);
-    }
+                        <div class="min-w-0 grow">
+                            <div class="truncate text-[0.84rem] font-medium [color:inherit]">
+                                {action.label}
+                            </div>
+                        </div>
 
-    .palette-kbd {
-        font-size: 0.65rem;
-        font-weight: 600;
-        color: var(--ios-text-tertiary);
-        background: var(--ios-chip-bg);
-        border: 1px solid var(--ios-chip-border);
-        border-radius: 6px;
-        padding: 2px 6px;
-        font-family: inherit;
-    }
+                        <Command.Shortcut class="text-[0.62rem]">{action.meta}</Command.Shortcut>
+                    </Command.Item>
+                {/each}
+            </Command.Group>
 
-    .palette-list {
-        list-style: none;
-        overflow-y: auto;
-        flex: 1;
-        padding: 6px;
-    }
+            {#if groupIndex < actionGroups.length - 1}
+                <Command.Separator class="mx-2 my-1 [background-color:var(--ios-separator)]" />
+            {/if}
+        {/each}
+    </Command.List>
 
-    .palette-item {
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        padding: 10px 12px;
-        border-radius: 10px;
-        cursor: pointer;
-        transition: background 0.1s ease;
-        user-select: none;
-    }
-
-    .palette-item.active {
-        background: var(--ios-blue);
-    }
-
-    .item-category {
-        font-size: 0.6rem;
-        font-weight: 600;
-        letter-spacing: 0.04em;
-        text-transform: uppercase;
-        color: var(--ios-text-tertiary);
-        min-width: 56px;
-        flex-shrink: 0;
-        transition: color 0.1s ease;
-    }
-
-    .palette-item.active .item-category {
-        color: rgba(255, 255, 255, 0.65);
-    }
-
-    .item-label {
-        font-size: 0.82rem;
-        font-weight: 500;
-        color: var(--ios-text-primary);
-        transition: color 0.1s ease;
-    }
-
-    .palette-item.active .item-label {
-        color: #fff;
-    }
-
-    .palette-footer {
-        display: flex;
-        align-items: center;
-        justify-content: flex-end;
-        gap: 6px;
-        padding: 8px 16px;
-        border-top: 1px solid var(--ios-separator);
-        font-size: 0.62rem;
-        color: var(--ios-text-tertiary);
-        flex-shrink: 0;
-    }
-</style>
+    <div
+        class="flex flex-wrap items-center justify-end gap-x-3 gap-y-1 border-t px-4 py-3 text-[0.68rem] [border-color:var(--ios-separator)] [color:var(--ios-text-tertiary)]"
+    >
+        <span>Arrow keys to navigate</span>
+        <span>Enter to run</span>
+        <span>Esc to close</span>
+    </div>
+</Command.Dialog>
