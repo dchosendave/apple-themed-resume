@@ -140,7 +140,7 @@
             bind:this={listRef}
         >
             {#each actions as action, i}
-                <li
+                <button
                     role="option"
                     aria-selected={i === activeIndex}
                     class="palette-item"
@@ -150,7 +150,7 @@
                 >
                     <span class="item-category">{action.category}</span>
                     <span class="item-label">{action.label}</span>
-                </li>
+                </button>
             {/each}
         </ul>
 
