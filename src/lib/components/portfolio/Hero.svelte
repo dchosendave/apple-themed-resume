@@ -3,12 +3,46 @@
         personalInfo,
         professionalFocus,
     } from "$lib/data/personal-information";
+    import { avatarCommand } from "$lib/stores/avatar-command.svelte";
     import ThemeToggle from "./ThemeToggle.svelte";
     import { reveal } from "$lib/actions/reveal";
 
+    type RecruiterPrompt = "email" | "linkedin" | "github";
+
     let emailCopied = $state(false);
     let copyTimer: ReturnType<typeof setTimeout>;
-    let wobbling = $state(false);
+    let avatarMode = $derived(avatarCommand.mode);
+    let commandModeActive = $derived(avatarMode !== "idle");
+    let searchModeActive = $derived(avatarMode === "searching");
+    let recruiterPrompt = $state<RecruiterPrompt | null>(null);
+    let avatarAriaLabel = $derived(
+        searchModeActive
+            ? "Profile photo, search mode active"
+            : commandModeActive
+                ? "Profile photo, command mode active"
+                : "Profile photo"
+    );
+    let recruiterPromptVisible = $derived(
+        recruiterPrompt !== null && !commandModeActive
+    );
+    let recruiterPromptLabel = $derived(
+        recruiterPrompt === "email"
+            ? "Email"
+            : recruiterPrompt === "linkedin"
+                ? "LinkedIn"
+                : recruiterPrompt === "github"
+                    ? "GitHub"
+                    : ""
+    );
+    let recruiterPromptMessage = $derived(
+        recruiterPrompt === "email"
+            ? "Happy to chat about roles, systems, or product ideas. Email works best."
+            : recruiterPrompt === "linkedin"
+                ? "Want the full story behind my work? Let's connect on LinkedIn."
+                : recruiterPrompt === "github"
+                    ? "A few public builds live here if you want to see how I think in code."
+                    : ""
+    );
 
     const emailHref = `mailto:${personalInfo.email}`;
     const iconChipClass =
@@ -29,6 +63,16 @@
             clearTimeout(copyTimer);
             copyTimer = setTimeout(() => (emailCopied = false), 2000);
         });
+    }
+
+    function showRecruiterPrompt(prompt: RecruiterPrompt) {
+        recruiterPrompt = prompt;
+    }
+
+    function clearRecruiterPrompt(prompt: RecruiterPrompt) {
+        if (recruiterPrompt === prompt) {
+            recruiterPrompt = null;
+        }
     }
 </script>
 
@@ -55,10 +99,11 @@
         <div class="relative shrink-0">
             <button
                 class={[
-                    "relative rounded-full border-0 bg-transparent p-0 transition-transform duration-150 ease-out hover:scale-[1.03] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]",
-                    wobbling && "animate-[wobble_0.6s_ease-in-out]",
+                    "relative rounded-full border-0 bg-transparent p-0 transition-[transform,filter] duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]",
+                    commandModeActive && "scale-[1.03] -translate-y-0.5",
+                    searchModeActive && "scale-[1.05]",
                 ]}
-                aria-label="Profile photo"
+                aria-label={avatarAriaLabel}
                 type="button"
             >
                 <div
@@ -67,14 +112,132 @@
                     <img
                         src="/solo-picture.jpg"
                         alt="Lowie Dave Dichoson"
-                        class="block size-full object-cover object-[center_top]"
+                        class={[
+                            "block size-full object-cover object-[center_top] transition-[transform,filter] duration-300 motion-reduce:transform-none motion-reduce:transition-none",
+                            commandModeActive &&
+                                "scale-[1.03] brightness-[1.02] saturate-[1.1]",
+                            searchModeActive &&
+                                "scale-[1.05] contrast-[1.08]",
+                        ]}
                     />
+
+                    <div
+                        aria-hidden="true"
+                        class={[
+                            "pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 motion-reduce:transition-none",
+                            commandModeActive
+                                ? "opacity-100 bg-[linear-gradient(145deg,rgba(255,255,255,0.34)_0%,rgba(255,255,255,0.06)_38%,rgba(10,132,255,0.24)_100%)]"
+                                : "opacity-0",
+                        ]}
+                    ></div>
+
+                    <div
+                        aria-hidden="true"
+                        class={[
+                            "pointer-events-none absolute inset-0 rounded-full mix-blend-screen transition-opacity duration-300 motion-reduce:transition-none",
+                            commandModeActive ? "opacity-100" : "opacity-0",
+                            searchModeActive
+                                ? "bg-[repeating-linear-gradient(180deg,rgba(255,255,255,0.18)_0px,rgba(255,255,255,0.18)_1px,transparent_1px,transparent_5px)]"
+                                : "bg-[linear-gradient(180deg,rgba(255,255,255,0.16)_0%,transparent_52%)]",
+                        ]}
+                    ></div>
+
+                    <div
+                        aria-hidden="true"
+                        class={[
+                            "pointer-events-none absolute inset-[14%] rounded-full border transition-all duration-300 motion-reduce:transition-none",
+                            commandModeActive
+                                ? "scale-100 opacity-100"
+                                : "scale-95 opacity-0",
+                            searchModeActive
+                                ? "animate-pulse [border-color:rgba(194,228,255,0.76)]"
+                                : "[border-color:rgba(255,255,255,0.4)]",
+                        ]}
+                    ></div>
+
+                    <div
+                        aria-hidden="true"
+                        class={[
+                            "pointer-events-none absolute inset-x-[18%] bottom-[12%] z-[2] rounded-full border px-2 py-1 text-center text-[0.45rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none",
+                            commandModeActive
+                                ? "translate-y-0 opacity-100"
+                                : "translate-y-2 opacity-0",
+                            searchModeActive
+                                ? "border-[rgba(194,228,255,0.45)] bg-[rgba(10,132,255,0.42)]"
+                                : "border-[rgba(255,255,255,0.2)] bg-[rgba(10,132,255,0.22)]",
+                        ]}
+                    >
+                        {searchModeActive ? "Search" : "Cmd"}
+                    </div>
                 </div>
 
                 <div
-                    class="pointer-events-none absolute inset-[-4px] rounded-full border-2 border-[var(--ios-blue)] opacity-30"
+                    aria-hidden="true"
+                    class={[
+                        "pointer-events-none absolute inset-[-4px] rounded-full border-2 transition-all duration-300 motion-reduce:transition-none",
+                        commandModeActive
+                            ? "opacity-90 shadow-[0_0_22px_rgba(10,132,255,0.28)]"
+                            : "opacity-30",
+                        searchModeActive
+                            ? "border-[rgba(157,214,255,0.88)]"
+                            : "border-[var(--ios-blue)]",
+                    ]}
                 ></div>
+
+                <span
+                    aria-hidden="true"
+                    class={[
+                        "pointer-events-none absolute -right-1 -top-1 z-[3] inline-flex items-center gap-1 rounded-full border px-2 py-[5px] text-[0.5rem] font-semibold uppercase tracking-[0.12em] shadow-[0_10px_24px_rgba(15,23,42,0.16)] backdrop-blur-md transition-all duration-300 motion-reduce:transition-none",
+                        commandModeActive
+                            ? "translate-y-0 scale-100 opacity-100"
+                            : "translate-y-1 scale-90 opacity-0",
+                        searchModeActive
+                            ? "border-[rgba(194,228,255,0.32)] bg-[rgba(10,132,255,0.78)] text-white"
+                            : "border-[rgba(10,132,255,0.22)] bg-[rgba(255,255,255,0.76)] [color:var(--ios-blue)] dark:bg-[rgba(7,17,34,0.78)]",
+                    ]}
+                >
+                    <span
+                        class={[
+                            "size-1.5 rounded-full",
+                            searchModeActive
+                                ? "animate-pulse bg-white"
+                                : "bg-[var(--ios-blue)]",
+                        ]}
+                    ></span>
+                    {searchModeActive ? "Scan" : "Cmd"}
+                </span>
             </button>
+
+            <span class="sr-only" aria-live="polite">
+                {searchModeActive
+                    ? "Command palette search is active."
+                    : commandModeActive
+                        ? "Command palette is open."
+                        : "Command palette is closed."}
+            </span>
+            <div
+                aria-hidden={!recruiterPromptVisible}
+                class={[
+                    "pointer-events-none absolute left-1/2 top-full z-[4] mt-3 w-[min(17rem,calc(100vw-3rem))] -translate-x-1/2 rounded-[22px] border px-4 py-3 shadow-[0_14px_34px_rgba(15,23,42,0.12)] backdrop-blur-[22px] transition-[opacity,transform] duration-200 motion-reduce:transition-none [background:color-mix(in_srgb,var(--ios-glass)_96%,transparent)] [border-color:var(--ios-glass-border)] sm:left-full sm:top-1/2 sm:mt-0 sm:ml-4 sm:w-64 sm:-translate-x-0 sm:-translate-y-1/2",
+                    recruiterPromptVisible
+                        ? "translate-y-0 opacity-100 sm:translate-y-0"
+                        : "translate-y-1 opacity-0 sm:translate-y-1",
+                ]}
+            >
+                <span
+                    aria-hidden="true"
+                    class="absolute left-1/2 top-0 size-3 -translate-x-1/2 -translate-y-1/2 rotate-45 border [background:color-mix(in_srgb,var(--ios-glass)_96%,transparent)] [border-color:var(--ios-glass-border)] sm:left-0 sm:top-1/2 sm:-translate-x-1/2 sm:-translate-y-1/2"
+                ></span>
+
+                <p
+                    class="mb-1 text-[0.62rem] font-semibold uppercase tracking-[0.12em] [color:var(--ios-blue)]"
+                >
+                    {recruiterPromptLabel}
+                </p>
+                <p class="text-[0.78rem] leading-[1.5] [color:var(--ios-text-primary)]">
+                    {recruiterPromptMessage}
+                </p>
+            </div>
         </div>
 
         <div class="min-w-0 flex-1 max-w-[56ch]">
@@ -109,6 +272,10 @@
                     ? copiedIconChipClass
                     : interactiveIconChipClass}
                 onclick={copyEmail}
+                onpointerenter={() => showRecruiterPrompt("email")}
+                onpointerleave={() => clearRecruiterPrompt("email")}
+                onfocus={() => showRecruiterPrompt("email")}
+                onblur={() => clearRecruiterPrompt("email")}
                 title={emailCopied ? "Copied!" : "Copy email"}
                 aria-label={emailCopied ? "Email copied" : "Copy email address"}
             >
@@ -145,6 +312,10 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class={interactiveIconChipClass}
+                onpointerenter={() => showRecruiterPrompt("linkedin")}
+                onpointerleave={() => clearRecruiterPrompt("linkedin")}
+                onfocus={() => showRecruiterPrompt("linkedin")}
+                onblur={() => clearRecruiterPrompt("linkedin")}
                 title="LinkedIn"
                 aria-label="Open LinkedIn profile"
             >
@@ -167,6 +338,10 @@
                 target="_blank"
                 rel="noopener noreferrer"
                 class={interactiveIconChipClass}
+                onpointerenter={() => showRecruiterPrompt("github")}
+                onpointerleave={() => clearRecruiterPrompt("github")}
+                onfocus={() => showRecruiterPrompt("github")}
+                onblur={() => clearRecruiterPrompt("github")}
                 title="GitHub"
                 aria-label="Open GitHub profile"
             >
