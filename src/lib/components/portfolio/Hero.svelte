@@ -8,12 +8,7 @@
 
     let emailCopied = $state(false);
     let copyTimer: ReturnType<typeof setTimeout>;
-
-    let avatarClicks = $state(0);
-    let easterEggActive = $state(false);
-    let easterEggDismissing = $state(false);
     let wobbling = $state(false);
-    let easterEggTimer: ReturnType<typeof setTimeout>;
 
     const emailHref = `mailto:${personalInfo.email}`;
     const iconChipClass =
@@ -45,14 +40,18 @@
         <span
             class="inline-flex items-center gap-[7px] rounded-full border px-[13px] py-[5px] text-[0.72rem] font-semibold tracking-[0.01em] [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-secondary)]"
         >
-            <span class="size-1.5 shrink-0 animate-pulse rounded-full bg-[#30d158] shadow-[0_0_6px_#30d15880]"></span>
+            <span
+                class="size-1.5 shrink-0 animate-pulse rounded-full bg-[#30d158] shadow-[0_0_6px_#30d15880]"
+            ></span>
             Open to opportunities
         </span>
 
         <ThemeToggle />
     </div>
 
-    <div class="flex flex-col items-start gap-[14px] sm:flex-row sm:items-center sm:gap-[22px]">
+    <div
+        class="flex flex-col items-start gap-[14px] sm:flex-row sm:items-center sm:gap-[22px]"
+    >
         <div class="relative shrink-0">
             <button
                 class={[
@@ -106,7 +105,9 @@
         <div class="flex flex-wrap gap-2">
             <a
                 href={emailHref}
-                class={emailCopied ? copiedIconChipClass : interactiveIconChipClass}
+                class={emailCopied
+                    ? copiedIconChipClass
+                    : interactiveIconChipClass}
                 onclick={copyEmail}
                 title={emailCopied ? "Copied!" : "Copy email"}
                 aria-label={emailCopied ? "Email copied" : "Copy email address"}
@@ -134,9 +135,7 @@
                         stroke-width="2"
                     >
                         <rect x="2" y="4" width="20" height="16" rx="2" />
-                        <path
-                            d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"
-                        />
+                        <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7" />
                     </svg>
                 {/if}
             </a>
@@ -183,10 +182,7 @@
                 </svg>
             </a>
 
-            <span
-                class={plainIconChipClass}
-                title={personalInfo.location}
-            >
+            <span class={plainIconChipClass} title={personalInfo.location}>
                 <svg
                     width="14"
                     height="14"
@@ -197,9 +193,7 @@
                     stroke-linecap="round"
                     stroke-linejoin="round"
                 >
-                    <path
-                        d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"
-                    />
+                    <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z" />
                     <circle cx="12" cy="10" r="3" />
                 </svg>
                 <span class="sr-only">{personalInfo.location}</span>
