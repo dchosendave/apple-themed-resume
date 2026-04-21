@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { projects } from "$lib/data/resume";
+    import { projects } from "$lib/data/projects";
     import { reveal } from "$lib/actions/reveal";
     import { getIcon } from "$lib/utils/techIcons";
     import ProjectDrawer from "$lib/components/portfolio/ProjectDrawer.svelte";

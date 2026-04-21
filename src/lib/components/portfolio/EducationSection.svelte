@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { education } from "$lib/data/resume";
+    import { education } from "$lib/data/education";
     import { reveal } from "$lib/actions/reveal";
 </script>
 

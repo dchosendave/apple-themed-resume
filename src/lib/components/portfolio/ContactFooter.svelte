@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { personalInfo } from "$lib/data/resume";
+    import { personalInfo } from "$lib/data/personal-information";
 
     let emailCopied = $state(false);
     let copyTimer: ReturnType<typeof setTimeout>;

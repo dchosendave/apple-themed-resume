@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { experience } from "$lib/data/resume";
+    import { experience } from "$lib/data/experience";
     import { reveal } from "$lib/actions/reveal";
     import { getIcon } from "$lib/utils/techIcons";
     import * as Accordion from "$lib/components/ui/accordion/index.js";

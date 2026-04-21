@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { personalInfo } from "$lib/data/resume";
+    import { personalInfo } from "$lib/data/personal-information";
     import * as Command from "$lib/components/ui/command/index.js";
 
     type Action = {

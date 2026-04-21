@@ -1,5 +1,5 @@
 <script lang="ts">
-    import { stats } from "$lib/data/resume";
+    import { stats } from "$lib/data/stats";
     import { reveal } from "$lib/actions/reveal";
     import { countUp } from "$lib/actions/countUp";
 </script>
