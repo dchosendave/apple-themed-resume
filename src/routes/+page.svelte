@@ -2,7 +2,7 @@
     import Hero from "$lib/components/portfolio/Hero.svelte";
     import StatsBar from "$lib/components/portfolio/StatsBar.svelte";
     import SkillsSection from "$lib/components/portfolio/SkillsSection.svelte";
-    import ExploringSection from "$lib/components/portfolio/ExploringSection.svelte";
+    import TechnicalNotesSection from "$lib/components/portfolio/TechnicalNoteSection.svelte";
     import ExperienceSection from "$lib/components/portfolio/ExperienceSection.svelte";
     import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
     import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
@@ -51,7 +51,7 @@
     <div id="tile-experience" class="tile-experience"><ExperienceSection /></div>
     <div class="tile-right-col-2">
         <div id="tile-skills" class="tile-skills"><SkillsSection /></div>
-        <div class="tile-exploring"><ExploringSection /></div>
+        <div id="tile-notes" class="tile-exploring"><TechnicalNotesSection /></div>
     </div>
 
     <!-- Row 3: Projects (3fr) + Education (2fr) -->
