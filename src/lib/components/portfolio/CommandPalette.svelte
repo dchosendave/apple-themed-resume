@@ -1,22 +1,11 @@
 <script lang="ts">
     import { onDestroy } from "svelte";
-    import { personalInfo } from "$lib/data/personal-information";
     import * as Command from "$lib/components/ui/command/index.js";
     import { avatarCommand } from "$lib/stores/avatar-command.svelte";
-
-    type Action = {
-        value: string;
-        label: string;
-        category: string;
-        meta: string;
-        keywords: string[];
-        run: () => void;
-    };
-
-    type ActionGroup = {
-        label: string;
-        actions: Action[];
-    };
+    import {
+        createCommandActionGroups,
+        type CommandAction,
+    } from "./commandActions";
 
     let open = $state(false);
     let search = $state("");
@@ -44,111 +33,9 @@
     const footerHintClass =
         "text-[0.68rem] [color:var(--ios-text-tertiary)]";
 
-    function scrollToTile(id: string) {
-        document.getElementById(id)?.scrollIntoView({ behavior: "smooth", block: "start" });
-    }
+    const actionGroups = createCommandActionGroups();
 
-    async function copyEmail() {
-        try {
-            await navigator.clipboard.writeText(personalInfo.email);
-        } catch {
-            window.location.href = `mailto:${personalInfo.email}`;
-        }
-    }
-
-    function downloadResume() {
-        const link = document.createElement("a");
-        link.href = personalInfo.resumePdf;
-        link.download = "";
-        link.click();
-    }
-
-    const actionGroups: ActionGroup[] = [
-        {
-            label: "Navigate",
-            actions: [
-                {
-                    value: "hero",
-                    label: "Jump to hero section",
-                    category: "Navigate",
-                    meta: "Hero",
-                    keywords: ["intro", "top", "hero", "profile"],
-                    run: () => scrollToTile("tile-hero")
-                },
-                {
-                    value: "experience",
-                    label: "Jump to work experience",
-                    category: "Navigate",
-                    meta: "Work",
-                    keywords: ["experience", "work", "career", "resume"],
-                    run: () => scrollToTile("tile-experience")
-                },
-                {
-                    value: "skills",
-                    label: "Jump to skills section",
-                    category: "Navigate",
-                    meta: "Skills",
-                    keywords: ["skills", "stack", "tools", "tech"],
-                    run: () => scrollToTile("tile-skills")
-                },
-                {
-                    value: "projects",
-                    label: "Jump to featured projects",
-                    category: "Navigate",
-                    meta: "Projects",
-                    keywords: ["projects", "portfolio", "case study"],
-                    run: () => scrollToTile("tile-projects")
-                },
-                {
-                    value: "education",
-                    label: "Jump to education",
-                    category: "Navigate",
-                    meta: "Education",
-                    keywords: ["education", "certifications", "school"],
-                    run: () => scrollToTile("tile-education")
-                }
-            ]
-        },
-        {
-            label: "Contact",
-            actions: [
-                {
-                    value: "copy-email",
-                    label: "Copy email address",
-                    category: "Contact",
-                    meta: "Copy",
-                    keywords: ["email", "mail", "copy", "contact"],
-                    run: copyEmail
-                },
-                {
-                    value: "download-resume",
-                    label: "Download resume PDF",
-                    category: "Contact",
-                    meta: "PDF",
-                    keywords: ["resume", "cv", "download", "pdf"],
-                    run: downloadResume
-                },
-                {
-                    value: "open-linkedin",
-                    label: "Open LinkedIn profile",
-                    category: "Contact",
-                    meta: "Open",
-                    keywords: ["linkedin", "profile", "social"],
-                    run: () => window.open(personalInfo.linkedin, "_blank", "noopener,noreferrer")
-                },
-                {
-                    value: "open-github",
-                    label: "Open GitHub profile",
-                    category: "Contact",
-                    meta: "Open",
-                    keywords: ["github", "code", "repositories"],
-                    run: () => window.open(personalInfo.github, "_blank", "noopener,noreferrer")
-                }
-            ]
-        }
-    ];
-
-    function execute(action: Action) {
+    function execute(action: CommandAction) {
         handleOpenChange(false);
         action.run();
     }

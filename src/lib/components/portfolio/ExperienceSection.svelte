@@ -1,8 +1,8 @@
 <script lang="ts">
     import { experience } from "$lib/data/experience";
-    import { reveal } from "$lib/actions/reveal";
-    import { getIcon } from "$lib/utils/techIcons";
     import * as Accordion from "$lib/components/ui/accordion/index.js";
+    import PortfolioCard from "./PortfolioCard.svelte";
+    import TechBadge from "./TechBadge.svelte";
 
     let openCategories = $state(
         Object.fromEntries(
@@ -14,7 +14,7 @@
     );
 </script>
 
-<div class="apple-card bento-tile flex flex-col gap-5 px-5 py-5 sm:px-6 sm:py-6" use:reveal>
+<PortfolioCard class="flex flex-col gap-5 px-5 py-5 sm:px-6 sm:py-6">
     <p class="apple-section-title">Work Experience</p>
 
     {#each experience as job (job.company)}
@@ -84,17 +84,7 @@
                                             {#if bullet.stack.length > 0}
                                                 <div class="flex flex-wrap gap-2">
                                                     {#each bullet.stack as tech (tech)}
-                                                        {@const icon = getIcon(tech)}
-                                                        <span class="apple-badge text-[0.64rem]">
-                                                            {#if icon}
-                                                                <img
-                                                                    src={icon}
-                                                                    alt={tech}
-                                                                    class="tech-icon"
-                                                                />
-                                                            {/if}
-                                                            {tech}
-                                                        </span>
+                                                        <TechBadge {tech} />
                                                     {/each}
                                                 </div>
                                             {/if}
@@ -108,4 +98,4 @@
             </Accordion.Root>
         </section>
     {/each}
-</div>
+</PortfolioCard>

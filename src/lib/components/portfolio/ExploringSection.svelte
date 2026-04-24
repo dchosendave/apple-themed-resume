@@ -1,12 +1,9 @@
 <script lang="ts">
     import { exploring } from "$lib/data/currently-exploring";
-    import { reveal } from "$lib/actions/reveal";
+    import PortfolioCard from "./PortfolioCard.svelte";
 </script>
 
-<div
-    class="overflow-hidden rounded-[24px] border px-[18px] py-5 shadow-[0_18px_40px_rgba(15,23,42,0.08)] backdrop-blur-[24px] transition-[background,border-color,box-shadow,transform] duration-300 [background:var(--ios-glass)] [border-color:var(--ios-glass-border)] hover:-translate-y-0.5 hover:shadow-[0_16px_40px_rgba(15,23,42,0.12)] dark:hover:shadow-[0_16px_40px_rgba(0,0,0,0.35)] sm:px-6 sm:py-[22px]"
-    use:reveal
->
+<PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <p
         class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
     >
@@ -35,4 +32,4 @@
             </div>
         {/each}
     </div>
-</div>
+</PortfolioCard>

@@ -3,10 +3,11 @@
     import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
     import LockKeyholeIcon from "@lucide/svelte/icons/lock-keyhole";
     import type { Project } from "$lib/types/project";
-    import { getIcon } from "$lib/utils/techIcons";
     import { Button } from "$lib/components/ui/button/index.js";
     import { Separator } from "$lib/components/ui/separator/index.js";
     import * as Sheet from "$lib/components/ui/sheet/index.js";
+    import ProjectDetailSection from "./ProjectDetailSection.svelte";
+    import TechBadge from "./TechBadge.svelte";
 
     let { project, onclose }: { project: Project | null; onclose: () => void } = $props();
 
@@ -63,32 +64,9 @@
                 <div class="flex-1 overflow-y-auto px-6 py-5 sm:px-7">
                     {#if project.problem || project.solution || project.impact}
                         <div class="grid gap-4">
-                            {#if project.problem}
-                                <section class="apple-card-inner space-y-2 p-4">
-                                    <p class="apple-section-title mb-0">Problem</p>
-                                    <p class="text-sm leading-6 [color:var(--ios-text-primary)]">
-                                        {project.problem}
-                                    </p>
-                                </section>
-                            {/if}
-
-                            {#if project.solution}
-                                <section class="apple-card-inner space-y-2 p-4">
-                                    <p class="apple-section-title mb-0">Solution</p>
-                                    <p class="text-sm leading-6 [color:var(--ios-text-primary)]">
-                                        {project.solution}
-                                    </p>
-                                </section>
-                            {/if}
-
-                            {#if project.impact}
-                                <section class="apple-card-inner space-y-2 p-4">
-                                    <p class="apple-section-title mb-0">Impact</p>
-                                    <p class="text-sm leading-6 [color:var(--ios-text-primary)]">
-                                        {project.impact}
-                                    </p>
-                                </section>
-                            {/if}
+                            <ProjectDetailSection title="Problem" body={project.problem} />
+                            <ProjectDetailSection title="Solution" body={project.solution} />
+                            <ProjectDetailSection title="Impact" body={project.impact} />
                         </div>
                     {/if}
 
@@ -96,13 +74,7 @@
                         <p class="apple-section-title mb-0">Tech Stack</p>
                         <div class="flex flex-wrap gap-2">
                             {#each project.stack as tech (tech)}
-                                {@const icon = getIcon(tech)}
-                                <span class="apple-badge text-[0.66rem]">
-                                    {#if icon}
-                                        <img src={icon} alt={tech} class="tech-icon" />
-                                    {/if}
-                                    {tech}
-                                </span>
+                                <TechBadge {tech} class="text-[0.66rem]" />
                             {/each}
                         </div>
                     </section>
