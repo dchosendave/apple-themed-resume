@@ -4,8 +4,8 @@
     import HeroAvatar from "./HeroAvatar.svelte";
     import HeroContactActions from "./HeroContactActions.svelte";
     import HeroIdentity from "./HeroIdentity.svelte";
-    import PortfolioCard from "../shared/PortfolioCard.svelte";
-    import ThemeToggle from "../shared/ThemeToggle.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import ThemeToggle from "$lib/components/portfolio/shared/ThemeToggle.svelte";
 
     let recruiterPrompt = $state<RecruiterPrompt | null>(null);
 

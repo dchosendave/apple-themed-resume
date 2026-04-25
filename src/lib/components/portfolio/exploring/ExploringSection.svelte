@@ -1,6 +1,6 @@
 <script lang="ts">
     import { exploring } from "$lib/data/currently-exploring";
-    import PortfolioCard from "../shared/PortfolioCard.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
 </script>
 
 <PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">

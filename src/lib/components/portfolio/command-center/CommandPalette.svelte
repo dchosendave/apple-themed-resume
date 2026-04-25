@@ -5,7 +5,7 @@
     import {
         createCommandActionGroups,
         type CommandAction,
-    } from "./commandActions";
+    } from "$lib/components/portfolio/command-center/commandActions";
 
     let open = $state(false);
     let search = $state("");

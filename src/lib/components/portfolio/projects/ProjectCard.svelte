@@ -2,7 +2,7 @@
     import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
     import LockKeyholeIcon from "@lucide/svelte/icons/lock-keyhole";
     import type { Project } from "$lib/types/project";
-    import TechBadge from "../shared/TechBadge.svelte";
+    import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
 
     let {
         project,
