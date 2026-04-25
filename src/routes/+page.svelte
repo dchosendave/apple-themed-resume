@@ -139,7 +139,7 @@
         height: 450px;
         background: radial-gradient(
             circle,
-            color-mix(in srgb, var(--lowie-coffee) 24%, transparent),
+            color-mix(in srgb, var(--ios-blue) 24%, transparent),
             transparent 70%
         );
         bottom: -100px;
@@ -152,7 +152,7 @@
         height: 600px;
         background: radial-gradient(
             circle,
-            color-mix(in srgb, var(--lowie-mint) 12%, transparent),
+            color-mix(in srgb, var(--ios-blue) 12%, transparent),
             transparent 70%
         );
         top: 40%;
