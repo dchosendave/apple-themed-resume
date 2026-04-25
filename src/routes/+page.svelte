@@ -119,18 +119,18 @@
         filter: blur(90px);
         pointer-events: none;
 
-        /* Slow ambient motion keeps the background alive without distracting from content. */
+        /* Ambient motion tuned to stay calm but visibly alive. */
         --blob-x-start: 0px;
         --blob-y-start: 0px;
-        --blob-x-end: 14px;
-        --blob-y-end: -12px;
+        --blob-x-end: 24px;
+        --blob-y-end: -18px;
         --blob-scale-start: 1;
-        --blob-scale-end: 1.04;
+        --blob-scale-end: 1.05;
         --blob-rest-x: var(--blob-x-start);
         --blob-rest-y: var(--blob-y-start);
         --blob-rest-scale: var(--blob-scale-start);
-        --blob-drift-duration: 34s;
-        --blob-pulse-duration: 26s;
+        --blob-drift-duration: 24s;
+        --blob-pulse-duration: 20s;
         --blob-delay: 0s;
 
         animation:
@@ -151,17 +151,17 @@
         top: -160px;
         right: -160px;
 
-        --blob-x-start: -8px;
-        --blob-y-start: 10px;
-        --blob-x-end: 18px;
-        --blob-y-end: -12px;
-        --blob-scale-start: 0.98;
-        --blob-scale-end: 1.05;
+        --blob-x-start: -24px;
+        --blob-y-start: 16px;
+        --blob-x-end: 34px;
+        --blob-y-end: -26px;
+        --blob-scale-start: 0.97;
+        --blob-scale-end: 1.07;
         --blob-rest-x: 5px;
-        --blob-rest-y: -1px;
-        --blob-rest-scale: 1.015;
-        --blob-drift-duration: 38s;
-        --blob-pulse-duration: 30s;
+        --blob-rest-y: -5px;
+        --blob-rest-scale: 1.02;
+        --blob-drift-duration: 22s;
+        --blob-pulse-duration: 20s;
         --blob-delay: -6s;
     }
 
@@ -177,17 +177,17 @@
         bottom: -100px;
         left: -120px;
 
-        --blob-x-start: -14px;
-        --blob-y-start: 8px;
-        --blob-x-end: 16px;
-        --blob-y-end: -10px;
-        --blob-scale-start: 0.97;
-        --blob-scale-end: 1.03;
+        --blob-x-start: -28px;
+        --blob-y-start: 18px;
+        --blob-x-end: 30px;
+        --blob-y-end: -20px;
+        --blob-scale-start: 0.95;
+        --blob-scale-end: 1.05;
         --blob-rest-x: 1px;
         --blob-rest-y: -1px;
         --blob-rest-scale: 1;
-        --blob-drift-duration: 44s;
-        --blob-pulse-duration: 34s;
+        --blob-drift-duration: 26s;
+        --blob-pulse-duration: 22s;
         --blob-delay: -12s;
     }
 
@@ -203,17 +203,17 @@
         top: 40%;
         left: 50%;
 
-        --blob-x-start: calc(-50% - 12px);
-        --blob-y-start: -6px;
-        --blob-x-end: calc(-50% + 14px);
-        --blob-y-end: 10px;
-        --blob-scale-start: 0.99;
-        --blob-scale-end: 1.04;
+        --blob-x-start: calc(-50% - 24px);
+        --blob-y-start: -14px;
+        --blob-x-end: calc(-50% + 28px);
+        --blob-y-end: 14px;
+        --blob-scale-start: 0.98;
+        --blob-scale-end: 1.06;
         --blob-rest-x: -50%;
-        --blob-rest-y: 2px;
-        --blob-rest-scale: 1.015;
-        --blob-drift-duration: 48s;
-        --blob-pulse-duration: 36s;
+        --blob-rest-y: 0px;
+        --blob-rest-scale: 1.02;
+        --blob-drift-duration: 28s;
+        --blob-pulse-duration: 24s;
         --blob-delay: -18s;
     }
 
@@ -237,10 +237,10 @@
     @keyframes blob-pulse {
         0%,
         100% {
-            opacity: 0.76;
+            opacity: 0.72;
         }
         50% {
-            opacity: 0.92;
+            opacity: 0.94;
         }
     }
 
