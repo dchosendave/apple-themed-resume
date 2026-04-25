@@ -5,9 +5,9 @@
     import MapPinIcon from "@lucide/svelte/icons/map-pin";
     import { personalInfo } from "$lib/data/personal-information";
     import type { RecruiterPrompt } from "$lib/types/recruiter-prompt";
-    import ContactIconLink from "./ContactIconLink.svelte";
-    import GithubMark from "./GithubMark.svelte";
-    import LinkedinMark from "./LinkedinMark.svelte";
+    import ContactIconLink from "../shared/ContactIconLink.svelte";
+    import GithubMark from "../shared/GithubMark.svelte";
+    import LinkedinMark from "../shared/LinkedinMark.svelte";
 
     let {
         showPrompt,

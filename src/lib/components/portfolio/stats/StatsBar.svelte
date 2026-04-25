@@ -5,7 +5,7 @@
     import SparklesIcon from "@lucide/svelte/icons/sparkles";
     import { stats } from "$lib/data/stats";
     import { countUp } from "$lib/actions/countUp";
-    import PortfolioCard from "./PortfolioCard.svelte";
+    import PortfolioCard from "../shared/PortfolioCard.svelte";
 </script>
 
 <PortfolioCard class="lowie-card-glow flex flex-col overflow-hidden px-5 py-5 md:px-6 md:py-[22px]">

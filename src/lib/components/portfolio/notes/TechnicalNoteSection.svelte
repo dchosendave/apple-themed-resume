@@ -1,7 +1,7 @@
 <script lang="ts">
     import { technicalNotes } from "$lib/data/technical-notes";
     import type { TechnicalNote } from "$lib/types/technical-note";
-    import PortfolioCard from "./PortfolioCard.svelte";
+    import PortfolioCard from "../shared/PortfolioCard.svelte";
     import TechnicalNoteCard from "./TechnicalNoteCard.svelte";
     import TechnicalNoteDrawer from "./TechnicalNoteDrawer.svelte";
 

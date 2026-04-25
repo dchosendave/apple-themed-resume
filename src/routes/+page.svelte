@@ -1,13 +1,13 @@
 <script lang="ts">
-    import Hero from "$lib/components/portfolio/Hero.svelte";
-    import StatsBar from "$lib/components/portfolio/StatsBar.svelte";
-    import SkillsSection from "$lib/components/portfolio/SkillsSection.svelte";
-    import TechnicalNotesSection from "$lib/components/portfolio/TechnicalNoteSection.svelte";
-    import ExperienceSection from "$lib/components/portfolio/ExperienceSection.svelte";
-    import ProjectsSection from "$lib/components/portfolio/ProjectsSection.svelte";
-    import EducationSection from "$lib/components/portfolio/EducationSection.svelte";
-    import ContactFooter from "$lib/components/portfolio/ContactFooter.svelte";
-    import CommandPalette from "$lib/components/portfolio/CommandPalette.svelte";
+    import StatsBar from "$lib/components/portfolio/stats/StatsBar.svelte";
+    import SkillsSection from "$lib/components/portfolio/skills/SkillsSection.svelte";
+    import TechnicalNotesSection from "$lib/components/portfolio/notes/TechnicalNoteSection.svelte";
+    import ExperienceSection from "$lib/components/portfolio/experience/ExperienceSection.svelte";
+    import ProjectsSection from "$lib/components/portfolio/projects/ProjectsSection.svelte";
+    import EducationSection from "$lib/components/portfolio/education/EducationSection.svelte";
+    import ContactFooter from "$lib/components/portfolio/contact/ContactFooter.svelte";
+    import CommandPalette from "$lib/components/portfolio/command-center/CommandPalette.svelte";
+    import Hero from "$lib/components/portfolio/hero/Hero.svelte";
 </script>
 
 <svelte:head>
