@@ -35,7 +35,6 @@
             class="relative z-[1] size-24 overflow-hidden rounded-full [background:var(--ios-chip-bg)] shadow-[0_16px_36px_rgba(15,23,42,0.18)] data-[size=lg]:size-24 sm:size-32 sm:data-[size=lg]:size-32 dark:shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
         >
             <Avatar.Fallback class="absolute inset-0 font-semibold tracking-[0.02em]">
-                LD
             </Avatar.Fallback>
 
             <img
