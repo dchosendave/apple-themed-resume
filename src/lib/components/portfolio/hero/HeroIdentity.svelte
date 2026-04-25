@@ -11,7 +11,7 @@
 </script>
 
 <div class="min-w-0 flex-1 max-w-[56ch]">
-    <div class="mb-2 flex flex-wrap items-baseline gap-3">
+    <div class="mb-2 flex flex-wrap items-center gap-3">
         <h1
             class="text-[clamp(1.5rem,3vw,2rem)] font-extrabold leading-[1.1] tracking-[-0.02em] [color:var(--ios-text-primary)]"
         >
