@@ -28,7 +28,7 @@ export const skills: Record<string, Skill[]> = {
         { name: "Postman", level: "proficient" },
         { name: "QuestPDF", level: "proficient" },
         { name: "RDLC", level: "proficient" },
-        { name: "Technical Documentation", level: "expert" },
+        { name: "Docker", level: "expert" },
         { name: "Production Support", level: "expert" }
     ]
 };

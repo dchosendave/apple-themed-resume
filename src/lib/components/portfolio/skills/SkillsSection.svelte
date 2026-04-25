@@ -1,7 +1,8 @@
 <script lang="ts">
     import { skills } from "$lib/data/skills";
-    import PortfolioCard from "../shared/PortfolioCard.svelte";
-    import TechBadge from "../shared/TechBadge.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
+    import { Separator } from "$lib/components/ui/separator/index.js";
 
     const skillGroups = Object.entries(skills);
 </script>
@@ -13,16 +14,16 @@
         Full-Stack Loadout
     </p>
 
-    <div class="flex flex-col gap-[14px]">
-        {#each skillGroups as [category, items] (category)}
-            <section
-                class="flex flex-col gap-2 rounded-[18px] border p-3 sm:gap-[10px] sm:p-[14px] [background:color-mix(in_srgb,var(--ios-chip-bg)_92%,transparent)] [border-color:var(--ios-glass-border)]"
-            >
-                <span
-                    class="text-[0.72rem] font-semibold uppercase tracking-[0.08em] [color:var(--ios-text-secondary)]"
-                >
-                    {category}
-                </span>
+    <div class="flex flex-col">
+        {#each skillGroups as [category, items], index (category)}
+            <section class="grid gap-2.5 py-3 first:pt-0 last:pb-0 sm:gap-3">
+                <div class="flex items-center justify-between gap-3">
+                    <span
+                        class="text-[0.72rem] font-semibold uppercase tracking-[0.08em] [color:var(--ios-text-secondary)]"
+                    >
+                        {category}
+                    </span>
+                </div>
 
                 <div class="flex flex-wrap gap-1.5">
                     {#each items as skill (skill.name)}
@@ -30,6 +31,10 @@
                     {/each}
                 </div>
             </section>
+
+            {#if index < skillGroups.length - 1}
+                <Separator class="[background-color:var(--ios-separator)]" />
+            {/if}
         {/each}
     </div>
 </PortfolioCard>

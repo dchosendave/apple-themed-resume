@@ -1,5 +1,6 @@
 <script lang="ts">
     import { avatarCommand } from "$lib/stores/avatar-command.svelte";
+    import { theme } from "$lib/stores/theme.svelte";
     import type { RecruiterPrompt } from "$lib/types/recruiter-prompt";
     import RecruiterPromptBubble from "$lib/components/portfolio/hero/RecruiterPrompt.svelte";
 
@@ -32,10 +33,24 @@
             class="relative z-[1] size-[68px] overflow-hidden rounded-full [background:var(--ios-chip-bg)] sm:size-[78px]"
         >
             <img
-                src="/solo-picture.jpg"
-                alt="Lowie Dave Dichoson"
+                src="/3d-image-light.png"
+                alt=""
+                aria-hidden="true"
                 class={[
-                    "block size-full object-cover object-[center_top] transition-[transform,filter] duration-300 motion-reduce:transform-none motion-reduce:transition-none",
+                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-500 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    theme.isDark ? "opacity-0" : "opacity-100",
+                    commandModeActive && "scale-[1.03] brightness-[1.02] saturate-[1.1]",
+                    searchModeActive && "scale-[1.05] contrast-[1.08]",
+                ]}
+            />
+
+            <img
+                src="/3d-image-dark.png"
+                alt=""
+                aria-hidden="true"
+                class={[
+                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-500 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    theme.isDark ? "opacity-100" : "opacity-0",
                     commandModeActive && "scale-[1.03] brightness-[1.02] saturate-[1.1]",
                     searchModeActive && "scale-[1.05] contrast-[1.08]",
                 ]}
