@@ -12,25 +12,27 @@
     let searchModeActive = $derived(avatarMode === "searching");
     let visitPromptActive = $derived(prompt?.startsWith("visit-") === true);
     let contactPrompt = $derived(visitPromptActive ? null : prompt);
-    let contactPromptVisible = $derived(contactPrompt !== null && !commandModeActive);
+    let contactPromptVisible = $derived(
+        contactPrompt !== null && !commandModeActive,
+    );
     let visitPromptVisible = $derived(visitPromptActive && !commandModeActive);
     let visitPromptMessage = $derived(
         prompt === "visit-morning"
             ? "Coffee first?"
             : prompt === "visit-afternoon"
-                ? "Good timing."
-                : prompt === "visit-evening"
-                    ? "Late too? Same."
-                    : prompt === "visit-late"
-                        ? "Quiet hours, huh?"
-                        : ""
+              ? "Good timing."
+              : prompt === "visit-evening"
+                ? "Late too? Same."
+                : prompt === "visit-late"
+                  ? "Quiet hours, huh?"
+                  : "",
     );
     let avatarAriaLabel = $derived(
         searchModeActive
             ? "Profile photo, search mode active"
             : commandModeActive
-                ? "Profile photo, command mode active"
-                : "Profile photo"
+              ? "Profile photo, command mode active"
+              : "Profile photo",
     );
 </script>
 
@@ -48,17 +50,19 @@
             size="lg"
             class="relative z-[1] size-24 overflow-hidden rounded-full [background:var(--ios-chip-bg)] shadow-[0_16px_36px_rgba(15,23,42,0.18)] data-[size=lg]:size-24 sm:size-32 sm:data-[size=lg]:size-32 dark:shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
         >
-            <Avatar.Fallback class="absolute inset-0 font-semibold tracking-[0.02em]">
-            </Avatar.Fallback>
+            <Avatar.Fallback
+                class="absolute inset-0 font-semibold tracking-[0.02em]"
+            ></Avatar.Fallback>
 
             <img
                 src="/3d-image-light.png"
                 alt=""
                 aria-hidden="true"
                 class={[
-                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-500 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
                     theme.isDark ? "opacity-0" : "opacity-100",
-                    commandModeActive && "scale-[1.03] brightness-[1.02] saturate-[1.1]",
+                    commandModeActive &&
+                        "scale-[1.03] brightness-[1.02] saturate-[1.1]",
                     searchModeActive && "scale-[1.05] contrast-[1.08]",
                 ]}
             />
@@ -68,9 +72,10 @@
                 alt=""
                 aria-hidden="true"
                 class={[
-                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-500 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
                     theme.isDark ? "opacity-100" : "opacity-0",
-                    commandModeActive && "scale-[1.03] brightness-[1.02] saturate-[1.1]",
+                    commandModeActive &&
+                        "scale-[1.03] brightness-[1.02] saturate-[1.1]",
                     searchModeActive && "scale-[1.05] contrast-[1.08]",
                 ]}
             />
@@ -100,7 +105,9 @@
                 aria-hidden="true"
                 class={[
                     "pointer-events-none absolute inset-[14%] rounded-full border transition-all duration-300 motion-reduce:transition-none",
-                    commandModeActive ? "scale-100 opacity-100" : "scale-95 opacity-0",
+                    commandModeActive
+                        ? "scale-100 opacity-100"
+                        : "scale-95 opacity-0",
                     searchModeActive
                         ? "animate-pulse [border-color:rgba(183,228,199,0.76)]"
                         : "[border-color:rgba(255,255,255,0.4)]",
@@ -111,7 +118,9 @@
                 aria-hidden="true"
                 class={[
                     "pointer-events-none absolute inset-x-[20%] bottom-[10%] z-[2] rounded-full border px-2 py-1 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none sm:text-[0.58rem]",
-                    commandModeActive ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
+                    commandModeActive
+                        ? "translate-y-0 opacity-100"
+                        : "translate-y-2 opacity-0",
                     searchModeActive
                         ? "border-[rgba(183,228,199,0.45)] bg-[rgba(47,70,53,0.52)]"
                         : "border-[rgba(255,255,255,0.2)] bg-[rgba(47,70,53,0.32)]",
@@ -149,7 +158,9 @@
             <span
                 class={[
                     "size-1.5 rounded-full",
-                    searchModeActive ? "animate-pulse bg-white" : "bg-[var(--ios-blue)]",
+                    searchModeActive
+                        ? "animate-pulse bg-white"
+                        : "bg-[var(--ios-blue)]",
                 ]}
             ></span>
             {searchModeActive ? "Scan" : "Cmd"}
@@ -160,7 +171,9 @@
         aria-hidden={!visitPromptVisible}
         class={[
             "pointer-events-none absolute bottom-1 left-1/2 top-auto z-[4] mt-0 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold shadow-[0_12px_28px_rgba(15,23,42,0.14)] backdrop-blur-md transition-[opacity,transform] duration-200 motion-reduce:transition-none [background:color-mix(in_srgb,var(--ios-glass)_94%,transparent)] [border-color:var(--ios-glass-border)] [color:var(--ios-text-primary)] sm:bottom-auto sm:top-full sm:mt-2 sm:px-3 sm:py-1.5 sm:text-[0.68rem]",
-            visitPromptVisible ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0",
+            visitPromptVisible
+                ? "translate-y-0 opacity-100"
+                : "translate-y-1 opacity-0",
         ]}
     >
         <span class="size-1.5 rounded-full bg-[var(--ios-blue)]"></span>
@@ -171,11 +184,14 @@
         {visitPromptVisible
             ? visitPromptMessage
             : searchModeActive
-            ? "Command palette search is active."
-            : commandModeActive
+              ? "Command palette search is active."
+              : commandModeActive
                 ? "Command palette is open."
                 : "Command palette is closed."}
     </span>
 
-    <RecruiterPromptBubble prompt={contactPrompt} visible={contactPromptVisible} />
+    <RecruiterPromptBubble
+        prompt={contactPrompt}
+        visible={contactPromptVisible}
+    />
 </div>

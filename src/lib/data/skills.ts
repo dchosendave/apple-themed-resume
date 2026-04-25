@@ -3,7 +3,7 @@ import type { Skill } from "$lib/types/skill";
 export const skills: Record<string, Skill[]> = {
     Backend: [
         { name: "C#", level: "expert" },
-        { name: ".NET Core", level: "expert" },
+        { name: ".NET", level: "expert" },
         { name: "Node.js", level: "proficient" },
         { name: "VB.NET", level: "proficient" },
         { name: "PHP", level: "familiar" }

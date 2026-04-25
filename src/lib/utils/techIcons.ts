@@ -12,7 +12,7 @@ const iconMap: Record<string, string> = {
     'CSS': `${BASE}/css3/css3-original.svg`,
 
     // Libraries & Frameworks
-    '.NET Core': `${BASE}/dotnetcore/dotnetcore-original.svg`,
+    '.NET': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET Web API': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET MVC': `${BASE}/dotnetcore/dotnetcore-original.svg`,
     'ASP.NET Web Forms': `${BASE}/dotnetcore/dotnetcore-original.svg`,
