@@ -7,7 +7,7 @@
     <p
         class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
     >
-        Education & Certification
+        Credentials
     </p>
 
     <div class="flex flex-col gap-2 sm:gap-[10px]">

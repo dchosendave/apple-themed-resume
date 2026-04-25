@@ -51,7 +51,7 @@
                 href={project.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--ios-blue)] text-white transition-all duration-200 hover:scale-[1.08] hover:bg-[var(--ios-blue-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]"
+                class="inline-flex size-7 shrink-0 items-center justify-center rounded-full bg-[var(--ios-blue)] text-white transition-all duration-200 hover:scale-[1.08] hover:bg-[var(--ios-blue-hover)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)] dark:text-[#071008]"
                 title="View project"
                 aria-label="Open project link"
             >

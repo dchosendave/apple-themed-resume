@@ -11,31 +11,31 @@
 </script>
 
 <svelte:head>
-    <title>Lowie Dichoson · Software Engineer</title>
+    <title>Lowie Dichoson | Full-Stack Product Developer</title>
     <meta
         name="description"
-        content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications. Open for Backend, Full-Stack, and Financial Systems roles."
+        content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
     />
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Lowie Dave Dichoson · Backend Developer" />
+    <meta property="og:title" content="Lowie Dave Dichoson | Full-Stack Product Developer" />
     <meta
         property="og:description"
-        content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications."
+        content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
     />
     <meta property="og:url" content="https://dave-delivers.vercel.app/" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Lowie Dave Dichoson · Backend Developer" />
+    <meta name="twitter:title" content="Lowie Dave Dichoson | Full-Stack Product Developer" />
     <meta
         name="twitter:description"
-        content="Backend-focused developer with experience designing and supporting production systems, building APIs, and managing complex data workflows in financial applications."
+        content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
     />
 </svelte:head>
 
-<!-- Global ambient blobs — fixed so they persist across the whole page -->
+<!-- Global ambient light fixed across the whole page -->
 <div class="bg-layer" aria-hidden="true">
     <div class="blob blob-1"></div>
     <div class="blob blob-2"></div>
@@ -107,7 +107,7 @@
         min-width: 0;
     }
 
-    /* Fixed blob layer — spans full viewport, persists on scroll */
+    /* Fixed ambient layer spans the viewport and persists on scroll. */
     .bg-layer {
         position: fixed;
         inset: 0;
@@ -123,29 +123,29 @@
         pointer-events: none;
     }
 
-    /* Top-right blue glow */
+    /* Top-right forest glow */
     .blob-1 {
         width: 550px;
         height: 550px;
-        background: radial-gradient(circle, #007aff55, transparent 70%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--ios-blue) 34%, transparent), transparent 70%);
         top: -160px;
         right: -160px;
     }
 
-    /* Bottom-left purple glow */
+    /* Bottom-left warm coffee glow */
     .blob-2 {
         width: 450px;
         height: 450px;
-        background: radial-gradient(circle, #5e5ce640, transparent 70%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--lowie-coffee) 24%, transparent), transparent 70%);
         bottom: -100px;
         left: -120px;
     }
 
-    /* Center subtle blue — ties the page together */
+    /* Center subtle mint glow */
     .blob-3 {
         width: 600px;
         height: 600px;
-        background: radial-gradient(circle, #007aff18, transparent 70%);
+        background: radial-gradient(circle, color-mix(in srgb, var(--lowie-mint) 12%, transparent), transparent 70%);
         top: 40%;
         left: 50%;
         transform: translateX(-50%);

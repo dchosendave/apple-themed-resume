@@ -10,7 +10,7 @@
     <p
         class="text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
     >
-        Skills & Stack
+        Full-Stack Loadout
     </p>
 
     <div class="flex flex-col gap-[14px]">

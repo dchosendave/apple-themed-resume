@@ -46,7 +46,7 @@
                 class={[
                     "pointer-events-none absolute inset-0 rounded-full transition-opacity duration-300 motion-reduce:transition-none",
                     commandModeActive
-                        ? "opacity-100 bg-[linear-gradient(145deg,rgba(255,255,255,0.34)_0%,rgba(255,255,255,0.06)_38%,rgba(10,132,255,0.24)_100%)]"
+                        ? "opacity-100 bg-[linear-gradient(145deg,rgba(255,255,255,0.34)_0%,rgba(255,255,255,0.06)_38%,rgba(183,228,199,0.24)_100%)]"
                         : "opacity-0",
                 ]}
             ></div>
@@ -68,7 +68,7 @@
                     "pointer-events-none absolute inset-[14%] rounded-full border transition-all duration-300 motion-reduce:transition-none",
                     commandModeActive ? "scale-100 opacity-100" : "scale-95 opacity-0",
                     searchModeActive
-                        ? "animate-pulse [border-color:rgba(194,228,255,0.76)]"
+                        ? "animate-pulse [border-color:rgba(183,228,199,0.76)]"
                         : "[border-color:rgba(255,255,255,0.4)]",
                 ]}
             ></div>
@@ -79,8 +79,8 @@
                     "pointer-events-none absolute inset-x-[18%] bottom-[12%] z-[2] rounded-full border px-2 py-1 text-center text-[0.45rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none",
                     commandModeActive ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
                     searchModeActive
-                        ? "border-[rgba(194,228,255,0.45)] bg-[rgba(10,132,255,0.42)]"
-                        : "border-[rgba(255,255,255,0.2)] bg-[rgba(10,132,255,0.22)]",
+                        ? "border-[rgba(183,228,199,0.45)] bg-[rgba(47,70,53,0.52)]"
+                        : "border-[rgba(255,255,255,0.2)] bg-[rgba(47,70,53,0.32)]",
                 ]}
             >
                 {searchModeActive ? "Search" : "Cmd"}
@@ -92,10 +92,10 @@
             class={[
                 "pointer-events-none absolute inset-[-4px] rounded-full border-2 transition-all duration-300 motion-reduce:transition-none",
                 commandModeActive
-                    ? "opacity-90 shadow-[0_0_22px_rgba(10,132,255,0.28)]"
+                    ? "opacity-90 shadow-[0_0_22px_rgba(183,228,199,0.28)]"
                     : "opacity-30",
                 searchModeActive
-                    ? "border-[rgba(157,214,255,0.88)]"
+                    ? "border-[rgba(183,228,199,0.88)]"
                     : "border-[var(--ios-blue)]",
             ]}
         ></div>
@@ -108,8 +108,8 @@
                     ? "translate-y-0 scale-100 opacity-100"
                     : "translate-y-1 scale-90 opacity-0",
                 searchModeActive
-                    ? "border-[rgba(194,228,255,0.32)] bg-[rgba(10,132,255,0.78)] text-white"
-                    : "border-[rgba(10,132,255,0.22)] bg-[rgba(255,255,255,0.76)] [color:var(--ios-blue)] dark:bg-[rgba(7,17,34,0.78)]",
+                    ? "border-[rgba(183,228,199,0.32)] bg-[rgba(47,70,53,0.88)] text-white"
+                    : "border-[rgba(183,228,199,0.22)] bg-[rgba(255,255,255,0.76)] [color:var(--ios-blue)] dark:bg-[rgba(11,19,13,0.78)]",
             ]}
         >
             <span

@@ -11,9 +11,9 @@
 <PortfolioCard class="flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <div class="flex items-start justify-between gap-3">
         <div>
-            <p class="apple-section-title mb-1">Technical Notes</p>
+            <p class="apple-section-title mb-1">Field Notes</p>
             <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Short field notes on backend systems, data workflows, and production tradeoffs.
+                Short notes on systems, product tradeoffs, and production lessons.
             </p>
         </div>
 

@@ -22,7 +22,7 @@
 
     const emailHref = `mailto:${personalInfo.email}`;
     const primaryCtaClass =
-        "inline-flex items-center gap-[5px] whitespace-nowrap rounded-full bg-[var(--ios-blue)] px-4 py-2 text-[0.8rem] font-semibold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[var(--ios-blue-hover)] hover:shadow-[0_4px_16px_rgba(0,122,255,0.35)] dark:hover:shadow-[0_4px_16px_rgba(10,132,255,0.35)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]";
+        "inline-flex items-center gap-[5px] whitespace-nowrap rounded-full bg-[var(--ios-blue)] px-4 py-2 text-[0.8rem] font-semibold text-white no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[var(--ios-blue-hover)] hover:shadow-[0_4px_16px_rgba(47,70,53,0.28)] dark:text-[#071008] dark:hover:shadow-[0_4px_16px_rgba(183,228,199,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]";
     const secondaryCtaClass =
         "inline-flex items-center whitespace-nowrap rounded-full border px-4 py-2 text-[0.8rem] font-medium [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-primary)] no-underline transition-all duration-200 hover:[border-color:var(--ios-blue)] hover:[color:var(--ios-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]";
     const locationChipClass =

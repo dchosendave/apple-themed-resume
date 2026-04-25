@@ -15,7 +15,7 @@
 </script>
 
 <PortfolioCard class="flex flex-col gap-5 px-5 py-5 sm:px-6 sm:py-6">
-    <p class="apple-section-title">Work Experience</p>
+    <p class="apple-section-title">Work Timeline</p>
 
     {#each experience as job (job.company)}
         <section class="space-y-4">

@@ -2,7 +2,7 @@ import type { PersonalInformation } from "$lib/types/personal-information";
 
 export const personalInfo: PersonalInformation = {
     name: "Lowie Dave Dichoson",
-    title: "Software Engineer",
+    title: "Full-Stack Product Developer",
     location: "Taguig City, Philippines",
     email: "lowiedave30@gmail.com",
     linkedin: "https://www.linkedin.com/in/davedichoson",
@@ -10,4 +10,4 @@ export const personalInfo: PersonalInformation = {
     resumePdf: "/ldd-resume-january-2026-v2.pdf"
 }
 
-export const professionalFocus = "Experienced software engineer specializing in financial systems, with a strong track record of designing and implementing robust solutions that drive operational efficiency and enhance user experience. Skilled in full-stack development, database management, and technical documentation, with a passion for building impactful products in the fintech space."
+export const professionalFocus = "Full-stack product developer building reliable financial systems, practical internal tools, and polished user experiences. I enjoy turning complex workflows into complete products with thoughtful APIs, data models, documentation, and interfaces that feel calm to use."

@@ -12,7 +12,7 @@
     <p
         class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
     >
-        Featured Projects
+        Product Case Files
     </p>
 
     <div class="grid grid-cols-1 gap-3 min-[901px]:grid-cols-2">

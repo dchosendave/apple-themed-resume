@@ -38,21 +38,28 @@
     --sidebar-border: oklch(0.929 0.013 255.508);
     --sidebar-ring: oklch(0.704 0.04 256.788);
 
-    /* Apple portfolio tokens (light) */
-    --ios-bg: #f2f2f7;
-    --ios-bg-secondary: #ffffff;
-    --ios-glass: rgba(255, 255, 255, 0.75);
-    --ios-glass-border: rgba(0, 0, 0, 0.08);
-    --ios-text-primary: #1d1d1f;
-    --ios-text-secondary: rgba(29, 29, 31, 0.55);
-    --ios-blue: #007aff;
-    --ios-blue-hover: #0066d6;
-    --ios-stat-bg: rgba(0, 122, 255, 0.08);
-    --ios-chip-bg: rgba(0, 0, 0, 0.06);
-    --ios-chip-border: rgba(0, 0, 0, 0.1);
-    --ios-nav-bg: rgba(242, 242, 247, 0.8);
-    --ios-separator: rgba(0, 0, 0, 0.1);
-    --ios-text-tertiary: rgba(29, 29, 31, 0.35);
+    /* LowieOS portfolio tokens (light) */
+    --lowie-forest: #2f4635;
+    --lowie-forest-hover: #25382b;
+    --lowie-mint: #b7e4c7;
+    --lowie-mint-soft: #e4f6e9;
+    --lowie-olive: #5f6f52;
+    --lowie-coffee: #9a6b44;
+    --lowie-warm: #d6a84f;
+    --ios-bg: #f4f7f1;
+    --ios-bg-secondary: #fbfdf9;
+    --ios-glass: rgba(255, 255, 255, 0.76);
+    --ios-glass-border: rgba(47, 70, 53, 0.12);
+    --ios-text-primary: #182019;
+    --ios-text-secondary: rgba(24, 32, 25, 0.6);
+    --ios-blue: var(--lowie-forest);
+    --ios-blue-hover: var(--lowie-forest-hover);
+    --ios-stat-bg: rgba(47, 70, 53, 0.09);
+    --ios-chip-bg: rgba(47, 70, 53, 0.07);
+    --ios-chip-border: rgba(47, 70, 53, 0.12);
+    --ios-nav-bg: rgba(244, 247, 241, 0.82);
+    --ios-separator: rgba(47, 70, 53, 0.12);
+    --ios-text-tertiary: rgba(24, 32, 25, 0.38);
 }
 
 .dark {
@@ -88,21 +95,28 @@
     --sidebar-border: oklch(1 0 0 / 10%);
     --sidebar-ring: oklch(0.551 0.027 264.364);
 
-    /* Apple portfolio tokens (dark) */
-    --ios-bg: #0a0a0e;
-    --ios-bg-secondary: #1c1c1e;
-    --ios-glass: rgba(28, 28, 30, 0.65);
-    --ios-glass-border: rgba(255, 255, 255, 0.09);
-    --ios-text-primary: #f5f5f7;
-    --ios-text-secondary: rgba(245, 245, 247, 0.55);
-    --ios-blue: #0a84ff;
-    --ios-blue-hover: #409cff;
-    --ios-stat-bg: rgba(10, 132, 255, 0.12);
+    /* LowieOS portfolio tokens (dark) */
+    --lowie-forest: #b7e4c7;
+    --lowie-forest-hover: #d3f2dc;
+    --lowie-mint: #b7e4c7;
+    --lowie-mint-soft: #1f3829;
+    --lowie-olive: #8fa383;
+    --lowie-coffee: #c28f5f;
+    --lowie-warm: #e2b867;
+    --ios-bg: #070a08;
+    --ios-bg-secondary: #111711;
+    --ios-glass: rgba(20, 27, 21, 0.72);
+    --ios-glass-border: rgba(183, 228, 199, 0.13);
+    --ios-text-primary: #f3f7f1;
+    --ios-text-secondary: rgba(243, 247, 241, 0.58);
+    --ios-blue: var(--lowie-mint);
+    --ios-blue-hover: var(--lowie-forest-hover);
+    --ios-stat-bg: rgba(183, 228, 199, 0.12);
     --ios-chip-bg: rgba(255, 255, 255, 0.07);
-    --ios-chip-border: rgba(255, 255, 255, 0.1);
-    --ios-nav-bg: rgba(10, 10, 14, 0.8);
-    --ios-separator: rgba(255, 255, 255, 0.1);
-    --ios-text-tertiary: rgba(245, 245, 247, 0.35);
+    --ios-chip-border: rgba(183, 228, 199, 0.12);
+    --ios-nav-bg: rgba(7, 10, 8, 0.82);
+    --ios-separator: rgba(183, 228, 199, 0.12);
+    --ios-text-tertiary: rgba(243, 247, 241, 0.38);
 }
 
 @theme inline {
@@ -173,14 +187,16 @@
     }
 }
 
-/* Shared Apple theme primitives */
+/* Shared LowieOS theme primitives */
 .apple-card {
     background: var(--ios-glass);
     backdrop-filter: blur(24px);
     -webkit-backdrop-filter: blur(24px);
     border: 1px solid var(--ios-glass-border);
     border-radius: 24px;
-    box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
+    box-shadow:
+        0 18px 40px rgba(18, 31, 20, 0.08),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
     transition:
         background 0.3s ease,
         border-color 0.3s ease,
@@ -189,7 +205,7 @@
 }
 
 .apple-card-inner {
-    background: var(--ios-chip-bg);
+    background: color-mix(in srgb, var(--ios-chip-bg) 86%, transparent);
     border: 1px solid var(--ios-glass-border);
     border-radius: 16px;
     transition:
@@ -285,7 +301,13 @@
     backdrop-filter: blur(28px);
     -webkit-backdrop-filter: blur(28px);
     border: 1px solid var(--ios-glass-border);
-    box-shadow: 0 20px 60px rgba(15, 23, 42, 0.2);
+    box-shadow:
+        0 20px 60px rgba(18, 31, 20, 0.2),
+        inset 0 1px 0 rgba(255, 255, 255, 0.08);
+}
+
+.dark .apple-button-primary {
+    color: #071008;
 }
 
 .dark .apple-panel-surface {
@@ -299,6 +321,35 @@
     text-transform: uppercase;
     color: var(--ios-blue);
     margin-bottom: 12px;
+}
+
+.lowie-warm-chip {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    border: 1px solid color-mix(in srgb, var(--lowie-warm) 28%, transparent);
+    border-radius: 999px;
+    background: color-mix(in srgb, var(--lowie-warm) 13%, transparent);
+    color: color-mix(in srgb, var(--lowie-warm) 82%, var(--ios-text-primary));
+    font-size: 0.68rem;
+    font-weight: 650;
+    letter-spacing: 0.02em;
+}
+
+.lowie-card-glow {
+    position: relative;
+}
+
+.lowie-card-glow::before {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    content: "";
+    border-radius: inherit;
+    background:
+        linear-gradient(145deg, rgba(255, 255, 255, 0.08), transparent 34%),
+        radial-gradient(circle at top right, color-mix(in srgb, var(--ios-blue) 16%, transparent), transparent 38%);
+    opacity: 0.85;
 }
 
 .no-scrollbar {
@@ -333,7 +384,9 @@
 
 .bento-tile:hover {
     transform: translateY(-2px);
-    box-shadow: 0 16px 40px rgba(15, 23, 42, 0.12);
+    box-shadow:
+        0 16px 40px rgba(18, 31, 20, 0.12),
+        0 0 0 1px color-mix(in srgb, var(--ios-blue) 12%, transparent);
 }
 
 .dark .bento-tile:hover {

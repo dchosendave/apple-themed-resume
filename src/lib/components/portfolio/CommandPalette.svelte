@@ -19,7 +19,7 @@
     });
 
     const dialogSurfaceClass =
-        "top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! overflow-hidden rounded-[1.5rem]! border p-0 ring-0 [background:color-mix(in_srgb,var(--ios-glass)_92%,transparent)] [border-color:var(--ios-glass-border)] shadow-[0_20px_60px_rgba(15,23,42,0.2)] backdrop-blur-[28px] dark:shadow-[0_24px_64px_rgba(0,0,0,0.4)]";
+        "top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! overflow-hidden rounded-[1.5rem]! border p-0 ring-0 [background:color-mix(in_srgb,var(--ios-glass)_92%,transparent)] [border-color:var(--ios-glass-border)] shadow-[0_20px_60px_rgba(18,31,20,0.22)] backdrop-blur-[28px] dark:shadow-[0_24px_64px_rgba(0,0,0,0.45)]";
     const sectionTitleClass =
         "text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]";
     const hotkeyChipClass =
@@ -27,7 +27,7 @@
     const commandGroupClass =
         "px-1 py-1 **:[[cmdk-group-heading]]:px-2 **:[[cmdk-group-heading]]:py-1.5 **:[[cmdk-group-heading]]:text-[0.68rem] **:[[cmdk-group-heading]]:font-semibold **:[[cmdk-group-heading]]:uppercase **:[[cmdk-group-heading]]:tracking-[0.08em] **:[[cmdk-group-heading]]:[color:var(--ios-text-secondary)]";
     const commandItemClass =
-        "rounded-[18px] px-3 py-3 text-[0.84rem] transition-[background,color,transform] duration-150 data-[selected=true]:[background:var(--ios-blue)] data-[selected=true]:text-white data-[selected=true]:[&_svg]:text-white";
+        "rounded-[18px] px-3 py-3 text-[0.84rem] transition-[background,color,transform] duration-150 data-[selected=true]:[background:var(--ios-blue)] data-[selected=true]:text-white data-[selected=true]:[&_svg]:text-white dark:data-[selected=true]:text-[#071008] dark:data-[selected=true]:[&_svg]:text-[#071008]";
     const commandCategoryClass =
         "inline-flex h-8 min-w-8 items-center justify-center rounded-full border px-2.5 text-[0.64rem] font-semibold uppercase tracking-[0.08em] [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-blue)] group-data-[selected=true]/command-item:bg-[rgba(255,255,255,0.18)] group-data-[selected=true]/command-item:[border-color:rgba(255,255,255,0.22)] group-data-[selected=true]/command-item:text-white";
     const footerHintClass =
@@ -61,10 +61,10 @@
 <Command.Dialog
     {open}
     onOpenChange={handleOpenChange}
-    title="Quick actions"
+    title="Command Center"
     description="Search sections, links, and resume actions."
     showCloseButton={false}
-    label="Quick actions"
+    label="Command Center"
     loop
     class={dialogSurfaceClass}
 >
@@ -72,9 +72,9 @@
         class="flex items-start justify-between gap-4 border-b px-4 py-3 sm:px-5 [border-color:var(--ios-separator)]"
     >
         <div class="min-w-0">
-            <p class={[sectionTitleClass, "mb-1"]}>Quick Actions</p>
+            <p class={[sectionTitleClass, "mb-1"]}>Command Center</p>
             <p class="text-sm leading-5 [color:var(--ios-text-secondary)]">
-                Jump between sections, copy contact details, or open external links.
+                Spotlight-style shortcuts for sections, case files, and contact actions.
             </p>
         </div>
         <kbd class={hotkeyChipClass}>Cmd/Ctrl K</kbd>
@@ -82,7 +82,7 @@
 
     <Command.Input
         bind:value={search}
-        placeholder="Search sections, actions, and links..."
+        placeholder="Search LowieOS..."
         class="px-1 pb-1 text-[0.85rem]"
     />
 
@@ -103,7 +103,7 @@
                         <span
                             class={commandCategoryClass}
                         >
-                            {action.category.slice(0, 2)}
+                            {action.category === "Navigate" ? "Go" : "Act"}
                         </span>
 
                         <div class="min-w-0 grow">
