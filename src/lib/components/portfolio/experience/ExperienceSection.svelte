@@ -1,8 +1,8 @@
 <script lang="ts">
     import { experience } from "$lib/data/experience";
     import * as Accordion from "$lib/components/ui/accordion/index.js";
-    import PortfolioCard from "./PortfolioCard.svelte";
-    import TechBadge from "./TechBadge.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
 
     let openCategories = $state(
         Object.fromEntries(

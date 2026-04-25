@@ -6,8 +6,8 @@
     import { Button } from "$lib/components/ui/button/index.js";
     import { Separator } from "$lib/components/ui/separator/index.js";
     import * as Sheet from "$lib/components/ui/sheet/index.js";
-    import ProjectDetailSection from "./ProjectDetailSection.svelte";
-    import TechBadge from "./TechBadge.svelte";
+    import ProjectDetailSection from "$lib/components/portfolio/projects/ProjectDetailSection.svelte";
+    import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
 
     let { project, onclose }: { project: Project | null; onclose: () => void } = $props();
 

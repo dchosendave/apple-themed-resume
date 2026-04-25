@@ -1,8 +1,8 @@
 <script lang="ts">
     import { projects } from "$lib/data/projects";
-    import PortfolioCard from "./PortfolioCard.svelte";
-    import ProjectCard from "./ProjectCard.svelte";
-    import ProjectDrawer from "$lib/components/portfolio/ProjectDrawer.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import ProjectCard from "$lib/components/portfolio/projects/ProjectCard.svelte";
+    import ProjectDrawer from "$lib/components/portfolio/projects/ProjectDrawer.svelte";
     import type { Project } from "$lib/types/project";
 
     let selectedProject = $state<Project | null>(null);

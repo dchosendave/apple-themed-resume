@@ -1,7 +1,7 @@
 <script lang="ts">
     import { skills } from "$lib/data/skills";
-    import PortfolioCard from "./PortfolioCard.svelte";
-    import TechBadge from "./TechBadge.svelte";
+    import PortfolioCard from "../shared/PortfolioCard.svelte";
+    import TechBadge from "../shared/TechBadge.svelte";
 
     const skillGroups = Object.entries(skills);
 </script>

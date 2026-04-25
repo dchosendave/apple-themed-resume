@@ -1,7 +1,7 @@
 <script lang="ts">
     import { avatarCommand } from "$lib/stores/avatar-command.svelte";
     import type { RecruiterPrompt } from "$lib/types/recruiter-prompt";
-    import RecruiterPromptBubble from "./RecruiterPrompt.svelte";
+    import RecruiterPromptBubble from "$lib/components/portfolio/hero/RecruiterPrompt.svelte";
 
     let { prompt }: { prompt: RecruiterPrompt | null } = $props();
 

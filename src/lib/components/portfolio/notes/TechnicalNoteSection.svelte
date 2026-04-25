@@ -1,9 +1,9 @@
 <script lang="ts">
     import { technicalNotes } from "$lib/data/technical-notes";
     import type { TechnicalNote } from "$lib/types/technical-note";
-    import PortfolioCard from "./PortfolioCard.svelte";
-    import TechnicalNoteCard from "./TechnicalNoteCard.svelte";
-    import TechnicalNoteDrawer from "./TechnicalNoteDrawer.svelte";
+    import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import TechnicalNoteCard from "$lib/components/portfolio/notes/TechnicalNoteCard.svelte";
+    import TechnicalNoteDrawer from "$lib/components/portfolio/notes/TechnicalNoteDrawer.svelte";
 
     let selectedNote = $state<TechnicalNote | null>(null);
 </script>

@@ -2,9 +2,9 @@
     import CheckIcon from "@lucide/svelte/icons/check";
     import MailIcon from "@lucide/svelte/icons/mail";
     import { personalInfo } from "$lib/data/personal-information";
-    import ContactIconLink from "./ContactIconLink.svelte";
-    import GithubMark from "./GithubMark.svelte";
-    import LinkedinMark from "./LinkedinMark.svelte";
+    import ContactIconLink from "$lib/components/portfolio/shared/ContactIconLink.svelte";
+    import GithubMark from "$lib/components/portfolio/shared/GithubMark.svelte";
+    import LinkedinMark from "$lib/components/portfolio/shared/LinkedinMark.svelte";
 
     let emailCopied = $state(false);
     let copyTimer: ReturnType<typeof setTimeout>;
