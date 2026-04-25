@@ -10,7 +10,21 @@
     let avatarMode = $derived(avatarCommand.mode);
     let commandModeActive = $derived(avatarMode !== "idle");
     let searchModeActive = $derived(avatarMode === "searching");
-    let promptVisible = $derived(prompt !== null && !commandModeActive);
+    let visitPromptActive = $derived(prompt?.startsWith("visit-") === true);
+    let contactPrompt = $derived(visitPromptActive ? null : prompt);
+    let contactPromptVisible = $derived(contactPrompt !== null && !commandModeActive);
+    let visitPromptVisible = $derived(visitPromptActive && !commandModeActive);
+    let visitPromptMessage = $derived(
+        prompt === "visit-morning"
+            ? "Coffee first?"
+            : prompt === "visit-afternoon"
+                ? "Good timing."
+                : prompt === "visit-evening"
+                    ? "Late too? Same."
+                    : prompt === "visit-late"
+                        ? "Quiet hours, huh?"
+                        : ""
+    );
     let avatarAriaLabel = $derived(
         searchModeActive
             ? "Profile photo, search mode active"
@@ -142,13 +156,26 @@
         </span>
     </button>
 
+    <span
+        aria-hidden={!visitPromptVisible}
+        class={[
+            "pointer-events-none absolute bottom-1 left-1/2 top-auto z-[4] mt-0 inline-flex -translate-x-1/2 items-center gap-1.5 whitespace-nowrap rounded-full border px-2.5 py-1 text-[0.62rem] font-semibold shadow-[0_12px_28px_rgba(15,23,42,0.14)] backdrop-blur-md transition-[opacity,transform] duration-200 motion-reduce:transition-none [background:color-mix(in_srgb,var(--ios-glass)_94%,transparent)] [border-color:var(--ios-glass-border)] [color:var(--ios-text-primary)] sm:bottom-auto sm:top-full sm:mt-2 sm:px-3 sm:py-1.5 sm:text-[0.68rem]",
+            visitPromptVisible ? "translate-y-0 opacity-100" : "translate-y-1 opacity-0",
+        ]}
+    >
+        <span class="size-1.5 rounded-full bg-[var(--ios-blue)]"></span>
+        {visitPromptMessage}
+    </span>
+
     <span class="sr-only" aria-live="polite">
-        {searchModeActive
+        {visitPromptVisible
+            ? visitPromptMessage
+            : searchModeActive
             ? "Command palette search is active."
             : commandModeActive
                 ? "Command palette is open."
                 : "Command palette is closed."}
     </span>
 
-    <RecruiterPromptBubble {prompt} visible={promptVisible} />
+    <RecruiterPromptBubble prompt={contactPrompt} visible={contactPromptVisible} />
 </div>

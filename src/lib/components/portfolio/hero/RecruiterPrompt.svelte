@@ -16,7 +16,9 @@
                 ? "LinkedIn"
                 : prompt === "github"
                     ? "GitHub"
-                    : ""
+                    : prompt
+                        ? "Lowie"
+                        : ""
     );
 
     let message = $derived(
@@ -26,7 +28,15 @@
                 ? "Want the full story behind my work? Let's connect on LinkedIn."
                 : prompt === "github"
                     ? "A few public builds live here if you want to see how I think in code."
-                    : ""
+                    : prompt === "visit-morning"
+                        ? "Coffee first?"
+                        : prompt === "visit-afternoon"
+                            ? "Good timing."
+                            : prompt === "visit-evening"
+                                ? "Late too? Same."
+                                : prompt === "visit-late"
+                                    ? "Quiet hours, huh?"
+                                    : ""
     );
 </script>
 

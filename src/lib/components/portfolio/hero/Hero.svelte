@@ -1,23 +1,85 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { personalInfo, professionalFocus } from "$lib/data/personal-information";
-    import type { RecruiterPrompt } from "$lib/types/recruiter-prompt";
+    import type {
+        ContactPrompt,
+        RecruiterPrompt,
+        VisitPrompt,
+    } from "$lib/types/recruiter-prompt";
     import HeroAvatar from "./HeroAvatar.svelte";
     import HeroContactActions from "./HeroContactActions.svelte";
     import HeroIdentity from "./HeroIdentity.svelte";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import ThemeToggle from "$lib/components/portfolio/shared/ThemeToggle.svelte";
 
-    let recruiterPrompt = $state<RecruiterPrompt | null>(null);
+    const visitGreetingKey = "lowie-visit-greeting-dismissed";
 
-    function showRecruiterPrompt(prompt: RecruiterPrompt) {
+    let recruiterPrompt = $state<RecruiterPrompt | null>(null);
+    let visitRevealTimer: ReturnType<typeof setTimeout> | undefined;
+    let visitHideTimer: ReturnType<typeof setTimeout> | undefined;
+
+    function getVisitPrompt(hour: number): VisitPrompt {
+        if (hour >= 5 && hour < 12) return "visit-morning";
+        if (hour >= 12 && hour < 17) return "visit-afternoon";
+        if (hour >= 17 && hour < 22) return "visit-evening";
+        return "visit-late";
+    }
+
+    function isVisitPrompt(prompt: RecruiterPrompt | null) {
+        return prompt?.startsWith("visit-") === true;
+    }
+
+    function markVisitGreetingSeen() {
+        try {
+            sessionStorage.setItem(visitGreetingKey, "true");
+        } catch {
+            // Session storage can be unavailable in stricter browser modes.
+        }
+    }
+
+    function showVisitGreeting() {
+        if (recruiterPrompt !== null) return;
+
+        recruiterPrompt = getVisitPrompt(new Date().getHours());
+        markVisitGreetingSeen();
+
+        visitHideTimer = setTimeout(() => {
+            if (isVisitPrompt(recruiterPrompt)) {
+                recruiterPrompt = null;
+            }
+        }, 5200);
+    }
+
+    function showRecruiterPrompt(prompt: ContactPrompt) {
+        if (visitHideTimer) {
+            clearTimeout(visitHideTimer);
+        }
+
         recruiterPrompt = prompt;
     }
 
-    function clearRecruiterPrompt(prompt: RecruiterPrompt) {
+    function clearRecruiterPrompt(prompt: ContactPrompt) {
         if (recruiterPrompt === prompt) {
             recruiterPrompt = null;
         }
     }
+
+    onMount(() => {
+        try {
+            if (sessionStorage.getItem(visitGreetingKey) === "true") {
+                return;
+            }
+        } catch {
+            // Treat unavailable session storage as a fresh visit.
+        }
+
+        visitRevealTimer = setTimeout(showVisitGreeting, 1100);
+
+        return () => {
+            if (visitRevealTimer) clearTimeout(visitRevealTimer);
+            if (visitHideTimer) clearTimeout(visitHideTimer);
+        };
+    });
 </script>
 
 <PortfolioCard
