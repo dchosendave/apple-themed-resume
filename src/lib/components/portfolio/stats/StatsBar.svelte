@@ -42,7 +42,7 @@
                 id="now-brewing-title"
                 class="text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
             >
-                Now Brewing
+                In the Lab
             </p>
             <span class="lowie-warm-chip px-2.5 py-1">Taguig, PH</span>
         </div>
@@ -55,25 +55,25 @@
             <div class="flex items-start gap-2.5">
                 <CoffeeIcon class="mt-0.5 size-3.5 shrink-0 [color:var(--lowie-coffee)]" />
                 <p class="text-[0.76rem] leading-[1.45] [color:var(--ios-text-secondary)]">
-                    Product ideas shaped over quiet coffee and production notes.
+                    2 coffees/day. Mostly consumed while debugging production edge cases.
                 </p>
             </div>
             <div class="flex items-start gap-2.5">
                 <Music2Icon class="mt-0.5 size-3.5 shrink-0 [color:var(--ios-blue)]" />
                 <p class="text-[0.76rem] leading-[1.45] [color:var(--ios-text-secondary)]">
-                    Interface rhythm: compact, calm, and easy to scan.
+                    Hands All Over by Maroon 5 is my go-to coding album. It's a vibe.
                 </p>
             </div>
             <div class="flex items-start gap-2.5">
                 <Gamepad2Icon class="mt-0.5 size-3.5 shrink-0 [color:var(--ios-blue)]" />
                 <p class="text-[0.76rem] leading-[1.45] [color:var(--ios-text-secondary)]">
-                    Playful command interactions without losing recruiter clarity.
+                    Playing games since I was a kid, with a soft spot for RPGs and offline story modes.
                 </p>
             </div>
             <div class="flex items-start gap-2.5">
                 <SparklesIcon class="mt-0.5 size-3.5 shrink-0 [color:var(--lowie-warm)]" />
                 <p class="text-[0.76rem] leading-[1.45] [color:var(--ios-text-secondary)]">
-                    A macOS-style portfolio tuned for full-stack product work.
+                    Busy strengthening my fundamentals. Why? Frameworks change, principles don't.
                 </p>
             </div>
         </div>
