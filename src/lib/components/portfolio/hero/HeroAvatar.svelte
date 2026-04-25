@@ -48,7 +48,7 @@
     >
         <Avatar.Root
             size="lg"
-            class="relative z-[1] size-24 overflow-hidden rounded-full [background:var(--ios-chip-bg)] shadow-[0_16px_36px_rgba(15,23,42,0.18)] data-[size=lg]:size-24 sm:size-32 sm:data-[size=lg]:size-32 dark:shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
+            class="relative z-[1] size-24 overflow-hidden rounded-full [clip-path:circle(50%)] [isolation:isolate] [background:var(--ios-chip-bg)] shadow-[0_16px_36px_rgba(15,23,42,0.18)] data-[size=lg]:size-24 sm:size-32 sm:data-[size=lg]:size-32 dark:shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
         >
             <Avatar.Fallback
                 class="absolute inset-0 font-semibold tracking-[0.02em]"
@@ -59,7 +59,7 @@
                 alt=""
                 aria-hidden="true"
                 class={[
-                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    "absolute inset-0 block size-full object-cover object-[center_top] rounded-full transition-opacity duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
                     theme.isDark ? "opacity-0" : "opacity-100",
                     commandModeActive &&
                         "scale-[1.03] brightness-[1.02] saturate-[1.1]",
@@ -72,7 +72,7 @@
                 alt=""
                 aria-hidden="true"
                 class={[
-                    "absolute inset-0 block size-full object-cover object-[center_top] transition-[opacity,transform,filter] duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
+                    "absolute inset-0 block size-full object-cover object-[center_top] rounded-full transition-opacity duration-1000 ease-out motion-reduce:transform-none motion-reduce:transition-none",
                     theme.isDark ? "opacity-100" : "opacity-0",
                     commandModeActive &&
                         "scale-[1.03] brightness-[1.02] saturate-[1.1]",
