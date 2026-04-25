@@ -19,19 +19,25 @@
 
     <!-- Open Graph -->
     <meta property="og:type" content="website" />
-    <meta property="og:title" content="Lowie Dave Dichoson | Full-Stack Product Developer" />
+    <meta
+        property="og:title"
+        content="Lowie Dave Dichoson | Software Engineer"
+    />
     <meta
         property="og:description"
-        content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
+        content="Software engineer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
     />
     <meta property="og:url" content="https://dave-delivers.vercel.app/" />
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary" />
-    <meta name="twitter:title" content="Lowie Dave Dichoson | Full-Stack Product Developer" />
+    <meta
+        name="twitter:title"
+        content="Lowie Dave Dichoson | Software Engineer"
+    />
     <meta
         name="twitter:description"
-        content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
+        content="Software Engineer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
     />
 </svelte:head>
 
@@ -42,23 +48,20 @@
     <div class="blob blob-3"></div>
 </div>
 
-<main class="bento-grid">
-    <!-- Row 1: Hero (3fr) + Stats (2fr) -->
-    <div id="tile-hero" class="tile-hero"><Hero /></div>
-    <div class="tile-stats"><StatsBar /></div>
+<main class="portfolio-layout">
+    <section class="portfolio-main-column">
+        <div id="tile-hero"><Hero /></div>
+        <div id="tile-experience"><ExperienceSection /></div>
+        <div id="tile-projects"><ProjectsSection /></div>
+    </section>
 
-    <!-- Row 2: Experience (3fr) + Skills (2fr) -->
-    <div id="tile-experience" class="tile-experience"><ExperienceSection /></div>
-    <div class="tile-right-col-2">
-        <div id="tile-skills" class="tile-skills"><SkillsSection /></div>
-        <div id="tile-notes" class="tile-exploring"><TechnicalNotesSection /></div>
-    </div>
+    <aside class="portfolio-side-column">
+        <div id="tile-stats"><StatsBar /></div>
+        <div id="tile-skills"><SkillsSection /></div>
+        <div id="tile-notes"><TechnicalNotesSection /></div>
+        <div id="tile-education"><EducationSection /></div>
+    </aside>
 
-    <!-- Row 3: Projects (3fr) + Education (2fr) -->
-    <div id="tile-projects" class="tile-projects"><ProjectsSection /></div>
-    <div id="tile-education" class="tile-education"><EducationSection /></div>
-
-    <!-- Row 4: Full-width footer -->
     <ContactFooter />
 </main>
 
@@ -71,40 +74,34 @@
         padding-top: 12px;
         padding-bottom: 18px;
     }
-
-    .tile-hero,
-    .tile-stats,
-    .tile-experience,
-    .tile-projects,
-    .tile-education {
-        display: flex;
-    }
-
-    .tile-hero > :global(*),
-    .tile-stats > :global(*),
-    .tile-experience > :global(*),
-    .tile-projects > :global(*),
-    .tile-education > :global(*) {
-        flex: 1;
-        min-width: 0;
-    }
-
-    .tile-right-col-2 {
-        display: flex;
-        flex-direction: column;
+    .portfolio-layout {
+        display: grid;
+        grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
         gap: 16px;
-        align-self: start;
+        align-items: start;
+        max-width: 1240px;
+        margin: 0 auto;
+        padding: 28px 28px 0;
     }
 
-    .tile-skills,
-    .tile-exploring {
-        display: flex;
+    .portfolio-main-column,
+    .portfolio-side-column {
+        display: grid;
+        gap: 16px;
+        align-content: start;
     }
 
-    .tile-skills > :global(*),
-    .tile-exploring > :global(*) {
-        flex: 1;
-        min-width: 0;
+    .portfolio-layout > :global(footer),
+    .portfolio-layout > :last-child {
+        grid-column: 1 / -1;
+    }
+
+    @media (max-width: 900px) {
+        .portfolio-layout {
+            grid-template-columns: 1fr;
+            padding: 18px 18px 0;
+            gap: 12px;
+        }
     }
 
     /* Fixed ambient layer spans the viewport and persists on scroll. */
@@ -127,7 +124,11 @@
     .blob-1 {
         width: 550px;
         height: 550px;
-        background: radial-gradient(circle, color-mix(in srgb, var(--ios-blue) 34%, transparent), transparent 70%);
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--ios-blue) 34%, transparent),
+            transparent 70%
+        );
         top: -160px;
         right: -160px;
     }
@@ -136,7 +137,11 @@
     .blob-2 {
         width: 450px;
         height: 450px;
-        background: radial-gradient(circle, color-mix(in srgb, var(--lowie-coffee) 24%, transparent), transparent 70%);
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--lowie-coffee) 24%, transparent),
+            transparent 70%
+        );
         bottom: -100px;
         left: -120px;
     }
@@ -145,7 +150,11 @@
     .blob-3 {
         width: 600px;
         height: 600px;
-        background: radial-gradient(circle, color-mix(in srgb, var(--lowie-mint) 12%, transparent), transparent 70%);
+        background: radial-gradient(
+            circle,
+            color-mix(in srgb, var(--lowie-mint) 12%, transparent),
+            transparent 70%
+        );
         top: 40%;
         left: 50%;
         transform: translateX(-50%);
@@ -162,10 +171,6 @@
         main {
             padding-top: 6px;
             padding-bottom: 14px;
-        }
-
-        .tile-right-col-2 {
-            gap: 12px;
         }
     }
 </style>

@@ -2,7 +2,7 @@ import type { PersonalInformation } from "$lib/types/personal-information";
 
 export const personalInfo: PersonalInformation = {
     name: "Lowie Dave Dichoson",
-    title: "Full-Stack Product Developer",
+    title: "Software Engineer",
     location: "Taguig City, Philippines",
     email: "lowiedave30@gmail.com",
     linkedin: "https://www.linkedin.com/in/davedichoson",

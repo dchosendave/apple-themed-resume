@@ -6,6 +6,7 @@
     import { stats } from "$lib/data/stats";
     import { countUp } from "$lib/actions/countUp";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import NowBrewingScene from "$lib/components/portfolio/stats/NowBrewingScene.svelte";
 </script>
 
 <PortfolioCard class="lowie-card-glow flex flex-col overflow-hidden px-5 py-5 md:px-6 md:py-[22px]">
@@ -32,7 +33,6 @@
             </div>
         {/each}
     </div>
-
     <section
         class="relative z-[1] mt-4 rounded-[20px] border p-4 [background:color-mix(in_srgb,var(--ios-chip-bg)_72%,transparent)] [border-color:var(--ios-glass-border)]"
         aria-labelledby="now-brewing-title"
@@ -46,6 +46,10 @@
             </p>
             <span class="lowie-warm-chip px-2.5 py-1">Taguig, PH</span>
         </div>
+
+        <!-- <div class="mb-3">
+            <NowBrewingScene />
+        </div> -->
 
         <div class="grid gap-2">
             <div class="flex items-start gap-2.5">
