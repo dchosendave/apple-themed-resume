@@ -1,6 +1,7 @@
 <script lang="ts">
     import { avatarCommand } from "$lib/stores/avatar-command.svelte";
     import { theme } from "$lib/stores/theme.svelte";
+    import * as Avatar from "$lib/components/ui/avatar/index.js";
     import type { RecruiterPrompt } from "$lib/types/recruiter-prompt";
     import RecruiterPromptBubble from "$lib/components/portfolio/hero/RecruiterPrompt.svelte";
 
@@ -29,9 +30,14 @@
         aria-label={avatarAriaLabel}
         type="button"
     >
-        <div
-            class="relative z-[1] size-[68px] overflow-hidden rounded-full [background:var(--ios-chip-bg)] sm:size-[78px]"
+        <Avatar.Root
+            size="lg"
+            class="relative z-[1] size-24 overflow-hidden rounded-full [background:var(--ios-chip-bg)] shadow-[0_16px_36px_rgba(15,23,42,0.18)] data-[size=lg]:size-24 sm:size-32 sm:data-[size=lg]:size-32 dark:shadow-[0_18px_42px_rgba(0,0,0,0.38)]"
         >
+            <Avatar.Fallback class="absolute inset-0 font-semibold tracking-[0.02em]">
+                LD
+            </Avatar.Fallback>
+
             <img
                 src="/3d-image-light.png"
                 alt=""
@@ -91,7 +97,7 @@
             <div
                 aria-hidden="true"
                 class={[
-                    "pointer-events-none absolute inset-x-[18%] bottom-[12%] z-[2] rounded-full border px-2 py-1 text-center text-[0.45rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none",
+                    "pointer-events-none absolute inset-x-[20%] bottom-[10%] z-[2] rounded-full border px-2 py-1 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none sm:text-[0.58rem]",
                     commandModeActive ? "translate-y-0 opacity-100" : "translate-y-2 opacity-0",
                     searchModeActive
                         ? "border-[rgba(183,228,199,0.45)] bg-[rgba(47,70,53,0.52)]"
@@ -100,7 +106,7 @@
             >
                 {searchModeActive ? "Search" : "Cmd"}
             </div>
-        </div>
+        </Avatar.Root>
 
         <div
             aria-hidden="true"
