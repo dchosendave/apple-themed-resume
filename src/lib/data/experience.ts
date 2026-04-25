@@ -2,13 +2,14 @@ import type { Experience } from "$lib/types/experience";
 
 export const experience: Experience[] = [
     {
-        company: "Vantage Financial Corp.",
+        company: "Vantage Financial Corporation",
         role: "Analyst Programmer",
         period: "August 2023 – Present",
         highlights: ["Solo Backend Developer", "Financial Systems", "Cross-team Liaison"],
         categories: [
             {
                 title: "System Development",
+                tabTitle: "Development",
                 bullets: [
                     {
                         text: "Solely responsible for end-to-end backend development of a client-facing system, including data modeling, API design and implementation, business logic, frontend integration, and PDF report generation.",
@@ -25,7 +26,8 @@ export const experience: Experience[] = [
                 ]
             },
             {
-                title: "Database & Data Management",
+                title: "Data Management",
+                tabTitle: "Data",
                 bullets: [
                     {
                         text: "Identified and resolved a data type issue in the transaction archiving process, enabling the successful migration of 3M+ transaction records (2021–2024) from production to archive and reducing production database load.",
@@ -38,7 +40,8 @@ export const experience: Experience[] = [
                 ]
             },
             {
-                title: "Production Support & System Analysis",
+                title: "Production Support",
+                tabTitle: "Support",
                 bullets: [
                     {
                         text: "Maintained and supported 4 legacy production systems, solely designed and developed 1 internal web application, and solely built the backend API and database schema for 1 client-facing application.",
@@ -47,7 +50,13 @@ export const experience: Experience[] = [
                     {
                         text: "Maintained continuous delivery with 60+ production deployments over ~2 years, including new system rollouts, enhancements, and fixes.",
                         stack: []
-                    },
+                    }
+                ]
+            },
+            {
+                title: "System Analysis",
+                tabTitle: "Analysis",
+                bullets: [
                     {
                         text: "Acted as a technical liaison, translating business requirements across settlement, accounting, sales, and operations into clear technical specifications and system implementations.",
                         stack: []

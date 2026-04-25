@@ -74,7 +74,7 @@
         </span>
 
         <span class="text-[0.68rem] opacity-70 [color:var(--ios-text-secondary)]">
-            &copy; {new Date().getFullYear()} Built with SvelteKit
+            &copy; {new Date().getFullYear()} Built with Svelte
         </span>
     </div>
 </footer>

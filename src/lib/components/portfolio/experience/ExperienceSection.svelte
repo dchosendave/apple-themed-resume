@@ -1,15 +1,12 @@
 <script lang="ts">
     import { experience } from "$lib/data/experience";
-    import * as Accordion from "$lib/components/ui/accordion/index.js";
+    import * as Tabs from "$lib/components/ui/tabs/index.js";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
-    import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
+    import ExperienceCategoryDetails from "$lib/components/portfolio/experience/ExperienceCategoryDetails.svelte";
 
-    let openCategories = $state(
+    let activeCategories = $state(
         Object.fromEntries(
-            experience.map((job, index) => [
-                job.company,
-                index === 0 ? (job.categories[0]?.title ?? "") : ""
-            ])
+            experience.map((job) => [job.company, job.categories[0]?.title ?? ""])
         ) as Record<string, string>
     );
 </script>
@@ -42,60 +39,32 @@
                 </span>
             </div>
 
-            <Accordion.Root
-                type="single"
-                bind:value={openCategories[job.company]}
-                class="gap-3"
-            >
-                {#each job.categories as category (category.title)}
-                    <Accordion.Item
-                        value={category.title}
-                        class="apple-card-inner overflow-hidden border-none"
+            {#if job.categories.length > 1}
+                <Tabs.Root bind:value={activeCategories[job.company]} class="gap-3">
+                    <Tabs.List
+                        class="no-scrollbar min-w-full justify-start overflow-x-auto rounded-[16px] border p-1 [background:color-mix(in_srgb,var(--ios-chip-bg)_86%,transparent)] [border-color:var(--ios-glass-border)]"
                     >
-                        <Accordion.Trigger
-                            class="gap-4 rounded-none border-none px-4 py-3.5 text-left hover:no-underline"
-                        >
-                            <div class="flex min-w-0 flex-1 items-center justify-between gap-3">
-                                <span class="apple-section-title mb-0 text-left text-[0.74rem]">
-                                    {category.title}
-                                </span>
-                                <span class="apple-chip shrink-0 text-[0.62rem]">
-                                    {category.bullets.length}
-                                    {category.bullets.length === 1 ? "note" : "notes"}
-                                </span>
-                            </div>
-                        </Accordion.Trigger>
+                        {#each job.categories as category (category.title)}
+                            <Tabs.Trigger
+                                value={category.title}
+                                class="h-8 shrink-0 rounded-[12px] px-3 text-[0.72rem] font-semibold [color:var(--ios-text-secondary)] hover:[color:var(--ios-text-primary)] data-[state=active]:[background:var(--ios-blue)] data-[state=active]:[color:#fff] data-[state=active]:shadow-[0_8px_18px_color-mix(in_srgb,var(--ios-blue)_20%,transparent)] dark:data-[state=active]:[color:#071008]"
+                            >
+                                {category.tabTitle ?? category.title}
+                            </Tabs.Trigger>
+                        {/each}
+                    </Tabs.List>
 
-                        <Accordion.Content class="px-4 pb-4">
-                            <ul class="space-y-4 border-t pt-4 [border-color:var(--ios-separator)]">
-                                {#each category.bullets as bullet (bullet.text)}
-                                    <li class="flex gap-3.5">
-                                        <span
-                                            class="mt-2 h-1.5 w-1.5 shrink-0 rounded-full [background:var(--ios-blue)]"
-                                        ></span>
-
-                                        <div class="min-w-0 space-y-2">
-                                            <p
-                                                class="text-[0.84rem] leading-6 [color:var(--ios-text-primary)]"
-                                            >
-                                                {bullet.text}
-                                            </p>
-
-                                            {#if bullet.stack.length > 0}
-                                                <div class="flex flex-wrap gap-2">
-                                                    {#each bullet.stack as tech (tech)}
-                                                        <TechBadge {tech} />
-                                                    {/each}
-                                                </div>
-                                            {/if}
-                                        </div>
-                                    </li>
-                                {/each}
-                            </ul>
-                        </Accordion.Content>
-                    </Accordion.Item>
+                    {#each job.categories as category (category.title)}
+                        <Tabs.Content value={category.title} class="mt-0">
+                            <ExperienceCategoryDetails {category} />
+                        </Tabs.Content>
+                    {/each}
+                </Tabs.Root>
+            {:else}
+                {#each job.categories as category (category.title)}
+                    <ExperienceCategoryDetails {category} />
                 {/each}
-            </Accordion.Root>
+            {/if}
         </section>
     {/each}
 </PortfolioCard>

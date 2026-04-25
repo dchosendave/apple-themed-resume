@@ -11,7 +11,7 @@
 </script>
 
 <svelte:head>
-    <title>Lowie Dichoson | Full-Stack Product Developer</title>
+    <title>Lowie Dichoson | Software Engineer</title>
     <meta
         name="description"
         content="Full-stack product developer with experience designing production systems, building APIs, and managing complex data workflows in financial applications."
