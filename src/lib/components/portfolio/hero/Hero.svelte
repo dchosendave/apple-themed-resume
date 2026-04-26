@@ -12,8 +12,6 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import ThemeToggle from "$lib/components/portfolio/shared/ThemeToggle.svelte";
 
-    const visitGreetingKey = "lowie-visit-greeting-dismissed";
-
     let recruiterPrompt = $state<RecruiterPrompt | null>(null);
     let visitRevealTimer: ReturnType<typeof setTimeout> | undefined;
     let visitHideTimer: ReturnType<typeof setTimeout> | undefined;
@@ -29,19 +27,10 @@
         return prompt?.startsWith("visit-") === true;
     }
 
-    function markVisitGreetingSeen() {
-        try {
-            sessionStorage.setItem(visitGreetingKey, "true");
-        } catch {
-            // Session storage can be unavailable in stricter browser modes.
-        }
-    }
-
     function showVisitGreeting() {
         if (recruiterPrompt !== null) return;
 
         recruiterPrompt = getVisitPrompt(new Date().getHours());
-        markVisitGreetingSeen();
 
         visitHideTimer = setTimeout(() => {
             if (isVisitPrompt(recruiterPrompt)) {
@@ -65,14 +54,6 @@
     }
 
     onMount(() => {
-        try {
-            if (sessionStorage.getItem(visitGreetingKey) === "true") {
-                return;
-            }
-        } catch {
-            // Treat unavailable session storage as a fresh visit.
-        }
-
         visitRevealTimer = setTimeout(showVisitGreeting, 1100);
 
         return () => {
