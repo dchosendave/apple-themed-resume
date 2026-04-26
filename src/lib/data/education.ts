@@ -14,26 +14,27 @@ export const education: Education[] = [
         school: "Certiport",
         period: "January 2023",
         icon: "🏅"
-    },
-    {
-        degree: "Introduction to Responsible AI",
-        major: "Certification",
-        school: "Google Skills",
-        period: "January 2026",
-        icon: "🏅"
-    },
-    {
-        degree: "Introduction to Large Language Models",
-        major: "Certification",
-        school: "Google Skills",
-        period: "January 2026",
-        icon: "🏅"
-    },
-    {
-        degree: "Introduction to Generative AI",
-        major: "Certification",
-        school: "Google Skills",
-        period: "January 2026",
-        icon: "🏅"
     }
+    // ,
+    // {
+    //     degree: "Introduction to Responsible AI",
+    //     major: "Certification",
+    //     school: "Google Skills",
+    //     period: "January 2026",
+    //     icon: "🏅"
+    // },
+    // {
+    //     degree: "Introduction to Large Language Models",
+    //     major: "Certification",
+    //     school: "Google Skills",
+    //     period: "January 2026",
+    //     icon: "🏅"
+    // },
+    // {
+    //     degree: "Introduction to Generative AI",
+    //     major: "Certification",
+    //     school: "Google Skills",
+    //     period: "January 2026",
+    //     icon: "🏅"
+    // }
 ];

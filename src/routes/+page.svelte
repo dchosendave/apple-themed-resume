@@ -8,6 +8,10 @@
     import ContactFooter from "$lib/components/portfolio/contact/ContactFooter.svelte";
     import CommandPalette from "$lib/components/portfolio/command-center/CommandPalette.svelte";
     import Hero from "$lib/components/portfolio/hero/Hero.svelte";
+    import GitHubPulseSection from "$lib/components/portfolio/github/GitHubPulseSection.svelte";
+    import type { PageData } from "./$types";
+
+    let { data }: { data: PageData } = $props();
 </script>
 
 <svelte:head>
@@ -53,13 +57,16 @@
         <div id="tile-hero"><Hero /></div>
         <div id="tile-experience"><ExperienceSection /></div>
         <div id="tile-projects"><ProjectsSection /></div>
+        <div id="tile-education"><EducationSection /></div>
     </section>
 
     <aside class="portfolio-side-column">
         <div id="tile-stats"><StatsBar /></div>
+        <div id="tile-github">
+            <GitHubPulseSection pulse={data.githubPulse} />
+        </div>
         <div id="tile-skills"><SkillsSection /></div>
         <div id="tile-notes"><TechnicalNotesSection /></div>
-        <div id="tile-education"><EducationSection /></div>
     </aside>
 
     <ContactFooter />

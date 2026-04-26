@@ -1,6 +1,7 @@
 <script lang="ts">
 	import { onMount } from "svelte";
 	import { theme } from "$lib/stores/theme.svelte";
+	import * as Tooltip from "$lib/components/ui/tooltip/index.js";
 	import "../app.css";
 
 	let { children } = $props();
@@ -11,7 +12,9 @@
 </script>
 
 <div class="portfolio-root" class:dark={theme.isDark}>
-	{@render children()}
+	<Tooltip.Provider>
+		{@render children()}
+	</Tooltip.Provider>
 </div>
 
 <style>
