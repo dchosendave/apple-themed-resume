@@ -34,8 +34,9 @@ const iconMap: Record<string, string> = {
 
     // Stack chip aliases used in experience / projects
     '.NET Web API': `${BASE}/dotnetcore/dotnetcore-original.svg`,
-    'SvelteKit': `${BASE}/svelte/svelte-original.svg`,
+    'Svelte': `${BASE}/svelte/svelte-original.svg`,
     'TailwindCSS': `${BASE}/tailwindcss/tailwindcss-original.svg`,
+    'Docker': `${BASE}/docker/docker-original.svg`
 };
 
 /** Returns a Devicons CDN URL for a tech label, or null if none exists. */

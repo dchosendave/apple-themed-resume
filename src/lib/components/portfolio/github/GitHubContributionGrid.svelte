@@ -104,7 +104,16 @@
         }).format(new Date(`${day.date}T00:00:00Z`));
         const count = day.contributionCount;
 
-        return `${formattedDate}: ${count} ${count === 1 ? "contribution" : "contributions"}`;
+        if (count === 0){
+            return `${formattedDate}: Busy sleeping 😴`;
+        }
+        else if (count <= 5)
+        {
+            return `${formattedDate}: ${count} only, a bit lazy 😌`;
+        }
+        else {
+            return `${formattedDate}: ${count} contributions, I'm HIM! 🔥`;
+        }
     }
 </script>
 

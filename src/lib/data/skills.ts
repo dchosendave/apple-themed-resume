@@ -12,7 +12,7 @@ export const skills: Record<string, Skill[]> = {
         { name: "JavaScript", level: "proficient" },
         { name: "TypeScript", level: "proficient" },
         { name: "Angular", level: "proficient" },
-        { name: "SvelteKit", level: "familiar" },
+        { name: "Svelte", level: "familiar" },
         { name: "Alpine.js", level: "familiar" },
         { name: "jQuery", level: "proficient" }
     ],
@@ -25,10 +25,7 @@ export const skills: Record<string, Skill[]> = {
     Tooling: [
         { name: "Git", level: "proficient" },
         { name: "GitHub", level: "proficient" },
-        { name: "Postman", level: "proficient" },
-        { name: "QuestPDF", level: "proficient" },
-        { name: "RDLC", level: "proficient" },
         { name: "Docker", level: "expert" },
-        { name: "Production Support", level: "expert" }
+        { name: "Postman", level: "proficient" }
     ]
 };
