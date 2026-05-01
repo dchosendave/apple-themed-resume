@@ -11,21 +11,20 @@
 </script>
 
 <div class="min-w-0 flex-1 max-w-[56ch]">
-    <div class="mb-2 flex flex-wrap items-center gap-3">
-        <h1
-            class="text-[clamp(1.5rem,3vw,2rem)] font-extrabold leading-[1.1] tracking-[-0.02em] [color:var(--ios-text-primary)]"
-        >
-            {name}
-        </h1>
-        <span
-            class="whitespace-nowrap rounded-full border px-[10px] py-1 text-[0.72rem] font-semibold [background:var(--ios-stat-bg)] [border-color:color-mix(in_srgb,var(--ios-blue)_25%,transparent)] [color:var(--ios-blue)]"
-        >
+    <h1
+        class="text-[clamp(1.7rem,3.2vw,2.3rem)] font-extrabold leading-[1.05] tracking-[-0.03em] [color:var(--ios-text-primary)]"
+    >
+        {name}
+    </h1>
+
+    <div class="mt-3 flex flex-wrap items-center gap-2.5">
+        <span class="apple-badge text-[0.68rem] sm:text-[0.72rem]">
             {title}
         </span>
     </div>
 
     <p
-        class="max-w-[58ch] text-[0.84rem] leading-[1.6] [color:var(--ios-text-secondary)] sm:text-[0.9rem] sm:leading-[1.65]"
+        class="mt-3 max-w-[60ch] text-[0.88rem] leading-[1.68] [color:var(--ios-text-secondary)] sm:text-[0.95rem] sm:leading-[1.72]"
     >
         {focus}
     </p>

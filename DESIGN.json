@@ -1,0 +1,250 @@
+{
+  "schemaVersion": 2,
+  "generatedAt": "2026-05-01T22:59:21.7256794+08:00",
+  "title": "Design System: LowieOS Portfolio",
+  "extensions": {
+    "colorMeta": {
+      "forest-afterglow": {
+        "role": "primary",
+        "displayName": "Forest Afterglow",
+        "canonical": "#b7e4c7",
+        "tonalRamp": ["#172019", "#243229", "#31463a", "#45634f", "#64846b", "#86a78d", "#b7e4c7", "#e6f4ec"]
+      },
+      "warm-brass": {
+        "role": "secondary",
+        "displayName": "Warm Brass",
+        "canonical": "#e2b867",
+        "tonalRamp": ["#20180c", "#3c2d18", "#5a4327", "#785a36", "#9a7748", "#c39a5b", "#e2b867", "#f5e4c4"]
+      },
+      "soft-mint": {
+        "role": "tertiary",
+        "displayName": "Soft Mint",
+        "canonical": "#f3f7f1",
+        "tonalRamp": ["#141715", "#272d28", "#3b433d", "#515c55", "#6a766e", "#919b93", "#c2ccc4", "#f3f7f1"]
+      },
+      "night-canopy": {
+        "role": "neutral",
+        "displayName": "Night Canopy",
+        "canonical": "#070a08",
+        "tonalRamp": ["#040605", "#070a08", "#0d120f", "#151c17", "#1e2620", "#2a332d", "#3d473f", "#56625a"]
+      },
+      "deep-canopy": {
+        "role": "neutral",
+        "displayName": "Deep Canopy",
+        "canonical": "#111711",
+        "tonalRamp": ["#090d09", "#111711", "#1a221a", "#243026", "#334136", "#4c5d4f", "#718374", "#a1b1a4"]
+      },
+      "smoked-glass": {
+        "role": "neutral",
+        "displayName": "Smoked Glass",
+        "canonical": "rgba(20, 27, 21, 0.72)",
+        "tonalRamp": ["#090d09", "#141b15", "#1e2821", "#2a362d", "#39493d", "#55675a", "#78897b", "#b7c4bc"]
+      },
+      "paper-mist": {
+        "role": "neutral",
+        "displayName": "Paper Mist",
+        "canonical": "#f4f7f1",
+        "tonalRamp": ["#161816", "#2a2d2a", "#404441", "#5a5f5b", "#787d79", "#9ea29e", "#cfd4cf", "#f4f7f1"]
+      },
+      "forest-ink": {
+        "role": "neutral",
+        "displayName": "Forest Ink",
+        "canonical": "#182019",
+        "tonalRamp": ["#0b0f0c", "#182019", "#232d24", "#314036", "#435449", "#5f7265", "#8b9d8f", "#c9d3cc"]
+      }
+    },
+    "typographyMeta": {
+      "display": {
+        "displayName": "Display",
+        "purpose": "Hero identity and the most important name-driven moments."
+      },
+      "headline": {
+        "displayName": "Headline",
+        "purpose": "Metrics and compact high-confidence callouts."
+      },
+      "title": {
+        "displayName": "Title",
+        "purpose": "Company names, card titles, and dense section anchors."
+      },
+      "body": {
+        "displayName": "Body",
+        "purpose": "Recruiter-facing narrative copy and detailed bullet content."
+      },
+      "label": {
+        "displayName": "Label",
+        "purpose": "Eyebrows, chips, tab labels, and compact metadata."
+      }
+    },
+    "shadows": [
+      {
+        "name": "resting-shell",
+        "value": "0 18px 40px rgba(18, 31, 20, 0.08), inset 0 1px 0 rgba(255, 255, 255, 0.08)",
+        "purpose": "Default outer card treatment when the surface is calm."
+      },
+      {
+        "name": "dialog-float",
+        "value": "0 24px 64px rgba(0, 0, 0, 0.4)",
+        "purpose": "High-priority surfaces such as drawers and command dialogs in dark mode."
+      },
+      {
+        "name": "hover-lift",
+        "value": "0 16px 40px rgba(0, 0, 0, 0.35)",
+        "purpose": "Interactive cards and tiles on hover."
+      },
+      {
+        "name": "mint-glow",
+        "value": "0 12px 28px color-mix(in srgb, var(--ios-blue) 30%, transparent)",
+        "purpose": "Primary actions and active controls only."
+      }
+    ],
+    "motion": [
+      {
+        "name": "ease-default",
+        "value": "cubic-bezier(0.25, 0.1, 0.25, 1)",
+        "purpose": "Default surface and color transitions."
+      },
+      {
+        "name": "duration-fast",
+        "value": "150ms",
+        "purpose": "Interactive cards, command rows, and tab responses."
+      },
+      {
+        "name": "duration-standard",
+        "value": "200ms",
+        "purpose": "Buttons, focus states, and quick utility controls."
+      },
+      {
+        "name": "duration-ambient",
+        "value": "300ms",
+        "purpose": "Theme shifts, shell transitions, and the calm atmospheric layer."
+      }
+    ],
+    "breakpoints": [
+      {
+        "name": "compact-stack",
+        "value": "600px"
+      },
+      {
+        "name": "module-shift",
+        "value": "768px"
+      },
+      {
+        "name": "layout-split",
+        "value": "900px"
+      }
+    ]
+  },
+  "components": [
+    {
+      "name": "Primary Button",
+      "kind": "button",
+      "refersTo": "button-primary",
+      "description": "The strongest recruiter-facing action, used for the resume CTA and any decisive next step.",
+      "html": "<button class='ds-btn-primary'><svg viewBox='0 0 24 24' aria-hidden='true'><path d='M12 3v11m0 0 4-4m-4 4-4-4M5 19h14' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg><span>Resume</span></button>",
+      "css": ".ds-btn-primary{display:inline-flex;align-items:center;gap:6px;padding:8px 16px;border-radius:999px;border:1px solid transparent;background:var(--ios-blue);color:var(--ios-bg);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.8rem;font-weight:600;line-height:1;text-decoration:none;transition:transform 200ms ease,background 200ms ease,box-shadow 200ms ease,color 200ms ease;}.ds-btn-primary svg{width:14px;height:14px;flex-shrink:0;}.ds-btn-primary:hover{transform:translateY(-1px);background:var(--ios-blue-hover);box-shadow:0 4px 16px rgba(183,228,199,0.28);}.ds-btn-primary:active{transform:translateY(0);}.ds-btn-primary:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ios-bg),0 0 0 4px var(--ios-blue);}"
+    },
+    {
+      "name": "Secondary Button",
+      "kind": "button",
+      "refersTo": "button-secondary",
+      "description": "The calmer follow-up action, used when the page should invite contact without shouting.",
+      "html": "<button class='ds-btn-secondary'>Get in Touch</button>",
+      "css": ".ds-btn-secondary{display:inline-flex;align-items:center;justify-content:center;padding:8px 16px;border-radius:999px;border:1px solid var(--ios-chip-border);background:var(--ios-chip-bg);color:var(--ios-text-primary);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.8rem;font-weight:500;line-height:1;text-decoration:none;transition:transform 200ms ease,color 200ms ease,border-color 200ms ease,background 200ms ease,box-shadow 200ms ease;}.ds-btn-secondary:hover{transform:translateY(-1px);border-color:var(--ios-blue);color:var(--ios-blue);background:var(--ios-stat-bg);}.ds-btn-secondary:active{transform:translateY(0);}.ds-btn-secondary:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ios-bg),0 0 0 4px var(--ios-blue);}"
+    },
+    {
+      "name": "Contact Icon Button",
+      "kind": "button",
+      "refersTo": "icon-button",
+      "description": "Compact circular utility action for email, social links, and theme switching.",
+      "html": "<button class='ds-icon-button' aria-label='Email'><svg viewBox='0 0 24 24' aria-hidden='true'><rect x='4' y='7' width='16' height='10' rx='2' fill='none' stroke='currentColor' stroke-width='1.8'/><path d='M5.5 8l6.5 5 6.5-5' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round' stroke-linejoin='round'/></svg></button>",
+      "css": ".ds-icon-button{display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;border:1px solid var(--ios-chip-border);background:var(--ios-chip-bg);color:var(--ios-text-secondary);transition:transform 200ms ease,color 200ms ease,border-color 200ms ease,background 200ms ease,box-shadow 200ms ease;}.ds-icon-button svg{width:14px;height:14px;flex-shrink:0;}.ds-icon-button:hover{transform:scale(1.08);background:var(--ios-stat-bg);border-color:var(--ios-blue);color:var(--ios-blue);}.ds-icon-button:active{transform:scale(1.02);}.ds-icon-button:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ios-bg),0 0 0 4px var(--ios-blue);}"
+    },
+    {
+      "name": "Glass Card Shell",
+      "kind": "card",
+      "refersTo": "card-shell",
+      "description": "The default content container, used for major portfolio sections and elevated content groups.",
+      "html": "<article class='ds-card'><p class='ds-card-eyebrow'>WORK TIMELINE</p><h3 class='ds-card-title'>Vantage Financial Corporation</h3><p class='ds-card-body'>Solely responsible for end to end backend development, API design, and delivery.</p></article>",
+      "css": ".ds-card{padding:20px 24px;border-radius:24px;border:1px solid var(--ios-glass-border);background:var(--ios-glass);color:var(--ios-text-primary);backdrop-filter:blur(24px);-webkit-backdrop-filter:blur(24px);box-shadow:0 18px 40px rgba(18,31,20,0.08),inset 0 1px 0 rgba(255,255,255,0.08);transition:transform 250ms ease,box-shadow 250ms ease,border-color 300ms ease,background 300ms ease;}.ds-card:hover{transform:translateY(-2px);box-shadow:0 16px 40px rgba(0,0,0,0.35);}.ds-card-eyebrow{margin:0 0 12px;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.72rem;font-weight:600;line-height:1.2;letter-spacing:0.1em;color:var(--ios-blue);}.ds-card-title{margin:0 0 10px;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:1rem;font-weight:600;line-height:1.35;color:var(--ios-text-primary);}.ds-card-body{margin:0;max-width:58ch;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.9rem;font-weight:400;line-height:1.65;color:var(--ios-text-secondary);}"
+    },
+    {
+      "name": "Status Chips",
+      "kind": "chip",
+      "refersTo": "chip-default",
+      "description": "Compact fact markers and signal pills used to keep dense recruiter content scannable.",
+      "html": "<div class='ds-chip-row'><span class='ds-chip'>Financial Systems</span><span class='ds-chip ds-chip--signal'>Open to opportunities</span></div>",
+      "css": ".ds-chip-row{display:flex;flex-wrap:wrap;gap:8px;}.ds-chip{display:inline-flex;align-items:center;gap:6px;padding:5px 10px;border-radius:999px;border:1px solid var(--ios-chip-border);background:var(--ios-chip-bg);color:var(--ios-text-secondary);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.7rem;font-weight:600;line-height:1.2;letter-spacing:0.01em;transition:background 150ms ease,border-color 150ms ease,color 150ms ease,transform 150ms ease;}.ds-chip:hover{transform:translateY(-1px);background:var(--ios-stat-bg);border-color:var(--ios-blue);color:var(--ios-blue);}.ds-chip--signal{background:var(--ios-stat-bg);border-color:color-mix(in srgb,var(--ios-blue) 25%,transparent);color:var(--ios-blue);}"
+    },
+    {
+      "name": "Command Search Field",
+      "kind": "input",
+      "refersTo": "input-command",
+      "description": "The integrated search field used inside the command center, compact and quiet inside a supporting tray.",
+      "html": "<label class='ds-command-input'><svg viewBox='0 0 24 24' aria-hidden='true'><circle cx='11' cy='11' r='6.5' fill='none' stroke='currentColor' stroke-width='1.8'/><path d='M16 16l4 4' fill='none' stroke='currentColor' stroke-width='1.8' stroke-linecap='round'/></svg><input type='text' placeholder='Search LowieOS...' /></label>",
+      "css": ".ds-command-input{display:flex;align-items:center;gap:8px;height:32px;padding:0 10px;border-radius:8px;border:1px solid color-mix(in srgb,var(--input) 30%,transparent);background:color-mix(in srgb,var(--input) 30%,transparent);color:var(--ios-text-primary);transition:border-color 200ms ease,box-shadow 200ms ease,background 200ms ease;}.ds-command-input svg{width:14px;height:14px;flex-shrink:0;color:var(--ios-text-secondary);opacity:0.7;}.ds-command-input input{width:100%;border:0;background:transparent;color:var(--ios-text-primary);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.85rem;line-height:1;outline:none;}.ds-command-input input::placeholder{color:var(--ios-text-secondary);}.ds-command-input:hover{background:color-mix(in srgb,var(--ios-chip-bg) 88%,transparent);}.ds-command-input:focus-within{border-color:var(--ring);box-shadow:0 0 0 3px color-mix(in srgb,var(--ring) 50%,transparent);}"
+    },
+    {
+      "name": "Segmented Timeline Tabs",
+      "kind": "nav",
+      "refersTo": "segmented-tab-active",
+      "description": "The compact segmented rail used for role categories and other small navigation choices inside dense content.",
+      "html": "<div class='ds-tabs' role='tablist' aria-label='Experience categories'><button class='ds-tab ds-tab--active' aria-selected='true'>Development</button><button class='ds-tab' aria-selected='false'>Data</button><button class='ds-tab' aria-selected='false'>Support</button></div>",
+      "css": ".ds-tabs{display:flex;align-items:center;gap:4px;padding:4px;border-radius:16px;border:1px solid var(--ios-glass-border);background:color-mix(in srgb,var(--ios-chip-bg) 86%,transparent);overflow:auto;}.ds-tab{flex:1 0 auto;min-width:max-content;height:32px;padding:0 12px;border:0;border-radius:12px;background:transparent;color:var(--ios-text-secondary);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.72rem;font-weight:600;line-height:1;transition:background 150ms ease,color 150ms ease,box-shadow 150ms ease,transform 150ms ease;}.ds-tab:hover{color:var(--ios-text-primary);}.ds-tab--active{background:var(--ios-blue);color:var(--ios-bg);box-shadow:0 8px 18px color-mix(in srgb,var(--ios-blue) 20%,transparent);}.ds-tab:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ios-bg),0 0 0 4px var(--ios-blue);}"
+    },
+    {
+      "name": "Command Panel",
+      "kind": "custom",
+      "refersTo": "dialog-command",
+      "description": "The signature command-center surface, a private utility drawer rather than a generic modal.",
+      "html": "<section class='ds-command-panel'><div class='ds-command-panel__header'><div><p class='ds-command-panel__eyebrow'>Command Center</p><p class='ds-command-panel__copy'>Spotlight-style shortcuts for sections, case files, and contact actions.</p></div><span class='ds-command-panel__hotkey'>Cmd/Ctrl K</span></div><button class='ds-command-panel__item'><span class='ds-command-panel__tag'>Go</span><span class='ds-command-panel__label'>Jump to GitHub Pulse</span><span class='ds-command-panel__meta'>section</span></button></section>",
+      "css": ".ds-command-panel{padding:16px 0;border-radius:24px;border:1px solid var(--ios-glass-border);background:color-mix(in srgb,var(--ios-glass) 92%,transparent);color:var(--ios-text-primary);backdrop-filter:blur(28px);-webkit-backdrop-filter:blur(28px);box-shadow:0 24px 64px rgba(0,0,0,0.4);}.ds-command-panel__header{display:flex;align-items:flex-start;justify-content:space-between;gap:16px;padding:0 20px 12px;border-bottom:1px solid var(--ios-separator);}.ds-command-panel__eyebrow{margin:0 0 6px;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.72rem;font-weight:600;line-height:1.2;letter-spacing:0.1em;color:var(--ios-blue);}.ds-command-panel__copy{margin:0;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.9rem;line-height:1.45;color:var(--ios-text-secondary);}.ds-command-panel__hotkey{display:inline-flex;align-items:center;padding:4px 12px;border-radius:999px;border:1px solid var(--ios-chip-border);background:var(--ios-chip-bg);color:var(--ios-text-secondary);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.68rem;font-weight:600;line-height:1;}.ds-command-panel__item{display:flex;align-items:center;gap:12px;width:calc(100% - 16px);margin:12px 8px 0;padding:12px;border:0;border-radius:18px;background:transparent;color:var(--ios-text-primary);transition:background 150ms ease,color 150ms ease,transform 150ms ease;}.ds-command-panel__item:hover{transform:translateY(-1px);background:var(--ios-blue);color:var(--ios-bg);}.ds-command-panel__tag{display:inline-flex;align-items:center;justify-content:center;min-width:32px;height:32px;padding:0 10px;border-radius:999px;border:1px solid var(--ios-chip-border);background:var(--ios-chip-bg);font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.64rem;font-weight:600;line-height:1;letter-spacing:0.08em;text-transform:uppercase;}.ds-command-panel__item:hover .ds-command-panel__tag{border-color:rgba(255,255,255,0.22);background:rgba(255,255,255,0.18);}.ds-command-panel__label{flex:1 1 auto;text-align:left;font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.84rem;font-weight:500;line-height:1.3;}.ds-command-panel__meta{font-family:Inter,-apple-system,BlinkMacSystemFont,'SF Pro Display',sans-serif;font-size:0.62rem;line-height:1;color:var(--ios-text-tertiary);}.ds-command-panel__item:hover .ds-command-panel__meta{color:rgba(255,255,255,0.72);}.ds-command-panel__item:focus-visible{outline:none;box-shadow:0 0 0 2px var(--ios-bg),0 0 0 4px var(--ios-blue);}"
+    }
+  ],
+  "narrative": {
+    "northStar": "The Calm Systems Deck",
+    "overview": "This portfolio should feel like a recruiter's private systems deck, assembled by the engineer himself. It is complete, confident, and softly cinematic, but never theatrical. The dark-first default matches the real viewing moment: a recruiter reviewing candidates on a laptop after hours, in a dim room, while deciding who feels credible enough to remember.\n\nThe mint accent behaves like a trusted systems signal, not a marketing highlighter. Glass shells behave like ordered drawers, holding dense information in calm modules. Warm brass exists only as a human note, enough to keep the page personal without weakening its technical poise. The light theme is a daylight counterpart, not a different brand.\n\nThis system explicitly rejects anything that reads AI-generated, generic, or template-driven. It should never feel cloned from a SaaS landing page, never drift into decorative glassmorphism, and never flatten Lowie's voice into a personality-free developer template. The craft must look owned.",
+    "keyCharacteristics": [
+      "Dark-first, recruiter-legible surfaces with green-tinted neutrals.",
+      "One-sans typography system that earns hierarchy through weight, spacing, and scale.",
+      "Ambient glass depth, rounded utility pills, and calm motion.",
+      "Dense information broken into orderly modules that stay easy to scan."
+    ],
+    "rules": [
+      {
+        "name": "The Afterglow Rule",
+        "body": "Forest Afterglow carries actions, active states, and key numerals. If whole regions turn mint, the signal hierarchy is gone.",
+        "section": "colors"
+      },
+      {
+        "name": "The Warmth Rule",
+        "body": "Warm Brass is a humanizing accent, not a second CTA color. Use it where the page needs warmth, never where the page needs authority.",
+        "section": "colors"
+      },
+      {
+        "name": "The Single Voice Rule",
+        "body": "Inter carries the whole system. Contrast comes from weight, scale, casing, and tracking, not from adding a second display face.",
+        "section": "typography"
+      },
+      {
+        "name": "The Ambient Depth Rule",
+        "body": "Depth should feel like air. If a shadow edge becomes crisp, blue-gray, or obviously decorative, the surface is too heavy.",
+        "section": "elevation"
+      }
+    ],
+    "dos": [
+      "Do tint every neutral toward green in both dark and light themes. Pure black, pure white, and neutral gray flatten the identity.",
+      "Do keep Forest Afterglow concentrated on actions, active controls, key numbers, and section eyebrows.",
+      "Do preserve the `24px` outer shell and `18px` to `20px` inner-module rhythm. The rounded system is part of the voice.",
+      "Do use blur, translucency, and ambient shadow only when they clarify hierarchy or grouping.",
+      "Do keep recruiter-facing copy compact, legible, and immediately scannable."
+    ],
+    "donts": [
+      "Don't make it look AI-generated. If a new section could be dropped into any generic portfolio template, it failed.",
+      "Don't make it generic or template-driven. Avoid repeated icon-heading-text grids, canned hero metrics, or default SaaS landing-page composition.",
+      "Don't turn the glass treatment into decorative glassmorphism. Blur is structural here, not candy.",
+      "Don't introduce unrelated accent colors that compete with Forest Afterglow and Warm Brass.",
+      "Don't swap in decorative serif or editorial-magazine styling just to signal \"design.\" This system earns personality through complete execution, not genre cosplay.",
+      "Don't use side-stripe accent borders, gradient text, or oversized rounded icons above every heading."
+    ]
+  }
+}

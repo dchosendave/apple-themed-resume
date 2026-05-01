@@ -27,24 +27,17 @@
                   ? "Quiet hours, huh?"
                   : "",
     );
-    let avatarAriaLabel = $derived(
-        searchModeActive
-            ? "Profile photo, search mode active"
-            : commandModeActive
-              ? "Profile photo, command mode active"
-              : "Profile photo",
-    );
 </script>
 
 <div class="relative shrink-0">
-    <button
+    <div
+        role="img"
+        aria-label="Portrait illustration of Lowie Dave Dichoson"
         class={[
-            "relative rounded-full border-0 bg-transparent p-0 transition-[transform,filter] duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]",
+            "relative rounded-full transition-[transform,filter] duration-300 ease-out motion-reduce:transform-none motion-reduce:transition-none",
             commandModeActive && "scale-[1.03] -translate-y-0.5",
             searchModeActive && "scale-[1.05]",
         ]}
-        aria-label={avatarAriaLabel}
-        type="button"
     >
         <Avatar.Root
             size="lg"
@@ -165,7 +158,7 @@
             ></span>
             {searchModeActive ? "Scan" : "Cmd"}
         </span>
-    </button>
+    </div>
 
     <span
         aria-hidden={!visitPromptVisible}

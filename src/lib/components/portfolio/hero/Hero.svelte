@@ -15,6 +15,9 @@
     let recruiterPrompt = $state<RecruiterPrompt | null>(null);
     let visitRevealTimer: ReturnType<typeof setTimeout> | undefined;
     let visitHideTimer: ReturnType<typeof setTimeout> | undefined;
+    const heroLocation = personalInfo.location
+        .replace(" City", "")
+        .replace(", Philippines", ", PH");
 
     function getVisitPrompt(hour: number): VisitPrompt {
         if (hour >= 5 && hour < 12) return "visit-morning";
@@ -64,23 +67,27 @@
 </script>
 
 <PortfolioCard
-    class="flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:gap-[18px] sm:px-6 sm:py-[22px]"
+    class="flex flex-col gap-5 overflow-hidden px-[18px] py-5 sm:gap-6 sm:px-6 sm:py-[22px]"
 >
-    <div class="flex flex-wrap items-center justify-between gap-3">
-        <span
-            class="inline-flex items-center gap-[7px] rounded-full border px-[13px] py-[5px] text-[0.72rem] font-semibold tracking-[0.01em] [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-secondary)]"
-        >
-            <span
-                class="size-1.5 shrink-0 animate-pulse rounded-full bg-[#30d158] shadow-[0_0_6px_#30d15880]"
-            ></span>
-            Open to opportunities
-        </span>
+    <div class="flex flex-wrap items-start justify-between gap-3">
+        <div class="flex flex-wrap items-center gap-2">
+            <span class="apple-chip px-[13px] py-[5px] text-[0.7rem]">
+                <span
+                    class="size-1.5 shrink-0 rounded-full bg-[var(--ios-blue)] shadow-[0_0_8px_color-mix(in_srgb,var(--ios-blue)_55%,transparent)]"
+                ></span>
+                Open to opportunities
+            </span>
+
+            <span class="lowie-warm-chip px-2.5 py-[5px]" title={personalInfo.location}>
+                {heroLocation}
+            </span>
+        </div>
 
         <ThemeToggle />
     </div>
 
     <div
-        class="flex flex-col items-start gap-[14px] sm:flex-row sm:items-center sm:gap-[22px]"
+        class="flex flex-col items-start gap-4 sm:flex-row sm:items-start sm:gap-6"
     >
         <HeroAvatar prompt={recruiterPrompt} />
         <HeroIdentity

@@ -12,7 +12,7 @@
 <Button
     variant="ghost"
     size="icon"
-    class="apple-icon-button size-9 rounded-full"
+    class="apple-icon-button size-11 rounded-full sm:size-9"
     onclick={theme.toggle}
     aria-label={toggleLabel}
     title={toggleLabel}
