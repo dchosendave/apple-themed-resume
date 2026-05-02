@@ -6,7 +6,6 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import GithubMark from "$lib/components/portfolio/shared/GithubMark.svelte";
     import GitHubContributionGrid from "$lib/components/portfolio/github/GitHubContributionGrid.svelte";
-    import { Badge } from "$lib/components/ui/badge/index.js";
     import type {
         GitHubPulseData,
         GitHubRepositoryContribution,
@@ -32,6 +31,48 @@
             ? pulse.totals.contributions
             : pulse.recentActivity.length,
     );
+    const pulseMode = $derived.by(() => {
+        if (pulse.status === "ready") {
+            return {
+                label: "Live graph",
+                className:
+                    "apple-badge shrink-0 px-[9px] py-[3px] text-[0.62rem]",
+            };
+        }
+
+        if (pulse.status === "public-events") {
+            return {
+                label: "Public feed",
+                className:
+                    "lowie-warm-chip shrink-0 px-[9px] py-[3px] text-[0.62rem]",
+            };
+        }
+
+        return {
+            label: "Quiet feed",
+            className:
+                "apple-chip shrink-0 px-[9px] py-[3px] text-[0.62rem]",
+        };
+    });
+    const secondaryFacts = $derived.by(() => {
+        const facts = [
+            `${formatNumber(pulse.totals.repositoriesTouched)} repos touched`,
+        ];
+
+        if (hasContributionCalendar) {
+            facts.unshift(
+                `${formatNumber(pulse.calendar.activeDays)} active days`,
+            );
+
+            if (pulse.calendar.busiestDay) {
+                facts.push(
+                    `Peak ${formatNumber(pulse.calendar.busiestDay.contributionCount)} on ${formatDate(pulse.calendar.busiestDay.date)}`,
+                );
+            }
+        }
+
+        return facts;
+    });
     const strongestRepoTotal = $derived(
         Math.max(...pulse.topRepositories.map((repo) => repo.total), 1),
     );
@@ -58,9 +99,6 @@
         return `${Math.max((repo.total / strongestRepoTotal) * 100, 8)}%`;
     }
 
-    function formatActivityPhrase(title: string) {
-        return title.replace(/^\w/, (letter) => letter.toLowerCase());
-    }
 </script>
 
 <PortfolioCard class="lowie-card-glow flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
@@ -69,9 +107,10 @@
             <div class="mb-1.5 flex flex-wrap items-center gap-2">
                 <GithubMark class="size-4 [color:var(--ios-blue)]" />
                 <p class="apple-section-title mb-0">GitHub Pulse</p>
+                <span class={pulseMode.className}>{pulseMode.label}</span>
             </div>
-            <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Contribution rhythm, recent public work, and repos touched.
+            <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                Public work rhythm, recent moves, and the repositories seeing the most hands-on time.
             </p>
         </div>
 
@@ -88,7 +127,7 @@
     </div>
 
     <div class="relative z-[1] grid grid-cols-2 gap-2">
-        <div class="rounded-[18px] border p-3 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
+        <div class="rounded-[18px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
             <span class="block text-[1.45rem] font-extrabold leading-none tracking-[-0.02em] [color:var(--ios-blue)]">
                 {formatNumber(primaryMetric)}
             </span>
@@ -97,7 +136,7 @@
             </span>
         </div>
 
-        <div class="rounded-[18px] border p-3 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
+        <div class="rounded-[18px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
             <span class="block text-[1.45rem] font-extrabold leading-none tracking-[-0.02em] [color:var(--ios-blue)]">
                 {formatNumber(
                     hasContributionCalendar
@@ -111,6 +150,14 @@
         </div>
     </div>
 
+    <div class="relative z-[1] flex flex-wrap gap-2">
+        {#each secondaryFacts as fact (fact)}
+            <span class="apple-chip px-[11px] py-[4px] text-[0.64rem]">
+                {fact}
+            </span>
+        {/each}
+    </div>
+
     <section class="relative z-[1] rounded-[20px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_66%,transparent)] [border-color:var(--ios-glass-border)]">
         <div class="mb-3 flex items-center justify-between gap-3">
             <div class="flex min-w-0 items-center gap-2">
@@ -119,32 +166,35 @@
                     Contribution Map
                 </p>
             </div>
-            <Badge
-                variant="outline"
-                class="rounded-full border px-2 py-0.5 text-[0.62rem] [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-secondary)]"
-            >
+            <span class="apple-chip shrink-0 px-2 py-[3px] text-[0.62rem]">
                 {hasContributionCalendar ? rangeLabel : "Public feed"}
-            </Badge>
+            </span>
         </div>
 
         {#if latestActivity}
-            <p
-                class="mb-3 rounded-[16px] border px-3 py-2 text-[0.74rem] leading-[1.5] [background:color-mix(in_srgb,var(--ios-glass)_56%,transparent)] [border-color:var(--ios-glass-border)] [color:var(--ios-text-secondary)]"
+            <div
+                class="mb-3 rounded-[16px] border px-3 py-2.5 [background:color-mix(in_srgb,var(--ios-glass)_56%,transparent)] [border-color:var(--ios-glass-border)]"
             >
-                I last worked on
+                <div class="flex items-center justify-between gap-2">
+                    <p class="text-[0.62rem] font-semibold uppercase tracking-[0.08em] [color:var(--ios-text-tertiary)]">
+                        Latest move
+                    </p>
+                    <span class="apple-chip shrink-0 px-2 py-[3px] text-[0.6rem]">
+                        {formatDate(latestActivity.createdAt)}
+                    </span>
+                </div>
+                <p class="mt-2 text-[0.76rem] font-semibold leading-[1.45] [color:var(--ios-text-primary)]">
+                    {latestActivity.title}
+                </p>
                 <a
                     href={latestActivity.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    class="font-semibold [color:var(--ios-text-primary)] hover:[color:var(--ios-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]"
+                    class="mt-1 inline-flex max-w-full truncate text-[0.72rem] [color:var(--ios-text-secondary)] hover:[color:var(--ios-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]"
                 >
                     {latestActivity.repo}
                 </a>
-                and {formatActivityPhrase(latestActivity.title)}
-                <span class="whitespace-nowrap [color:var(--ios-text-tertiary)]">
-                    on {formatDate(latestActivity.createdAt)}.
-                </span>
-            </p>
+            </div>
         {/if}
 
         <GitHubContributionGrid weeks={pulse.calendar.weeks} />
@@ -162,12 +212,9 @@
                 <p class="text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]">
                     Repo Signal
                 </p>
-                <Badge
-                    variant="outline"
-                    class="rounded-full border px-2 py-0.5 text-[0.62rem] [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-secondary)]"
-                >
+                <span class="apple-chip shrink-0 px-2 py-[3px] text-[0.62rem]">
                     Updated {fetchedLabel}
-                </Badge>
+                </span>
             </div>
 
             {#if pulse.topRepositories.length > 0}
@@ -191,12 +238,9 @@
                                     </p>
                                 </div>
 
-                                <Badge
-                                    variant="outline"
-                                    class="rounded-full px-2 py-0.5 text-[0.62rem] [background:var(--ios-stat-bg)] [border-color:color-mix(in_srgb,var(--ios-blue)_22%,transparent)] [color:var(--ios-blue)]"
-                                >
+                                <span class="apple-badge shrink-0 px-[9px] py-[3px] text-[0.62rem]">
                                     {formatNumber(repo.total)}
-                                </Badge>
+                                </span>
                             </div>
 
                             <div class="mt-2.5 h-1.5 overflow-hidden rounded-full [background:color-mix(in_srgb,var(--ios-chip-bg)_72%,transparent)]">
@@ -208,7 +252,7 @@
 
                             <div class="mt-2 flex flex-wrap items-center gap-2">
                                 {#if repo.languageName}
-                                    <span class="inline-flex items-center gap-1.5 text-[0.66rem] [color:var(--ios-text-secondary)]">
+                                    <span class="inline-flex items-center gap-1.5 rounded-full border px-2 py-[3px] text-[0.62rem] [background:color-mix(in_srgb,var(--ios-chip-bg)_72%,transparent)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-secondary)]">
                                         <span
                                             class="size-2 rounded-full"
                                             style={`background: ${repo.languageColor ?? "var(--ios-blue)"}`}
@@ -217,11 +261,11 @@
                                     </span>
                                 {/if}
 
-                                <span class="inline-flex items-center gap-1 text-[0.66rem] [color:var(--ios-text-tertiary)]">
+                                <span class="inline-flex items-center gap-1 rounded-full border px-2 py-[3px] text-[0.62rem] [background:color-mix(in_srgb,var(--ios-chip-bg)_72%,transparent)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-tertiary)]">
                                     <GitCommitHorizontalIcon class="size-3" />
                                     {formatNumber(repo.commits)}
                                 </span>
-                                <span class="inline-flex items-center gap-1 text-[0.66rem] [color:var(--ios-text-tertiary)]">
+                                <span class="inline-flex items-center gap-1 rounded-full border px-2 py-[3px] text-[0.62rem] [background:color-mix(in_srgb,var(--ios-chip-bg)_72%,transparent)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-tertiary)]">
                                     <GitPullRequestIcon class="size-3" />
                                     {formatNumber(repo.pullRequests)}
                                 </span>

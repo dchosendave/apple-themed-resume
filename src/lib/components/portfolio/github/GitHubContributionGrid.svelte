@@ -22,6 +22,7 @@
     const gridLabel = $derived(
         `${visibleDays.length} days of GitHub contributions`,
     );
+    const legendIntensities: ContributionIntensity[] = [0, 1, 2, 3, 4];
 
     function getContributionIntensity(
         contributionCount: number,
@@ -104,16 +105,15 @@
         }).format(new Date(`${day.date}T00:00:00Z`));
         const count = day.contributionCount;
 
-        if (count === 0){
-            return `${formattedDate}: Busy sleeping 😴`;
+        if (count === 0) {
+            return `${formattedDate}: no public contributions`;
         }
-        else if (count <= 5)
-        {
-            return `${formattedDate}: ${count} only, a bit lazy 😌`;
-        }
-        else {
-            return `${formattedDate}: ${count} contributions, I'm HIM! 🔥`;
-        }
+
+        return `${formattedDate}: ${count} contribution${count === 1 ? "" : "s"}`;
+    }
+
+    function getLegendClass(intensity: ContributionIntensity) {
+        return `contribution-swatch contribution-day--${intensity}`;
     }
 </script>
 
@@ -156,9 +156,17 @@
             {/each}
         </div>
 
-        <div class="mt-2 flex items-center justify-between gap-3 text-[0.62rem] font-medium [color:var(--ios-text-tertiary)]">
-            <span>{formatRangeDate(visibleDays[0].date)}</span>
-            <span>{formatRangeDate(visibleDays[visibleDays.length - 1].date)}</span>
+        <div class="mt-2 flex flex-wrap items-center justify-between gap-3 text-[0.62rem] font-medium [color:var(--ios-text-tertiary)]">
+            <span>
+                {formatRangeDate(visibleDays[0].date)} to {formatRangeDate(visibleDays[visibleDays.length - 1].date)}
+            </span>
+            <div class="flex items-center gap-1.5">
+                <span>Quiet</span>
+                {#each legendIntensities as intensity (intensity)}
+                    <span class={getLegendClass(intensity)} aria-hidden="true"></span>
+                {/each}
+                <span>Peak</span>
+            </div>
         </div>
     </div>
 {:else}
@@ -200,6 +208,13 @@
         background: var(--contribution-bg);
         border-color: var(--contribution-border);
         box-shadow: var(--contribution-shadow, none);
+    }
+
+    .contribution-day:focus-visible {
+        outline: none;
+        box-shadow:
+            0 0 0 2px color-mix(in srgb, var(--ios-blue) 36%, transparent),
+            var(--contribution-shadow, none);
     }
 
     .contribution-day--0 {
@@ -331,6 +346,17 @@
     :global(.dark) .contribution-day--4 .contribution-count,
     :global(.dark) .contribution-day--4 .contribution-date {
         color: #071008;
+    }
+
+    .contribution-swatch {
+        display: block;
+        width: 9px;
+        height: 9px;
+        border-radius: 999px;
+        border: 1px solid var(--contribution-border);
+        background: var(--contribution-bg);
+        box-shadow: none;
+        flex-shrink: 0;
     }
 
     @media (max-width: 420px) {
