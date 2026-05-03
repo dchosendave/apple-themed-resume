@@ -10,4 +10,4 @@ export const personalInfo: PersonalInformation = {
     resumePdf: "/ldd-resume-january-2026-v2.pdf"
 }
 
-export const professionalFocus = "Full-stack product developer building reliable financial systems, practical internal tools, and polished user experiences. I enjoy turning complex workflows into complete products with thoughtful APIs, data models, documentation, and interfaces that feel calm to use."
+export const professionalFocus = "Curious to see what sets me apart from them? Read on to find out more about my background and the unique value I can bring to your team.";

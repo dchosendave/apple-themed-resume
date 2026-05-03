@@ -81,9 +81,9 @@
         <div class="flex items-start justify-between gap-3">
             <div class="min-w-0">
                 <p id="proof-ledger-title" class="apple-section-title mb-1">Proof Ledger</p>
-                <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                <!-- <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                     A recruiter-speed read on delivery breadth, release rhythm, legacy ownership, and handoff care.
-                </p>
+                </p> -->
             </div>
             <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">4 signals</span>
         </div>

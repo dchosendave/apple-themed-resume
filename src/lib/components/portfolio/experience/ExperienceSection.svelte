@@ -21,9 +21,9 @@
     <div class="flex items-start justify-between gap-3">
         <div class="min-w-0">
             <p class="apple-section-title mb-1">Work Timeline</p>
-            <p class="max-w-[40ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+            <!-- <p class="max-w-[40ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                 A recruiter-speed pass through backend ownership, legacy support, and the work environments that shaped how I ship.
-            </p>
+            </p> -->
         </div>
         <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
             {timelineEntries.length}
