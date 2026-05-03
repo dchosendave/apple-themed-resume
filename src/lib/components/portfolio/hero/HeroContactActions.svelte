@@ -25,7 +25,7 @@
     const primaryCtaClass =
         "inline-flex min-h-11 items-center justify-center gap-[5px] whitespace-nowrap rounded-full bg-[var(--ios-blue)] px-[18px] py-2 text-[0.8rem] font-semibold text-[var(--ios-bg)] no-underline transition-all duration-200 hover:-translate-y-px hover:bg-[var(--ios-blue-hover)] hover:shadow-[0_4px_16px_rgba(47,70,53,0.28)] dark:hover:shadow-[0_4px_16px_rgba(183,228,199,0.28)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)] sm:min-h-10 sm:px-4";
     const secondaryCtaClass =
-        "inline-flex min-h-11 items-center justify-center whitespace-nowrap rounded-full border px-[18px] py-2 text-[0.8rem] font-medium [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-primary)] no-underline transition-all duration-200 hover:[border-color:var(--ios-blue)] hover:[color:var(--ios-blue)] hover:[background:var(--ios-stat-bg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)] sm:min-h-10 sm:px-4";
+        "inline-flex min-h-11 items-center justify-center gap-[5px] whitespace-nowrap rounded-full border px-[18px] py-2 text-[0.8rem] font-medium [background:var(--ios-chip-bg)] [border-color:var(--ios-chip-border)] [color:var(--ios-text-primary)] no-underline transition-all duration-200 hover:[border-color:var(--ios-blue)] hover:[color:var(--ios-blue)] hover:[background:var(--ios-stat-bg)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)] sm:min-h-10 sm:px-4";
 
     function copyEmail(e: MouseEvent) {
         if (e.button !== 0) return;
@@ -100,6 +100,9 @@
             Resume
         </a>
 
-        <a href={emailHref} class={secondaryCtaClass}>Get in Touch</a>
+        <a href={emailHref} class={secondaryCtaClass}>
+            <MailIcon class="size-3.5" />
+            Email me
+        </a>
     </div>
 </div>

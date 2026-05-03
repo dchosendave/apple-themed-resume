@@ -47,9 +47,9 @@
 
 <!-- Global ambient light fixed across the whole page -->
 <div class="bg-layer" aria-hidden="true">
-    <div class="blob blob-1"></div>
-    <div class="blob blob-2"></div>
-    <div class="blob blob-3"></div>
+    <div class="ambient-grid"></div>
+    <div class="ambient-wash ambient-wash-top"></div>
+    <div class="ambient-wash ambient-wash-bottom"></div>
 </div>
 
 <main class="portfolio-layout">
@@ -83,18 +83,18 @@
     }
     .portfolio-layout {
         display: grid;
-        grid-template-columns: minmax(0, 3fr) minmax(320px, 2fr);
-        gap: 16px;
+        grid-template-columns: minmax(0, 1.48fr) minmax(320px, 0.9fr);
+        gap: clamp(12px, 1.6vw, 18px);
         align-items: start;
-        max-width: 1240px;
+        max-width: 1260px;
         margin: 0 auto;
-        padding: 28px 28px 0;
+        padding: clamp(18px, 2.4vw, 30px) clamp(16px, 2.6vw, 30px) 0;
     }
 
     .portfolio-main-column,
     .portfolio-side-column {
         display: grid;
-        gap: 16px;
+        gap: clamp(12px, 1.4vw, 18px);
         align-content: start;
     }
 
@@ -118,154 +118,65 @@
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
+        background:
+            linear-gradient(
+                135deg,
+                color-mix(in srgb, var(--ios-bg) 94%, var(--ios-blue)) 0%,
+                var(--ios-bg) 42%,
+                color-mix(in srgb, var(--ios-bg) 92%, var(--lowie-warm)) 100%
+            );
     }
 
-    .blob {
+    .ambient-grid,
+    .ambient-wash {
         position: absolute;
-        border-radius: 50%;
-        filter: blur(90px);
-        pointer-events: none;
-
-        /* Ambient motion tuned to stay calm but visibly alive. */
-        --blob-x-start: 0px;
-        --blob-y-start: 0px;
-        --blob-x-end: 24px;
-        --blob-y-end: -18px;
-        --blob-scale-start: 1;
-        --blob-scale-end: 1.05;
-        --blob-rest-x: var(--blob-x-start);
-        --blob-rest-y: var(--blob-y-start);
-        --blob-rest-scale: var(--blob-scale-start);
-        --blob-drift-duration: 24s;
-        --blob-pulse-duration: 20s;
-        --blob-delay: 0s;
-
-        animation:
-            blob-drift var(--blob-drift-duration) ease-in-out infinite alternate,
-            blob-pulse var(--blob-pulse-duration) ease-in-out infinite;
-        animation-delay: var(--blob-delay);
+        inset: 0;
     }
 
-    /* Top-right forest glow */
-    .blob-1 {
-        width: 550px;
-        height: 550px;
-        background: radial-gradient(
-            circle,
-            color-mix(in srgb, var(--ios-blue) 34%, transparent),
-            transparent 70%
+    .ambient-grid {
+        opacity: 0.28;
+        background-image:
+            linear-gradient(
+                color-mix(in srgb, var(--ios-blue) 14%, transparent) 1px,
+                transparent 1px
+            ),
+            linear-gradient(
+                90deg,
+                color-mix(in srgb, var(--ios-blue) 10%, transparent) 1px,
+                transparent 1px
+            );
+        background-size: 72px 72px;
+        mask-image: linear-gradient(
+            180deg,
+            transparent 0%,
+            rgb(7 10 8) 18%,
+            rgb(7 10 8) 72%,
+            transparent 100%
         );
-        top: -160px;
-        right: -160px;
-
-        --blob-x-start: -24px;
-        --blob-y-start: 16px;
-        --blob-x-end: 34px;
-        --blob-y-end: -26px;
-        --blob-scale-start: 0.97;
-        --blob-scale-end: 1.07;
-        --blob-rest-x: 5px;
-        --blob-rest-y: -5px;
-        --blob-rest-scale: 1.02;
-        --blob-drift-duration: 22s;
-        --blob-pulse-duration: 20s;
-        --blob-delay: -6s;
     }
 
-    /* Bottom-left warm coffee glow */
-    .blob-2 {
-        width: 450px;
-        height: 450px;
-        background: radial-gradient(
-            circle,
-            color-mix(in srgb, var(--ios-blue) 24%, transparent),
-            transparent 70%
+    .ambient-wash {
+        opacity: 0.9;
+        transition: opacity 0.3s ease;
+    }
+
+    .ambient-wash-top {
+        background: linear-gradient(
+            160deg,
+            color-mix(in srgb, var(--ios-blue) 18%, transparent) 0%,
+            transparent 46%
         );
-        bottom: -100px;
-        left: -120px;
-
-        --blob-x-start: -28px;
-        --blob-y-start: 18px;
-        --blob-x-end: 30px;
-        --blob-y-end: -20px;
-        --blob-scale-start: 0.95;
-        --blob-scale-end: 1.05;
-        --blob-rest-x: 1px;
-        --blob-rest-y: -1px;
-        --blob-rest-scale: 1;
-        --blob-drift-duration: 26s;
-        --blob-pulse-duration: 22s;
-        --blob-delay: -12s;
     }
 
-    /* Center subtle mint glow */
-    .blob-3 {
-        width: 600px;
-        height: 600px;
-        background: radial-gradient(
-            circle,
-            color-mix(in srgb, var(--ios-blue) 12%, transparent),
-            transparent 70%
+    .ambient-wash-bottom {
+        background: linear-gradient(
+            18deg,
+            color-mix(in srgb, var(--lowie-warm) 12%, transparent) 0%,
+            transparent 44%
         );
-        top: 40%;
-        left: 50%;
-
-        --blob-x-start: calc(-50% - 24px);
-        --blob-y-start: -14px;
-        --blob-x-end: calc(-50% + 28px);
-        --blob-y-end: 14px;
-        --blob-scale-start: 0.98;
-        --blob-scale-end: 1.06;
-        --blob-rest-x: -50%;
-        --blob-rest-y: 0px;
-        --blob-rest-scale: 1.02;
-        --blob-drift-duration: 28s;
-        --blob-pulse-duration: 24s;
-        --blob-delay: -18s;
-    }
-
-    @media (prefers-reduced-motion: no-preference) {
-        .blob {
-            will-change: transform, opacity;
-        }
-    }
-
-    @keyframes blob-drift {
-        0% {
-            transform: translate3d(var(--blob-x-start), var(--blob-y-start), 0)
-                scale(var(--blob-scale-start));
-        }
-        100% {
-            transform: translate3d(var(--blob-x-end), var(--blob-y-end), 0)
-                scale(var(--blob-scale-end));
-        }
-    }
-
-    @keyframes blob-pulse {
-        0%,
-        100% {
-            opacity: 0.72;
-        }
-        50% {
-            opacity: 0.94;
-        }
-    }
-
-    @media (prefers-reduced-motion: reduce) {
-        .blob {
-            animation: none;
-            will-change: auto;
-            transform: translate3d(var(--blob-rest-x), var(--blob-rest-y), 0)
-                scale(var(--blob-rest-scale));
-            opacity: 0.86;
-        }
     }
 
     @media (max-width: 768px) {
-        .blob {
-            filter: blur(72px);
-        }
-
         main {
             padding-top: 8px;
             padding-bottom: 16px;

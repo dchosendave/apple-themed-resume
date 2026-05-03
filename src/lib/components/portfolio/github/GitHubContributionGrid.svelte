@@ -270,8 +270,8 @@
     .contribution-day--4 {
         --contribution-bg: linear-gradient(
             135deg,
-            color-mix(in srgb, var(--lowie-forest) 86%, #06150b),
-            color-mix(in srgb, var(--lowie-forest) 68%, #0b2a15)
+            color-mix(in srgb, var(--lowie-forest) 86%, var(--ios-bg)),
+            color-mix(in srgb, var(--lowie-forest) 68%, var(--ios-bg-secondary))
         );
         --contribution-border: color-mix(
             in srgb,
@@ -317,7 +317,7 @@
         --contribution-bg: color-mix(
             in srgb,
             var(--lowie-mint) 48%,
-            #071008
+            var(--ios-bg)
         );
         --contribution-border: color-mix(
             in srgb,
@@ -331,8 +331,8 @@
     :global(.dark) .contribution-day--4 {
         --contribution-bg: linear-gradient(
             135deg,
-            color-mix(in srgb, var(--lowie-mint) 92%, #ffffff),
-            color-mix(in srgb, var(--lowie-mint) 82%, #ffffff)
+            color-mix(in srgb, var(--lowie-mint) 92%, var(--ios-text-primary)),
+            color-mix(in srgb, var(--lowie-mint) 82%, var(--ios-text-primary))
         );
         --contribution-border: color-mix(
             in srgb,
@@ -345,7 +345,7 @@
 
     :global(.dark) .contribution-day--4 .contribution-count,
     :global(.dark) .contribution-day--4 .contribution-date {
-        color: #071008;
+        color: var(--ios-bg);
     }
 
     .contribution-swatch {

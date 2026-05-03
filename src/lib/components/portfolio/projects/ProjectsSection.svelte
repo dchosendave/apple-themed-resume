@@ -9,11 +9,17 @@
 </script>
 
 <PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
-    <p
-        class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
-    >
-        PROJECTS
-    </p>
+    <div class="mb-3 flex items-start justify-between gap-3">
+        <div class="min-w-0">
+            <p class="apple-section-title mb-1">Case Files</p>
+            <p class="max-w-[44ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                Production systems and personal builds, framed by problem, ownership, and impact.
+            </p>
+        </div>
+        <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
+            {projects.length} files
+        </span>
+    </div>
 
     <div class="grid grid-cols-1 gap-3 min-[901px]:grid-cols-2">
         {#each projects as project (project.name)}

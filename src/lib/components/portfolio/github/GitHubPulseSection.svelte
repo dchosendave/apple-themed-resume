@@ -110,7 +110,7 @@
                 <span class={pulseMode.className}>{pulseMode.label}</span>
             </div>
             <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Public work rhythm, recent moves, and the repositories seeing the most hands-on time.
+                Public rhythm, recent moves, and the repositories getting the most hands-on time.
             </p>
         </div>
 
@@ -128,7 +128,7 @@
 
     <div class="relative z-[1] grid grid-cols-2 gap-2">
         <div class="rounded-[18px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
-            <span class="block text-[1.45rem] font-extrabold leading-none tracking-[-0.02em] [color:var(--ios-blue)]">
+            <span class="block text-[1.45rem] font-extrabold leading-none tracking-normal [color:var(--ios-blue)]">
                 {formatNumber(primaryMetric)}
             </span>
             <span class="mt-1 block text-[0.68rem] font-semibold uppercase tracking-[0.08em] [color:var(--ios-text-secondary)]">
@@ -137,7 +137,7 @@
         </div>
 
         <div class="rounded-[18px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
-            <span class="block text-[1.45rem] font-extrabold leading-none tracking-[-0.02em] [color:var(--ios-blue)]">
+            <span class="block text-[1.45rem] font-extrabold leading-none tracking-normal [color:var(--ios-blue)]">
                 {formatNumber(
                     hasContributionCalendar
                         ? pulse.calendar.activeWeeks
@@ -163,7 +163,7 @@
             <div class="flex min-w-0 items-center gap-2">
                 <RadioIcon class="size-3.5 shrink-0 [color:var(--ios-blue)]" />
                 <p class="truncate text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]">
-                    Contribution Map
+                    Last 30 Days
                 </p>
             </div>
             <span class="apple-chip shrink-0 px-2 py-[3px] text-[0.62rem]">
@@ -210,7 +210,7 @@
         <section class="grid gap-2.5">
             <div class="flex items-center justify-between gap-3">
                 <p class="text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]">
-                    Repo Signal
+                    Repository Signal
                 </p>
                 <span class="apple-chip shrink-0 px-2 py-[3px] text-[0.62rem]">
                     Updated {fetchedLabel}

@@ -4,107 +4,134 @@ export const experience: Experience[] = [
     {
         company: "Vantage Financial Corporation",
         role: "Analyst Programmer",
-        period: "August 2023 – Present",
-        highlights: ["Solo Backend Developer", "Financial Systems", "Cross-team Liaison"],
+        period: "Aug 2023 - Present",
+        highlights: [
+            "Solo Backend Developer",
+            "Financial Systems",
+            "Cross-team Liaison",
+        ],
         categories: [
             {
                 title: "System Development",
                 tabTitle: "Development",
                 bullets: [
                     {
-                        text: "Solely responsible for end-to-end backend development of a client-facing system, including data modeling, API design and implementation, business logic, frontend integration, and PDF report generation.",
-                        stack: ["Angular", ".NET Web API", "PostgreSQL", "QuestPDF"]
+                        text: "Owned backend delivery for a client-facing investor portal, including data modeling, API design, business logic, frontend integration, and PDF report generation.",
+                        stack: [
+                            "Angular",
+                            ".NET Web API",
+                            "PostgreSQL",
+                            "QuestPDF",
+                        ],
                     },
                     {
-                        text: "Designed and implemented an in-house system integrated with a legacy Oracle database, automating manual transaction counter-checks and approval validation, improving accuracy and efficiency for an 8-person team.",
-                        stack: ["Alpine.js", "ASP.NET MVC", "Oracle SQL", "RDLC"]
+                        text: "Built an internal tool on top of a legacy Oracle database, automating transaction checks and approval validation for an 8-person operations workflow.",
+                        stack: [
+                            "Alpine.js",
+                            "ASP.NET MVC",
+                            "Oracle SQL",
+                            "RDLC",
+                        ],
                     },
                     {
-                        text: "Designed and implemented core access-control modules for an internal report-generation system, including user account management, RBAC, password recovery and enforcement, and dynamic role-driven navigation.",
-                        stack: ["HTML/CSS/jQuery", "ASP.NET Web Forms", "MS SQL", "RDLC"]
-                    }
-                ]
+                        text: "Implemented access-control modules for an internal reporting system, including user management, RBAC, password recovery, password policy enforcement, and role-driven navigation.",
+                        stack: [
+                            "HTML/CSS/jQuery",
+                            "ASP.NET Web Forms",
+                            "MS SQL",
+                            "RDLC",
+                        ],
+                    },
+                ],
             },
             {
                 title: "Data Management",
                 tabTitle: "Data",
                 bullets: [
                     {
-                        text: "Identified and resolved a data type issue in the transaction archiving process, enabling the successful migration of 3M+ transaction records (2021–2024) from production to archive and reducing production database load.",
-                        stack: ["MS SQL"]
+                        text: "Resolved a data type issue in transaction archiving, enabling 3M+ records from 2021 to 2024 to move from production to archive safely.",
+                        stack: ["MS SQL"],
                     },
                     {
-                        text: "Enhanced a transaction settlement system by implementing end-to-end audit logging across multi-step settlement workflows (rollback, data retrieval, processing, and settlement), introducing soft-deletion for traceability and root-cause analysis.",
-                        stack: ["ASP.NET Web Forms", "VB.NET", "MS SQL"]
-                    }
-                ]
+                        text: "Added audit logging across rollback, retrieval, processing, and settlement flows, with soft deletion for traceability and root-cause analysis.",
+                        stack: ["ASP.NET Web Forms", "VB.NET", "MS SQL"],
+                    },
+                ],
             },
             {
                 title: "Production Support",
                 tabTitle: "Support",
                 bullets: [
                     {
-                        text: "Maintained and supported 4 legacy production systems, solely designed and developed 1 internal web application, and solely built the backend API and database schema for 1 client-facing application.",
-                        stack: []
+                        text: "Maintained 4 legacy production systems while designing 1 internal web app and building the backend API and schema for 1 client-facing application.",
+                        stack: [],
                     },
                     {
-                        text: "Maintained continuous delivery with 60+ production deployments over ~2 years, including new system rollouts, enhancements, and fixes.",
-                        stack: []
-                    }
-                ]
+                        text: "Maintained continuous delivery with 60+ production deployments over roughly 2 years, including new rollouts, enhancements, and fixes.",
+                        stack: [],
+                    },
+                ],
             },
             {
                 title: "System Analysis",
                 tabTitle: "Analysis",
                 bullets: [
                     {
-                        text: "Acted as a technical liaison, translating business requirements across settlement, accounting, sales, and operations into clear technical specifications and system implementations.",
-                        stack: []
+                        text: "Translated requirements across settlement, accounting, sales, and operations into technical specifications and system implementations.",
+                        stack: [],
                     },
                     {
-                        text: "Analyzed and reverse-engineered legacy codebases to produce maintainable, code-aligned documentation, supporting a docs-as-code initiative spanning 300+ system modules.",
-                        stack: []
-                    }
-                ]
-            }
-        ]
+                        text: "Reverse-engineered legacy codebases into maintainable documentation, supporting a docs-as-code initiative across 300+ system modules.",
+                        stack: [],
+                    },
+                ],
+            },
+        ],
     },
     {
         company: "EastWest Banking Corporation",
         role: "Software QA Tester Intern",
-        period: "April 2023 – July 2023",
-        highlights: ["Manual & Automated Testing", "Bug Documentation", "Cross-team Collaboration"],
+        period: "Apr 2023 - Jul 2023",
+        highlights: [
+            "Manual & Automated Testing",
+            "Bug Documentation",
+            "Cross-team Collaboration",
+        ],
         categories: [
             {
                 title: "Testing & Quality Assurance",
                 bullets: [
                     {
-                        text: "Conducted manual and automated testing of software applications, identifying and documenting bugs and issues.",
-                        stack: []
+                        text: "Conducted manual and automated testing of banking software, identifying bugs and documenting issues clearly enough for development handoff.",
+                        stack: [],
                     },
                     {
-                        text: "Collaborated with development teams to ensure quality standards and compliance with project requirements.",
-                        stack: []
-                    }
-                ]
-            }
-        ]
+                        text: "Collaborated with development teams to verify requirements, test fixes, and keep quality standards visible across the delivery cycle.",
+                        stack: [],
+                    },
+                ],
+            },
+        ],
     },
     {
         company: "University of Makati",
         role: "Computer Science Student",
-        period: "August 2019 – August 2023",
-        highlights: ["BS Computer Science", "Unity 2D Thesis Game", "Application Development Major"],
+        period: "Aug 2019 - Aug 2023",
+        highlights: [
+            "BS Computer Science",
+            "Unity 2D Thesis Game",
+            "Application Development Major",
+        ],
         categories: [
             {
                 title: "Thesis Project: Educational Game Development",
                 bullets: [
                     {
-                        text: "Designed and developed a 2D game using Unity and C#, implementing educational gameplay mechanics targeting pre-school students.",
-                        stack: ["Unity", "C#", "Pathfinding Algorithms"]
-                    }
-                ]
-            }
-        ]
-    }
+                        text: "Designed and developed a 2D educational game in Unity and C#, applying pathfinding and gameplay pacing for preschool learning flows.",
+                        stack: ["Unity", "C#", "Pathfinding Algorithms"],
+                    },
+                ],
+            },
+        ],
+    },
 ];

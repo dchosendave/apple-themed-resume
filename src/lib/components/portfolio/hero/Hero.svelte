@@ -75,7 +75,7 @@
                 <span
                     class="size-1.5 shrink-0 rounded-full bg-[var(--ios-blue)] shadow-[0_0_8px_color-mix(in_srgb,var(--ios-blue)_55%,transparent)]"
                 ></span>
-                Open to opportunities
+                Available for engineering roles
             </span>
 
             <span class="lowie-warm-chip px-2.5 py-[5px]" title={personalInfo.location}>

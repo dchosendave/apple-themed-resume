@@ -21,9 +21,9 @@
     <div class="flex items-start justify-between gap-3">
         <div class="min-w-0">
             <p class="apple-section-title mb-1">Work Timeline</p>
-            <!-- <p class="max-w-[40ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                A recruiter-speed pass through backend ownership, legacy support, and the work environments that shaped how I ship.
-            </p> -->
+            <p class="max-w-[46ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                Backend ownership, legacy support, QA discipline, and the work environments that shaped how I ship.
+            </p>
         </div>
         <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
             {timelineEntries.length}
@@ -32,9 +32,13 @@
     </div>
 
     <ol class="grid gap-3">
-        {#each timelineEntries as job (job.company)}
+        {#each timelineEntries as job, index (job.company)}
             <li
-                class="rounded-[22px] border p-4 sm:p-5 [background:color-mix(in_srgb,var(--ios-chip-bg)_74%,transparent)] [border-color:var(--ios-glass-border)]"
+                class={[
+                    "rounded-[22px] border p-4 transition-[background,border-color] duration-200 sm:p-5 [background:color-mix(in_srgb,var(--ios-chip-bg)_74%,transparent)] [border-color:var(--ios-glass-border)]",
+                    index === 0 &&
+                        "[background:color-mix(in_srgb,var(--ios-chip-bg)_60%,var(--ios-stat-bg))] [border-color:color-mix(in_srgb,var(--ios-blue)_22%,var(--ios-glass-border))]",
+                ]}
             >
                 <article class="space-y-4">
                     <div
@@ -49,6 +53,11 @@
 
                             <div class="min-w-0 space-y-2">
                                 <div class="space-y-1.5">
+                                    {#if index === 0}
+                                        <p class="text-[0.62rem] font-semibold uppercase tracking-[0.08em] [color:var(--ios-text-tertiary)]">
+                                            Current role
+                                        </p>
+                                    {/if}
                                     <h2
                                         class="text-[1rem] font-semibold leading-[1.3] [color:var(--ios-text-primary)]"
                                     >
@@ -92,7 +101,7 @@
                                 {#each job.categories as category (category.title)}
                                     <Tabs.Trigger
                                         value={category.title}
-                                        class="h-8 min-w-[5.25rem] shrink-0 rounded-[12px] px-3 text-[0.72rem] font-semibold [color:var(--ios-text-secondary)] hover:[color:var(--ios-text-primary)] focus-visible:[box-shadow:0_0_0_2px_color-mix(in_srgb,var(--ios-blue)_22%,transparent)] data-[state=active]:[background:var(--ios-blue)] data-[state=active]:[color:#fff] data-[state=active]:shadow-[0_10px_24px_color-mix(in_srgb,var(--ios-blue)_20%,transparent)] dark:data-[state=active]:[color:#071008]"
+                                        class="h-8 min-w-[5.25rem] shrink-0 rounded-[12px] px-3 text-[0.72rem] font-semibold [color:var(--ios-text-secondary)] hover:[color:var(--ios-text-primary)] focus-visible:[box-shadow:0_0_0_2px_color-mix(in_srgb,var(--ios-blue)_22%,transparent)] data-[state=active]:[background:var(--ios-blue)] data-[state=active]:[color:var(--ios-bg)] data-[state=active]:shadow-[0_10px_24px_color-mix(in_srgb,var(--ios-blue)_20%,transparent)]"
                                     >
                                         {category.tabTitle ?? category.title}
                                     </Tabs.Trigger>

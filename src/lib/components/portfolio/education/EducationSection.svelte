@@ -4,22 +4,35 @@
 </script>
 
 <PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
-    <p
-        class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
-    >
-        Credentials
-    </p>
+    <div class="mb-3 flex items-start justify-between gap-3">
+        <div class="min-w-0">
+            <p class="apple-section-title mb-1">Credentials</p>
+            <p class="max-w-[42ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                Formal background and database credential behind the production work.
+            </p>
+        </div>
+        <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
+            {education.length}
+        </span>
+    </div>
 
     <div class="flex flex-col gap-2 sm:gap-[10px]">
         {#each education as item (item.degree)}
             <div
-                class="flex flex-wrap items-start gap-3 rounded-[18px] border px-3 py-[11px] sm:flex-nowrap sm:px-[14px] sm:py-3 [background:color-mix(in_srgb,var(--ios-chip-bg)_92%,transparent)] [border-color:var(--ios-glass-border)]"
+                class="flex flex-wrap items-start gap-3 rounded-[18px] border px-3 py-[11px] sm:flex-nowrap sm:px-[14px] sm:py-3 [background:color-mix(in_srgb,var(--ios-chip-bg)_82%,transparent)] [border-color:var(--ios-glass-border)]"
             >
-                <span class="shrink-0 pt-0.5 text-[1.2rem]">{item.icon}</span>
+                <span
+                    class="inline-flex size-9 shrink-0 items-center justify-center rounded-full border text-[0.68rem] font-bold [background:var(--ios-stat-bg)] [border-color:color-mix(in_srgb,var(--ios-blue)_24%,transparent)] [color:var(--ios-blue)]"
+                >
+                    {item.icon}
+                </span>
 
                 <div class="min-w-0 flex-1">
                     <div class="text-[0.84rem] font-semibold leading-[1.4] [color:var(--ios-text-primary)]">
                         {item.degree}
+                    </div>
+                    <div class="text-[0.72rem] leading-[1.45] [color:var(--ios-text-tertiary)]">
+                        {item.major}
                     </div>
                     <div class="text-[0.76rem] leading-[1.45] [color:var(--ios-text-secondary)]">
                         {item.school}

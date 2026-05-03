@@ -52,17 +52,20 @@
         <div>
             <p class="apple-section-title mb-1">Field Notes</p>
             <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Short notes on systems, product tradeoffs, and production lessons.
+                Short technical memos on systems, tradeoffs, and production lessons.
             </p>
         </div>
 
-        <span class="apple-chip shrink-0 text-[0.64rem]">{technicalNotes.length}</span>
+        <span class="apple-chip shrink-0 text-[0.64rem]">
+            {technicalNotes.length} memos
+        </span>
     </div>
 
     <div class="flex flex-col gap-2.5">
-        {#each technicalNotes as note (note.slug)}
+        {#each technicalNotes as note, index (note.slug)}
             <TechnicalNoteCard
                 {note}
+                order={(index + 1).toString().padStart(2, "0")}
                 isOpening={openingNoteSlug === note.slug}
                 onselect={openNote}
             />

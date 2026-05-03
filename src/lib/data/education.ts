@@ -6,35 +6,13 @@ export const education: Education[] = [
         major: "Major in Application Development",
         school: "University of Makati, Makati City",
         period: "August 2023",
-        icon: "🎓"
+        icon: "CS",
     },
     {
-        degree: "IT Specialist – Databases",
+        degree: "IT Specialist: Databases",
         major: "Certification",
         school: "Certiport",
         period: "January 2023",
-        icon: "🏅"
-    }
-    // ,
-    // {
-    //     degree: "Introduction to Responsible AI",
-    //     major: "Certification",
-    //     school: "Google Skills",
-    //     period: "January 2026",
-    //     icon: "🏅"
-    // },
-    // {
-    //     degree: "Introduction to Large Language Models",
-    //     major: "Certification",
-    //     school: "Google Skills",
-    //     period: "January 2026",
-    //     icon: "🏅"
-    // },
-    // {
-    //     degree: "Introduction to Generative AI",
-    //     major: "Certification",
-    //     school: "Google Skills",
-    //     period: "January 2026",
-    //     icon: "🏅"
-    // }
+        icon: "DB",
+    },
 ];

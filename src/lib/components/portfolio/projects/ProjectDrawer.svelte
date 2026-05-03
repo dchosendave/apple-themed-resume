@@ -9,7 +9,13 @@
     import ProjectDetailSection from "$lib/components/portfolio/projects/ProjectDetailSection.svelte";
     import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
 
-    let { project, onclose }: { project: Project | null; onclose: () => void } = $props();
+    let {
+        project,
+        onclose,
+    }: {
+        project: Project | null;
+        onclose: () => void;
+    } = $props();
 
     let viewportWidth = $state(0);
 
@@ -30,15 +36,34 @@
             class="apple-panel-surface gap-0 p-0 data-[side=bottom]:h-[85dvh] data-[side=bottom]:rounded-t-[24px] data-[side=right]:h-[100dvh] data-[side=right]:w-full data-[side=right]:max-w-[30rem]"
         >
             <div class="flex h-full flex-col">
-                <div class="flex items-start justify-between gap-4 px-6 pb-4 pt-6 sm:px-7">
+                <div
+                    class="flex items-start justify-between gap-4 px-6 pb-4 pt-6 sm:px-7"
+                >
                     <div class="min-w-0 space-y-3">
+                        <p class="apple-section-title mb-0">
+                            Project Case File
+                        </p>
+
                         <div class="flex flex-wrap items-center gap-2">
                             <Sheet.Title
-                                class="text-xl font-semibold tracking-[-0.02em] [color:var(--ios-text-primary)]"
+                                class="text-xl font-semibold tracking-normal [color:var(--ios-text-primary)]"
                             >
                                 {project.name}
                             </Sheet.Title>
                             <span class="apple-badge">{project.category}</span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            {#if project.signal}
+                                <span class="apple-badge text-[0.64rem]">
+                                    {project.signal}
+                                </span>
+                            {/if}
+                            {#if project.role}
+                                <span class="apple-chip text-[0.64rem]">
+                                    {project.role}
+                                </span>
+                            {/if}
                         </div>
 
                         <Sheet.Description
@@ -64,9 +89,19 @@
                 <div class="flex-1 overflow-y-auto px-6 py-5 sm:px-7">
                     {#if project.problem || project.solution || project.impact}
                         <div class="grid gap-4">
-                            <ProjectDetailSection title="Problem" body={project.problem} />
-                            <ProjectDetailSection title="Solution" body={project.solution} />
-                            <ProjectDetailSection title="Impact" body={project.impact} />
+                            {#each [
+                                { title: "Problem", body: project.problem },
+                                { title: "Solution", body: project.solution },
+                                { title: "Impact", body: project.impact },
+                            ] as section, index (section.title)}
+                                <ProjectDetailSection
+                                    title={section.title}
+                                    body={section.body}
+                                    order={(index + 1)
+                                        .toString()
+                                        .padStart(2, "0")}
+                                />
+                            {/each}
                         </div>
                     {/if}
 
@@ -82,7 +117,9 @@
 
                 <Separator class="[background-color:var(--ios-separator)]" />
 
-                <div class="flex flex-wrap items-center justify-between gap-3 px-6 py-4 sm:px-7">
+                <div
+                    class="flex flex-wrap items-center justify-between gap-3 px-6 py-4 sm:px-7"
+                >
                     {#if project.url}
                         <a
                             href={project.url}

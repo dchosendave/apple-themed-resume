@@ -1,11 +1,17 @@
 <script lang="ts">
-    import ArrowUpRightIcon from '@lucide/svelte/icons/arrow-up-right';
-    import ClockIcon from '@lucide/svelte/icons/clock';
-    import type { TechnicalNote } from '$lib/types/technical-note';
+    import ArrowUpRightIcon from "@lucide/svelte/icons/arrow-up-right";
+    import ClockIcon from "@lucide/svelte/icons/clock";
+    import type { TechnicalNote } from "$lib/types/technical-note";
 
-    let { note, onselect, isOpening = false }: {
+    let {
+        note,
+        onselect,
+        order,
+        isOpening = false,
+    }: {
         note: TechnicalNote;
         onselect: (note: TechnicalNote) => void;
+        order?: string;
         isOpening?: boolean;
     } = $props();
 </script>
@@ -14,7 +20,7 @@
     class={[
         "field-note-card group/note relative flex w-full flex-col gap-2 overflow-hidden rounded-[18px] border px-3.5 py-3 text-left [background:color-mix(in_srgb,var(--ios-chip-bg)_92%,transparent)] [border-color:var(--ios-glass-border)] transition-[background,border-color,transform,box-shadow] duration-150 hover:-translate-y-px hover:[background:color-mix(in_srgb,var(--ios-chip-bg)_78%,var(--ios-stat-bg))] hover:[border-color:color-mix(in_srgb,var(--ios-blue)_35%,transparent)] active:scale-[0.99] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)] motion-reduce:transform-none motion-reduce:transition-colors",
         isOpening &&
-            "field-note-card--opening [border-color:color-mix(in_srgb,var(--ios-blue)_50%,transparent)] shadow-[0_12px_28px_rgba(45,120,255,0.14)]"
+            "field-note-card--opening [border-color:color-mix(in_srgb,var(--ios-blue)_50%,transparent)] shadow-[0_12px_28px_color-mix(in_srgb,var(--ios-blue)_14%,transparent)]",
     ]}
     onclick={() => onselect(note)}
     type="button"
@@ -26,18 +32,34 @@
     {/if}
 
     <div class="flex items-center justify-between gap-3">
-        <span class="apple-badge text-[0.62rem]">{note.category}</span>
-        <span class="inline-flex items-center gap-1 text-[0.66rem] [color:var(--ios-text-tertiary)]">
+        <div class="flex min-w-0 items-center gap-2">
+            {#if order}
+                <span
+                    class="text-[0.62rem] font-semibold [color:var(--ios-text-tertiary)]"
+                >
+                    {order}
+                </span>
+            {/if}
+            <span class="apple-badge text-[0.62rem]">{note.category}</span>
+        </div>
+
+        <span
+            class="inline-flex items-center gap-1 text-[0.66rem] [color:var(--ios-text-tertiary)]"
+        >
             <ClockIcon class="size-3" />
             {note.readTime}
         </span>
     </div>
 
     <div class="flex items-start justify-between gap-3">
-        <h3 class="text-[0.84rem] font-semibold leading-[1.35] [color:var(--ios-text-primary)]">
+        <h3
+            class="text-[0.84rem] font-semibold leading-[1.35] [color:var(--ios-text-primary)]"
+        >
             {note.title}
         </h3>
-        <ArrowUpRightIcon class="mt-0.5 size-3.5 shrink-0 [color:var(--ios-blue)] opacity-70 transition-[opacity,transform] duration-150 group-hover/note:-translate-y-0.5 group-hover/note:translate-x-0.5 group-hover/note:opacity-100" />
+        <ArrowUpRightIcon
+            class="mt-0.5 size-3.5 shrink-0 [color:var(--ios-blue)] opacity-70 transition-[opacity,transform] duration-150 group-hover/note:-translate-y-0.5 group-hover/note:translate-x-0.5 group-hover/note:opacity-100"
+        />
     </div>
 
     <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
@@ -49,6 +71,12 @@
             <span class="apple-chip px-2 py-[3px] text-[0.6rem]">{tag}</span>
         {/each}
     </div>
+
+    <span
+        class="text-[0.66rem] font-semibold [color:var(--ios-blue)] opacity-75 transition-opacity duration-150 group-hover/note:opacity-100"
+    >
+        Read memo
+    </span>
 </button>
 
 <style>
@@ -66,7 +94,11 @@
         inset: 0;
         border-radius: inherit;
         background:
-            radial-gradient(circle at 22% 20%, color-mix(in srgb, var(--ios-blue) 18%, transparent), transparent 42%),
+            radial-gradient(
+                circle at 22% 20%,
+                color-mix(in srgb, var(--ios-blue) 18%, transparent),
+                transparent 42%
+            ),
             color-mix(in srgb, var(--ios-blue) 7%, transparent);
         animation: field-note-wash 140ms ease-out both;
     }

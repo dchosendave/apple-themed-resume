@@ -12,28 +12,28 @@
             "Systems Built & Enhanced",
             {
                 signal: "Build range",
-                note: "Client-facing portals, internal tools, and workflow fixes carried from idea to working release.",
+                note: "Client-facing portals, internal tools, and workflow fixes carried into real use.",
             },
         ],
         [
             "Production Deployments",
             {
                 signal: "Release rhythm",
-                note: "Shipped carefully, often inside legacy-heavy environments where small mistakes are expensive.",
+                note: "Careful releases inside legacy-heavy environments where small mistakes are expensive.",
             },
         ],
         [
             "Legacy Systems Supported",
             {
                 signal: "Stability work",
-                note: "Older stacks kept dependable while new requirements, fixes, and investigations keep moving.",
+                note: "Older stacks kept dependable while new fixes, requirements, and investigations moved.",
             },
         ],
         [
             "Modules Documented",
             {
                 signal: "Handoff care",
-                note: "Documentation written so future maintenance, onboarding, and recovery do not start from guesswork.",
+                note: "Code-aligned documentation for maintenance, onboarding, and recovery work.",
             },
         ],
     ]);
@@ -51,25 +51,25 @@
     const labNotes = [
         {
             label: "Fuel",
-            note: "Two coffees a day, usually around the point where production edge cases start showing themselves.",
+            note: "Usually two coffees a day, timed suspiciously close to production edge cases.",
             icon: CoffeeIcon,
             iconClass: "[color:var(--lowie-coffee)]",
         },
         {
             label: "Soundtrack",
-            note: "Hands All Over by Maroon 5 is still my default coding album when I want steady focus.",
+            note: "Hands All Over by Maroon 5 is still the steady-focus album.",
             icon: Music2Icon,
             iconClass: "[color:var(--ios-blue)]",
         },
         {
             label: "Off-hours",
-            note: "Story-heavy RPGs and offline games keep me curious about pacing, systems, and player flow.",
+            note: "Story-heavy RPGs keep me curious about pacing, systems, and user flow.",
             icon: Gamepad2Icon,
             iconClass: "[color:var(--ios-blue)]",
         },
         {
             label: "Current mode",
-            note: "Strengthening fundamentals on purpose, because tools change fast and first principles stay useful.",
+            note: "Strengthening fundamentals on purpose because tools change fast.",
             icon: SparklesIcon,
             iconClass: "[color:var(--lowie-warm)]",
         },
@@ -81,9 +81,9 @@
         <div class="flex items-start justify-between gap-3">
             <div class="min-w-0">
                 <p id="proof-ledger-title" class="apple-section-title mb-1">Proof Ledger</p>
-                <!-- <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                    A recruiter-speed read on delivery breadth, release rhythm, legacy ownership, and handoff care.
-                </p> -->
+                <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                    Delivery breadth, release rhythm, legacy ownership, and handoff care.
+                </p>
             </div>
             <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">4 signals</span>
         </div>
@@ -121,7 +121,7 @@
 
                             <div class="shrink-0 text-right">
                                 <span
-                                    class="block text-[1.22rem] font-extrabold leading-none tracking-[-0.02em] [color:var(--ios-blue)]"
+                                    class="block text-[1.22rem] font-extrabold leading-none tracking-normal [color:var(--ios-blue)]"
                                     use:countUp={stat.value}
                                 ></span>
                                 <span
@@ -143,7 +143,7 @@
     >
         <div class="flex items-start justify-between gap-3">
             <div class="min-w-0">
-                <p id="now-brewing-title" class="apple-section-title mb-1">In the Lab</p>
+                <p id="now-brewing-title" class="apple-section-title mb-1">Working Style</p>
                 <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                     Small habits around the work, what keeps me steady, and what I am sharpening next.
                 </p>

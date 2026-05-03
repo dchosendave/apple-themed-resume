@@ -23,11 +23,11 @@
 
     let message = $derived(
         prompt === "email"
-            ? "Happy to chat about roles, systems, or product ideas. Email works best."
+            ? "Email works best for roles, systems questions, or a quick first conversation."
             : prompt === "linkedin"
-                ? "Want the full story behind my work? Let's connect on LinkedIn."
+                ? "LinkedIn has the longer work trail if you want more context before reaching out."
                 : prompt === "github"
-                    ? "A few public builds live here if you want to see how I think in code."
+                    ? "Public builds live here if you want to inspect how I think in code."
                     : prompt === "visit-morning"
                         ? "Coffee first?"
                         : prompt === "visit-afternoon"

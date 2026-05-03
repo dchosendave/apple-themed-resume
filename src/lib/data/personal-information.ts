@@ -10,4 +10,4 @@ export const personalInfo: PersonalInformation = {
     resumePdf: "/ldd-resume-january-2026-v2.pdf"
 }
 
-export const professionalFocus = "Curious to see what sets me apart from them? Read on to find out more about my background and the unique value I can bring to your team.";
+export const professionalFocus = "Full-stack software engineer building finance-grade systems where correctness, handoff clarity, and calm delivery matter. I turn messy workflows into dependable portals, APIs, reports, and documentation recruiters can verify fast.";

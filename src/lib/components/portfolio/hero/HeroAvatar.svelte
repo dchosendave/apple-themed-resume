@@ -110,7 +110,7 @@
             <div
                 aria-hidden="true"
                 class={[
-                    "pointer-events-none absolute inset-x-[20%] bottom-[10%] z-[2] rounded-full border px-2 py-1 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] text-white transition-all duration-300 motion-reduce:transition-none sm:text-[0.58rem]",
+                    "pointer-events-none absolute inset-x-[20%] bottom-[10%] z-[2] rounded-full border px-2 py-1 text-center text-[0.52rem] font-semibold uppercase tracking-[0.18em] [color:var(--ios-bg)] transition-all duration-300 motion-reduce:transition-none sm:text-[0.58rem]",
                     commandModeActive
                         ? "translate-y-0 opacity-100"
                         : "translate-y-2 opacity-0",
@@ -144,7 +144,7 @@
                     ? "translate-y-0 scale-100 opacity-100"
                     : "translate-y-1 scale-90 opacity-0",
                 searchModeActive
-                    ? "border-[rgba(183,228,199,0.32)] bg-[rgba(47,70,53,0.88)] text-white"
+                    ? "border-[rgba(183,228,199,0.32)] bg-[rgba(47,70,53,0.88)] [color:var(--ios-bg)]"
                     : "border-[rgba(183,228,199,0.22)] bg-[rgba(255,255,255,0.76)] [color:var(--ios-blue)] dark:bg-[rgba(11,19,13,0.78)]",
             ]}
         >
@@ -152,7 +152,7 @@
                 class={[
                     "size-1.5 rounded-full",
                     searchModeActive
-                        ? "animate-pulse bg-white"
+                        ? "animate-pulse bg-[var(--ios-bg)]"
                         : "bg-[var(--ios-blue)]",
                 ]}
             ></span>
