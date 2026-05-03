@@ -1,6 +1,7 @@
 <script lang="ts">
     import { onDestroy } from "svelte";
     import { MediaQuery } from "svelte/reactivity";
+    import type { ClassValue } from "svelte/elements";
     import { technicalNotes } from "$lib/data/technical-notes";
     import type { TechnicalNote } from "$lib/types/technical-note";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
@@ -9,6 +10,14 @@
 
     const NOTE_OPEN_DELAY_MS = 140;
     const reduceMotion = new MediaQuery("prefers-reduced-motion: reduce", false);
+
+    let {
+        variant = "compact",
+        class: className,
+    }: {
+        variant?: "compact" | "page";
+        class?: ClassValue;
+    } = $props();
 
     let selectedNote = $state<TechnicalNote | null>(null);
     let openingNoteSlug = $state<string | null>(null);
@@ -47,12 +56,25 @@
     onDestroy(clearOpenNoteTimer);
 </script>
 
-<PortfolioCard class="flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
+<PortfolioCard
+    class={[
+        "flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]",
+        variant === "page" && "gap-5",
+        className,
+    ]}
+>
     <div class="flex items-start justify-between gap-3">
-        <div>
+        <div class="min-w-0">
             <p class="apple-section-title mb-1">Field Notes</p>
-            <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Short technical memos on systems, tradeoffs, and production lessons.
+            <p
+                class={[
+                    "text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]",
+                    variant === "page" && "max-w-[58ch]",
+                ]}
+            >
+                {variant === "page"
+                    ? "Technical memos from production work, written around the tradeoffs, risks, and lessons behind the portfolio proof."
+                    : "Short technical memos on systems, tradeoffs, and production lessons."}
             </p>
         </div>
 
@@ -61,7 +83,13 @@
         </span>
     </div>
 
-    <div class="flex flex-col gap-2.5">
+    <div
+        class={[
+            variant === "page"
+                ? "grid gap-3 md:grid-cols-2 xl:grid-cols-3"
+                : "flex flex-col gap-2.5",
+        ]}
+    >
         {#each technicalNotes as note, index (note.slug)}
             <TechnicalNoteCard
                 {note}

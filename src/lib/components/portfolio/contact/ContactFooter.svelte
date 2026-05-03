@@ -28,6 +28,13 @@
             {personalInfo.name}
         </span>
 
+        <a
+            href="/notes"
+            class="text-[0.72rem] font-semibold no-underline [color:var(--ios-text-secondary)] transition-colors duration-150 hover:[color:var(--ios-blue)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[var(--ios-blue)] focus-visible:ring-offset-2 focus-visible:ring-offset-[var(--ios-bg)]"
+        >
+            Notes
+        </a>
+
         <span class="text-[0.75rem] opacity-50 [color:var(--ios-text-secondary)]">
             &middot;
         </span>
