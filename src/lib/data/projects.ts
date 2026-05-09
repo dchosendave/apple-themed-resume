@@ -15,7 +15,7 @@ export const projects: Project[] = [
         solution:
             "Built a full-stack self-service portal. I owned backend API design, data modeling, business logic, frontend integration, and PDF report generation using QuestPDF.",
         impact:
-            "Fully replaced manual back-office workflows for investor account management. Live in production at Philequity, serving real investors.",
+            "Replaced manual back-office workflows for investor account management. Live in production at Philequity, serving real investors.",
     },
     {
         name: "LOI Generator",
@@ -30,7 +30,7 @@ export const projects: Project[] = [
         solution:
             "Designed and built an in-house system integrated with the legacy Oracle database that automates transaction checks, approval validation, and LOI document generation.",
         impact:
-            "Eliminated manual LOI drafting for the team, improving accuracy and reducing turnaround time on a daily operational workflow.",
+            "Removed manual LOI drafting from the team's daily workflow and made transaction validation reproducible.",
     },
     {
         name: "Report Generator",
@@ -45,7 +45,7 @@ export const projects: Project[] = [
         solution:
             "Designed and implemented core access-control modules including user account management, RBAC, password recovery and enforcement, and dynamic role-driven navigation.",
         impact:
-            "Replaced fragile manual SQL-based provisioning with a proper IAM system, improving security posture and reducing admin overhead for the internal reporting platform.",
+            "Replaced ad-hoc SQL provisioning with a reviewable IAM workflow. Role assignments, password rules, and access changes now happen through the application instead of direct database edits.",
     },
     {
         name: "Dave Delivers",
@@ -61,6 +61,6 @@ export const projects: Project[] = [
         solution:
             "Built a macOS-inspired interactive portfolio with a simulated desktop environment, a working CLI interface, easter eggs, and a persistent SQLite backend via Turso.",
         impact:
-            "A living showcase of skills beyond what a resume communicates, used as a conversation starter in job applications and technical interviews.",
+            "A living showcase of frontend craft beyond what a static resume can communicate, used as a conversation starter in job applications and interviews.",
     },
 ];

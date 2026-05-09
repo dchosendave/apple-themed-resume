@@ -25,7 +25,7 @@ export const experience: Experience[] = [
                         ],
                     },
                     {
-                        text: "Built an internal tool on top of a legacy Oracle database, automating transaction checks and approval validation for an 8-person operations workflow.",
+                        text: "Built an internal tool on top of a legacy Oracle database, automating transaction checks and approval validation for an 8-person operations workflow. Picked Alpine.js to keep the stack lean — no SPA build on top of ASP.NET MVC.",
                         stack: [
                             "Alpine.js",
                             "ASP.NET MVC",
@@ -34,7 +34,7 @@ export const experience: Experience[] = [
                         ],
                     },
                     {
-                        text: "Implemented access-control modules for an internal reporting system, including user management, RBAC, password recovery, password policy enforcement, and role-driven navigation.",
+                        text: "Implemented access-control modules for an internal reporting system, including user management, RBAC, password recovery, password policy enforcement, and role-driven navigation. Built in-house rather than integrating a third-party IAM into the existing Web Forms app.",
                         stack: [
                             "HTML/CSS/jQuery",
                             "ASP.NET Web Forms",
@@ -63,11 +63,11 @@ export const experience: Experience[] = [
                 tabTitle: "Support",
                 bullets: [
                     {
-                        text: "Maintained 4 legacy production systems while designing 1 internal web app and building the backend API and schema for 1 client-facing application.",
+                        text: "Built backend API and schema for one client-facing application and designed one internal web app, while keeping four legacy production systems stable.",
                         stack: [],
                     },
                     {
-                        text: "Maintained continuous delivery with 60+ production deployments over roughly 2 years, including new rollouts, enhancements, and fixes.",
+                        text: "Shipped 60+ production deployments over roughly 2 years, spanning new rollouts, enhancements, and fixes.",
                         stack: [],
                     },
                 ],
@@ -77,11 +77,11 @@ export const experience: Experience[] = [
                 tabTitle: "Analysis",
                 bullets: [
                     {
-                        text: "Translated requirements across settlement, accounting, sales, and operations into technical specifications and system implementations.",
+                        text: "Designed APIs and workflows that settlement, accounting, sales, and operations teams could agree on and ship against.",
                         stack: [],
                     },
                     {
-                        text: "Reverse-engineered legacy codebases into maintainable documentation, supporting a docs-as-code initiative across 300+ system modules.",
+                        text: "Documented 300+ system modules from legacy codebases as part of a docs-as-code initiative, giving the team a reliable reference for handoff, onboarding, and audit work.",
                         stack: [],
                     },
                 ],
@@ -106,7 +106,7 @@ export const experience: Experience[] = [
                         stack: [],
                     },
                     {
-                        text: "Collaborated with development teams to verify requirements, test fixes, and keep quality standards visible across the delivery cycle.",
+                        text: "Wrote bug reports and reproduction steps clear enough for development handoff, and verified fixes against the original requirements.",
                         stack: [],
                     },
                 ],

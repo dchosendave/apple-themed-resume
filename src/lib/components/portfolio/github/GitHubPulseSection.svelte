@@ -197,7 +197,9 @@
             </div>
         {/if}
 
-        <GitHubContributionGrid weeks={pulse.calendar.weeks} />
+        <div class="block min-[901px]:hidden min-[1101px]:block">
+            <GitHubContributionGrid weeks={pulse.calendar.weeks} />
+        </div>
 
         {#if pulse.message}
             <p class="mt-2 text-[0.68rem] leading-[1.45] [color:var(--ios-text-tertiary)]">

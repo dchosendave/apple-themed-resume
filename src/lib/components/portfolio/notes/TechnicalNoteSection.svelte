@@ -15,9 +15,12 @@
         variant = "compact",
         class: className,
     }: {
-        variant?: "compact" | "page";
+        variant?: "compact" | "page" | "teaser";
         class?: ClassValue;
     } = $props();
+
+    const teaserNotes = variant === "teaser" ? technicalNotes.slice(0, 1) : technicalNotes;
+    const remainingCount = technicalNotes.length - teaserNotes.length;
 
     let selectedNote = $state<TechnicalNote | null>(null);
     let openingNoteSlug = $state<string | null>(null);
@@ -72,9 +75,13 @@
                     variant === "page" && "max-w-[58ch]",
                 ]}
             >
-                {variant === "page"
-                    ? "Technical memos from production work, written around the tradeoffs, risks, and lessons behind the portfolio proof."
-                    : "Short technical memos on systems, tradeoffs, and production lessons."}
+                {#if variant === "page"}
+                    Technical memos from production work, written around the tradeoffs, risks, and lessons behind the portfolio proof.
+                {:else if variant === "teaser"}
+                    A featured memo from production work — the rest live on the field notes page.
+                {:else}
+                    Short technical memos on systems, tradeoffs, and production lessons.
+                {/if}
             </p>
         </div>
 
@@ -90,7 +97,7 @@
                 : "flex flex-col gap-2.5",
         ]}
     >
-        {#each technicalNotes as note, index (note.slug)}
+        {#each teaserNotes as note, index (note.slug)}
             <TechnicalNoteCard
                 {note}
                 order={(index + 1).toString().padStart(2, "0")}
@@ -99,6 +106,15 @@
             />
         {/each}
     </div>
+
+    {#if variant === "teaser" && remainingCount > 0}
+        <a
+            href="/notes"
+            class="apple-chip self-start px-3 py-1.5 text-[0.7rem] font-semibold no-underline transition-[background,border-color] duration-150 hover:[background:color-mix(in_srgb,var(--ios-blue)_14%,var(--ios-chip-bg))] hover:[border-color:color-mix(in_srgb,var(--ios-blue)_38%,var(--ios-chip-border))]"
+        >
+            Read all {technicalNotes.length} memos →
+        </a>
+    {/if}
 </PortfolioCard>
 
 <TechnicalNoteDrawer note={selectedNote} onclose={closeNote} />

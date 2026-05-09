@@ -24,6 +24,9 @@
             <p class="max-w-[46ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                 Backend ownership, legacy support, QA discipline, and the work environments that shaped how I ship.
             </p>
+            <p class="mt-1 max-w-[46ch] text-[0.72rem] leading-[1.5] [color:var(--ios-text-tertiary)]">
+                QA intern → backend owner in four months. Two-plus years shipping financial systems since.
+            </p>
         </div>
         <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
             {timelineEntries.length}
