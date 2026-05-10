@@ -63,4 +63,13 @@ export const projects: Project[] = [
         impact:
             "A living showcase of frontend craft beyond what a static resume can communicate, used as a conversation starter in job applications and interviews.",
     },
+    {
+        name: "Algorithm Visualized",
+        description: "A web app that visualizes common algorithms and data structures with interactive demos.",
+        category: "Personal",
+        signal: "Craft showcase",
+        role: "Software Developer",
+        stack: ["React", "TailwindCSS"],
+        url: "https://github.com/dchosendave/algorithm-visualized",
+    }
 ];
