@@ -3,7 +3,7 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
 </script>
 
-<PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
+<PortfolioCard class="lowie-card-glow overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <p
         class="mb-3 text-[0.72rem] font-semibold uppercase tracking-[0.1em] [color:var(--ios-blue)]"
     >

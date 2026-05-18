@@ -3,6 +3,7 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import TechBadge from "$lib/components/portfolio/shared/TechBadge.svelte";
     import { Separator } from "$lib/components/ui/separator/index.js";
+    import { Marquee, WeightWave } from "$lib/motion-core";
 
     const skillGroups = Object.entries(skills);
     const skillCount = skillGroups.reduce(
@@ -17,10 +18,12 @@
     };
 </script>
 
-<PortfolioCard class="flex flex-col gap-5 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
+<PortfolioCard class="lowie-card-glow flex flex-col gap-5 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <div class="flex items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="apple-section-title mb-1">Full-Stack Loadout</p>
+            <p class="apple-section-title mb-1">
+                <WeightWave baseWeight={600} hoverWeight={800} influenceRadius={4}>Full-Stack Loadout</WeightWave>
+            </p>
             <p class="max-w-[35ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                 Tools grouped by the kind of work they support, not just the logo list.
             </p>
@@ -49,11 +52,11 @@
                     </span>
                 </div>
 
-                <div class="flex flex-wrap gap-1.5">
+                <Marquee duration={18} gap={6} repeat={4} class="py-0.5">
                     {#each items as skill (skill.name)}
                         <TechBadge tech={skill.name} variant="skill" />
                     {/each}
-                </div>
+                </Marquee>
             </section>
 
             {#if index < skillGroups.length - 1}

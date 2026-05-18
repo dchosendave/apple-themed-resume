@@ -6,6 +6,7 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import GithubMark from "$lib/components/portfolio/shared/GithubMark.svelte";
     import GitHubContributionGrid from "$lib/components/portfolio/github/GitHubContributionGrid.svelte";
+    import { WeightWave, StackingWords } from "$lib/motion-core";
     import type {
         GitHubPulseData,
         GitHubRepositoryContribution,
@@ -106,12 +107,16 @@
         <div class="min-w-0">
             <div class="mb-1.5 flex flex-wrap items-center gap-2">
                 <GithubMark class="size-4 [color:var(--ios-blue)]" />
-                <p class="apple-section-title mb-0">GitHub Pulse</p>
+                <p class="apple-section-title mb-0">
+                    <WeightWave baseWeight={600} hoverWeight={800} influenceRadius={4}>GitHub Pulse</WeightWave>
+                </p>
                 <span class={pulseMode.className}>{pulseMode.label}</span>
             </div>
-            <p class="max-w-[34ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Public rhythm, recent moves, and the repositories getting the most hands-on time.
-            </p>
+            <StackingWords start="top 88%" end="top 55%" scrub={1} class="max-w-[34ch]">
+                <p class="text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
+                    Public rhythm, recent moves, and the repositories getting the most hands-on time.
+                </p>
+            </StackingWords>
         </div>
 
         <a

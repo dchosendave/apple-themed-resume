@@ -1,12 +1,15 @@
 <script lang="ts">
     import { education } from "$lib/data/education";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
+    import { WeightWave } from "$lib/motion-core";
 </script>
 
-<PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
+<PortfolioCard class="lowie-card-glow overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <div class="mb-3 flex items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="apple-section-title mb-1">Credentials</p>
+            <p class="apple-section-title mb-1">
+                <WeightWave baseWeight={600} hoverWeight={800} influenceRadius={4}>Credentials</WeightWave>
+            </p>
             <p class="max-w-[42ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                 Formal background and database credential behind the production work.
             </p>

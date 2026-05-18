@@ -61,7 +61,7 @@
 
 <PortfolioCard
     class={[
-        "flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]",
+        "lowie-card-glow flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]",
         variant === "page" && "gap-5",
         className,
     ]}

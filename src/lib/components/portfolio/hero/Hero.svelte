@@ -67,7 +67,7 @@
 </script>
 
 <PortfolioCard
-    class="flex flex-col gap-5 overflow-hidden px-[18px] py-5 sm:gap-6 sm:px-6 sm:py-[22px]"
+    class="lowie-card-glow flex flex-col gap-5 overflow-hidden px-[18px] py-5 sm:gap-6 sm:px-6 sm:py-[22px]"
 >
     <div class="flex flex-wrap items-start justify-between gap-3">
         <div class="flex flex-wrap items-center gap-2">

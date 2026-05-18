@@ -54,7 +54,7 @@
         <div id="tile-experience"><ExperienceSection /></div>
         <div id="tile-projects"><ProjectsSection /></div>
         <div id="tile-notes-teaser"><TechnicalNoteSection variant="teaser" /></div>
-        <div id="tile-education"><EducationSection /></div>
+        
     </section>
 
     <aside class="portfolio-side-column">
@@ -63,6 +63,7 @@
             <GitHubPulseSection pulse={data.githubPulse} />
         </div>
         <div id="tile-skills"><SkillsSection /></div>
+        <div id="tile-education"><EducationSection /></div>
     </aside>
 
     <ContactFooter />

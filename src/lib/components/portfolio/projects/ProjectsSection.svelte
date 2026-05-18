@@ -4,14 +4,17 @@
     import ProjectCard from "$lib/components/portfolio/projects/ProjectCard.svelte";
     import ProjectDrawer from "$lib/components/portfolio/projects/ProjectDrawer.svelte";
     import type { Project } from "$lib/types/project";
+    import { WeightWave } from "$lib/motion-core";
 
     let selectedProject = $state<Project | null>(null);
 </script>
 
-<PortfolioCard class="overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
+<PortfolioCard class="lowie-card-glow overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <div class="mb-3 flex items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="apple-section-title mb-1">Case Files</p>
+            <p class="apple-section-title mb-1">
+                <WeightWave baseWeight={600} hoverWeight={800} influenceRadius={4}>Case Files</WeightWave>
+            </p>
             <p class="max-w-[44ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
                 Production systems and personal builds, framed by problem, ownership, and impact.
             </p>
@@ -23,9 +26,9 @@
 
     <div class="grid grid-cols-1 gap-3 min-[901px]:grid-cols-2">
         {#each projects as project (project.name)}
-            <ProjectCard {project} onselect={(nextProject) => selectedProject = nextProject} />
+            <ProjectCard {project} onselect={(p) => (selectedProject = p)} />
         {/each}
     </div>
 </PortfolioCard>
 
-<ProjectDrawer project={selectedProject} onclose={() => selectedProject = null} />
+<ProjectDrawer project={selectedProject} onclose={() => (selectedProject = null)} />
