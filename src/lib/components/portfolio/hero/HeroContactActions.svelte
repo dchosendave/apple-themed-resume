@@ -8,6 +8,7 @@
     import ContactIconLink from "$lib/components/portfolio/shared/ContactIconLink.svelte";
     import GithubMark from "$lib/components/portfolio/shared/GithubMark.svelte";
     import LinkedinMark from "$lib/components/portfolio/shared/LinkedinMark.svelte";
+    import { Magnetic } from "$lib/motion-core";
 
     let {
         showPrompt,
@@ -46,52 +47,58 @@
     class="flex flex-col items-start gap-4 border-t pt-5 [border-color:var(--ios-separator)] sm:flex-row sm:items-center sm:justify-between sm:gap-5"
 >
     <div class="flex flex-wrap gap-2">
-        <ContactIconLink
-            href={emailHref}
-            variant={emailCopied ? "copied" : "default"}
-            class={iconLinkClass}
-            onclick={copyEmail}
-            onpointerenter={() => showPrompt("email")}
-            onpointerleave={() => clearPrompt("email")}
-            onfocus={() => showPrompt("email")}
-            onblur={() => clearPrompt("email")}
-            title={emailCopied ? "Copied!" : "Copy email"}
-            label={emailCopied ? "Email copied" : "Copy email address"}
-        >
-            {#if emailCopied}
-                <CheckIcon class="size-3.5" />
-            {:else}
-                <MailIcon class="size-3.5" />
-            {/if}
-        </ContactIconLink>
+        <Magnetic strength={0.3} duration={0.9}>
+            <ContactIconLink
+                href={emailHref}
+                variant={emailCopied ? "copied" : "default"}
+                class={iconLinkClass}
+                onclick={copyEmail}
+                onpointerenter={() => showPrompt("email")}
+                onpointerleave={() => clearPrompt("email")}
+                onfocus={() => showPrompt("email")}
+                onblur={() => clearPrompt("email")}
+                title={emailCopied ? "Copied!" : "Copy email"}
+                label={emailCopied ? "Email copied" : "Copy email address"}
+            >
+                {#if emailCopied}
+                    <CheckIcon class="size-3.5" />
+                {:else}
+                    <MailIcon class="size-3.5" />
+                {/if}
+            </ContactIconLink>
+        </Magnetic>
 
-        <ContactIconLink
-            href={personalInfo.linkedin}
-            external
-            class={iconLinkClass}
-            onpointerenter={() => showPrompt("linkedin")}
-            onpointerleave={() => clearPrompt("linkedin")}
-            onfocus={() => showPrompt("linkedin")}
-            onblur={() => clearPrompt("linkedin")}
-            title="LinkedIn"
-            label="Open LinkedIn profile"
-        >
-            <LinkedinMark class="size-3.5" />
-        </ContactIconLink>
+        <Magnetic strength={0.3} duration={0.9}>
+            <ContactIconLink
+                href={personalInfo.linkedin}
+                external
+                class={iconLinkClass}
+                onpointerenter={() => showPrompt("linkedin")}
+                onpointerleave={() => clearPrompt("linkedin")}
+                onfocus={() => showPrompt("linkedin")}
+                onblur={() => clearPrompt("linkedin")}
+                title="LinkedIn"
+                label="Open LinkedIn profile"
+            >
+                <LinkedinMark class="size-3.5" />
+            </ContactIconLink>
+        </Magnetic>
 
-        <ContactIconLink
-            href={personalInfo.github}
-            external
-            class={iconLinkClass}
-            onpointerenter={() => showPrompt("github")}
-            onpointerleave={() => clearPrompt("github")}
-            onfocus={() => showPrompt("github")}
-            onblur={() => clearPrompt("github")}
-            title="GitHub"
-            label="Open GitHub profile"
-        >
-            <GithubMark class="size-3.5" />
-        </ContactIconLink>
+        <Magnetic strength={0.3} duration={0.9}>
+            <ContactIconLink
+                href={personalInfo.github}
+                external
+                class={iconLinkClass}
+                onpointerenter={() => showPrompt("github")}
+                onpointerleave={() => clearPrompt("github")}
+                onfocus={() => showPrompt("github")}
+                onblur={() => clearPrompt("github")}
+                title="GitHub"
+                label="Open GitHub profile"
+            >
+                <GithubMark class="size-3.5" />
+            </ContactIconLink>
+        </Magnetic>
     </div>
 
     <div class="grid w-full grid-cols-2 gap-2 sm:flex sm:w-auto">

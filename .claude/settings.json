@@ -1,0 +1,8 @@
+{
+  "permissions": {
+    "allow": [
+      "WebFetch(domain:motion-core.dev)",
+      "Bash(findstr -i motion)"
+    ]
+  }
+}

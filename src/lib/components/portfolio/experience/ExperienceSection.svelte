@@ -3,6 +3,7 @@
     import * as Tabs from "$lib/components/ui/tabs/index.js";
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import ExperienceCategoryDetails from "$lib/components/portfolio/experience/ExperienceCategoryDetails.svelte";
+    import { WeightWave } from "$lib/motion-core";
 
     const timelineEntries = experience.map((job, index) => ({
         ...job,
@@ -20,12 +21,8 @@
 <PortfolioCard class="lowie-card-glow flex flex-col gap-4 overflow-hidden px-[18px] py-5 sm:px-6 sm:py-[22px]">
     <div class="flex items-start justify-between gap-3">
         <div class="min-w-0">
-            <p class="apple-section-title mb-1">Work Timeline</p>
-            <p class="max-w-[46ch] text-[0.76rem] leading-[1.5] [color:var(--ios-text-secondary)]">
-                Backend ownership, legacy support, QA discipline, and the work environments that shaped how I ship.
-            </p>
-            <p class="mt-1 max-w-[46ch] text-[0.72rem] leading-[1.5] [color:var(--ios-text-tertiary)]">
-                QA intern → backend owner in four months. Two-plus years shipping financial systems since.
+            <p class="apple-section-title mb-1">
+                <WeightWave baseWeight={600} hoverWeight={800} influenceRadius={4}>Work Timeline</WeightWave>
             </p>
         </div>
         <span class="apple-chip shrink-0 px-2.5 py-1 text-[0.66rem]">
