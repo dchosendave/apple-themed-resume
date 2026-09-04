@@ -191,11 +191,7 @@ export async function getGitHubPulse(apiFetch: Fetch): Promise<GitHubPulseData> 
         return pulseCache.data;
     }
 
-    const data = token
-        ? await fetchGraphQLPulse(apiFetch, username, token).catch(() =>
-              fetchPublicEventsPulse(apiFetch, username, token, "Contribution graph is temporarily unavailable."),
-          )
-        : await fetchPublicEventsPulse(apiFetch, username, null, "Showing recent public activity.");
+    const data = await fetchPreferredPulse(apiFetch, username, token);
 
     pulseCache = {
         data,
@@ -203,6 +199,86 @@ export async function getGitHubPulse(apiFetch: Fetch): Promise<GitHubPulseData> 
     };
 
     return data;
+}
+
+async function fetchPreferredPulse(
+    apiFetch: Fetch,
+    username: string,
+    token: string | null,
+): Promise<GitHubPulseData> {
+    const pulseApiUrl = env.GITHUB_PULSE_API_URL?.trim();
+
+    if (pulseApiUrl) {
+        try {
+            return await fetchCachedPulse(apiFetch, pulseApiUrl);
+        } catch (error) {
+            console.warn("AWS GitHub Pulse API unavailable; using GitHub fallback.", {
+                error: error instanceof Error ? error.message : "Unknown error",
+            });
+        }
+    }
+
+    return token
+        ? fetchGraphQLPulse(apiFetch, username, token).catch(() =>
+              fetchPublicEventsPulse(
+                  apiFetch,
+                  username,
+                  token,
+                  "Contribution graph is temporarily unavailable.",
+              ),
+          )
+        : fetchPublicEventsPulse(
+              apiFetch,
+              username,
+              null,
+              "Showing recent public activity.",
+          );
+}
+
+async function fetchCachedPulse(
+    apiFetch: Fetch,
+    pulseApiUrl: string,
+): Promise<GitHubPulseData> {
+    const response = await apiFetch(pulseApiUrl, {
+        headers: {
+            accept: "application/json",
+        },
+    });
+
+    if (!response.ok) {
+        throw new Error(`GitHub Pulse API returned HTTP ${response.status}`);
+    }
+
+    const data: unknown = await response.json();
+    if (!isGitHubPulseData(data)) {
+        throw new Error("GitHub Pulse API returned an invalid payload");
+    }
+
+    return data;
+}
+
+function isGitHubPulseData(value: unknown): value is GitHubPulseData {
+    if (!value || typeof value !== "object") return false;
+
+    const pulse = value as Record<string, unknown>;
+    const totals = pulse.totals as Record<string, unknown> | undefined;
+    const calendar = pulse.calendar as Record<string, unknown> | undefined;
+
+    return (
+        typeof pulse.username === "string" &&
+        typeof pulse.profileUrl === "string" &&
+        typeof pulse.fetchedAt === "string" &&
+        typeof pulse.rangeDays === "number" &&
+        (pulse.status === "ready" ||
+            pulse.status === "public-events" ||
+            pulse.status === "unavailable") &&
+        Boolean(totals) &&
+        typeof totals?.contributions === "number" &&
+        Boolean(calendar) &&
+        Array.isArray(calendar?.weeks) &&
+        Array.isArray(pulse.topRepositories) &&
+        Array.isArray(pulse.recentActivity)
+    );
 }
 
 function getGitHubUsername(profileUrl: string) {
