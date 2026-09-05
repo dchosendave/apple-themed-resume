@@ -3,12 +3,32 @@
   "name": "resume-portfolio",
   "compatibility_date": "2026-09-03",
   "main": ".svelte-kit/cloudflare/_worker.js",
+
   "assets": {
     "binding": "ASSETS",
     "directory": ".svelte-kit/cloudflare"
   },
-  "workers_dev": true,
-  "preview_urls": true,
+
+  "workers_dev": false,
+  "preview_urls": false,
+  "keep_vars": true,
+
+  "routes": [
+    {
+      "pattern": "lowiedichoson.com",
+      "custom_domain": true
+    },
+    {
+      "pattern": "www.lowiedichoson.com",
+      "custom_domain": true
+    }
+  ],
+
+  "vars": {
+    "GITHUB_PULSE_API_URL": "https://dmthsgukw6.execute-api.ap-southeast-1.amazonaws.com/github-pulse",
+    "GITHUB_TOKEN": ""
+  },
+
   "observability": {
     "enabled": true
   }
