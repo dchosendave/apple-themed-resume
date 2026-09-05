@@ -1,4 +1,5 @@
 <script lang="ts">
+    import CurrentlyBuilding from "./CurrentlyBuilding.svelte";
     import ExternalLinkIcon from "@lucide/svelte/icons/external-link";
     import GitCommitHorizontalIcon from "@lucide/svelte/icons/git-commit-horizontal";
     import GitPullRequestIcon from "@lucide/svelte/icons/git-pull-request";
@@ -35,7 +36,7 @@
     const pulseMode = $derived.by(() => {
         if (pulse.status === "ready") {
             return {
-                label: "Live graph",
+                label: "Activity snapshot",
                 className:
                     "apple-badge shrink-0 px-[9px] py-[3px] text-[0.62rem]",
             };
@@ -130,6 +131,8 @@
             <ExternalLinkIcon class="size-3.5" />
         </a>
     </div>
+
+    <CurrentlyBuilding {pulse} />
 
     <div class="relative z-[1] grid grid-cols-2 gap-2">
         <div class="rounded-[18px] border p-3.5 [background:color-mix(in_srgb,var(--ios-chip-bg)_88%,transparent)] [border-color:var(--ios-glass-border)]">
