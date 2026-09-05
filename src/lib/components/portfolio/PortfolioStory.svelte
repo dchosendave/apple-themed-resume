@@ -1,5 +1,7 @@
 <script lang="ts">
+    import { onMount } from "svelte";
     import { enter } from "$lib/actions/enter";
+    import { hoverSound } from "$lib/actions/hoverSound";
     import { personalInfo } from "$lib/data/personal-information";
     import { outsideWork } from "$lib/data/about";
     import { projects } from "$lib/data/projects";
@@ -12,9 +14,26 @@
     import { sound } from "$lib/stores/sound.svelte";
     import CurrentlyBuilding from "./github/CurrentlyBuilding.svelte";
     import type { GitHubPulseData } from "$lib/types/github-pulse";
+    import { Fake3DImage } from "$lib/motion-core";
 
     let { pulse }: { pulse: GitHubPulseData } = $props();
     const emailHref = `mailto:${personalInfo.email}`;
+    const academicEducation = education.filter((item) => item.major !== "Certification");
+    const certifications = education.filter((item) => item.major === "Certification");
+    let portraitParallax = $state(false);
+
+    onMount(() => {
+        const motionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+        const pointerQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const updatePortraitMode = () => portraitParallax = !motionQuery.matches && pointerQuery.matches;
+        updatePortraitMode();
+        motionQuery.addEventListener('change', updatePortraitMode);
+        pointerQuery.addEventListener('change', updatePortraitMode);
+        return () => {
+            motionQuery.removeEventListener('change', updatePortraitMode);
+            pointerQuery.removeEventListener('change', updatePortraitMode);
+        };
+    });
 </script>
 
 <div class="story-site">
@@ -22,9 +41,9 @@
     <header class="site-header">
         <a href="#tile-hero" class="wordmark" aria-label="Lowie, back to introduction">lowie<span aria-hidden="true">.</span></a>
         <nav aria-label="Main navigation">
-            <a href="#about">About</a>
-            <a href="#tile-projects">Work</a>
-            <a href={emailHref}>Say hello <span aria-hidden="true">↗</span></a>
+            <a href="#about" use:hoverSound onclick={() => sound.play('open')}>About</a>
+            <a href="#tile-projects" use:hoverSound onclick={() => sound.play('open')}>Work</a>
+            <a href={emailHref} use:hoverSound onclick={() => sound.play('confirm')}>Say hello <span aria-hidden="true">↗</span></a>
         </nav>
         <div class="header-controls" aria-label="Display and sound preferences">
             <SoundToggle />
@@ -40,13 +59,18 @@
                 <p class="intro-description">For the person filling out a form. The team doing the same task every day. The next developer opening the code.</p>
                 <p class="muted intro-footnote">I build financial software and internal tools in {personalInfo.location}.</p>
                 <div class="intro-actions">
-                    <a href="#tile-projects" class="primary-link">Take a look at my work <span aria-hidden="true">↘</span></a>
-                    <a href={personalInfo.resumePdf} download class="text-link" onclick={() => sound.play('confirm')}>Download resume <span aria-hidden="true">↓</span></a>
+                    <a href="#tile-projects" class="primary-link" use:hoverSound onclick={() => sound.play('open')}>Take a look at my work <span aria-hidden="true">↘</span></a>
+                    <a href={personalInfo.resumePdf} download class="text-link" use:hoverSound onclick={() => sound.play('confirm')}>Download resume <span aria-hidden="true">↓</span></a>
                 </div>
             </div>
             <figure class="portrait" use:enter={180}>
                 <a class="portrait-image" href="/solo-picture-beach.jpeg" target="_blank" rel="noopener noreferrer" aria-label="View the full beach photograph in a new tab">
-                    <img src="/solo-picture-beach.jpeg" alt="Lowie standing beside the ocean at sunset" width="2890" height="3854" fetchpriority="high" />
+                    {#if portraitParallax}
+                        <Fake3DImage colorSrc="/solo-picture-beach.jpeg" depthSrc="/solo-picture-beach-depth.png" xThreshold={18} yThreshold={22} sensitivity={0.16} zoom={1.58} focusX={0.38} focusY={0.18} class="portrait-canvas" />
+                        <span class="sr-only">Lowie standing beside the ocean at sunset</span>
+                    {:else}
+                        <img src="/solo-picture-beach.jpeg" alt="Lowie standing beside the ocean at sunset" width="2890" height="3854" fetchpriority="high" />
+                    {/if}
                 </a>
                 <figcaption><span class="small-dot" aria-hidden="true"></span>Based in Taguig, Philippines</figcaption>
             </figure>
@@ -63,6 +87,7 @@
                 <dl class="personal-details">
                     <div><dt>On repeat</dt><dd>Hands All Over<br /><span class="muted">Maroon 5</span></dd></div>
                     <div><dt>Player two</dt><dd>It Takes Two with my girlfriend<br /><span class="muted">Also: Valorant, MU Online, Little Nightmares & Stardew Valley</span></dd></div>
+                    <div><dt>At my desk</dt><dd>MSI MAG 256F · AULA F87 · Attack Shark X3MAX<br /><span class="muted">North Bayou Monitor Arm & Mi Monitor Light Bar</span></dd></div>
                 </dl>
             </div>
         </section>
@@ -79,7 +104,7 @@
                         <span class="project-identity"><span class="project-category">{project.category}</span><span class="project-title">{project.name}</span><span class="project-role">{project.role}</span></span>
                         <span class="project-description">{project.description}<span class="project-stack">{project.stack.slice(0, 3).join(' / ')}</span></span>
                         {#if project.url}
-                            <a class="project-link" href={project.url} target="_blank" rel="noopener noreferrer" onclick={() => sound.play('confirm')} aria-label={`Visit ${project.name}`}>Visit <span aria-hidden="true">↗</span></a>
+                            <a class="project-link" href={project.url} target="_blank" rel="noopener noreferrer" use:hoverSound onclick={() => sound.play('confirm')} aria-label={`Visit ${project.name}`}>Visit <span aria-hidden="true">↗</span></a>
                         {:else}
                             <span class="project-private">Private</span>
                         {/if}
@@ -107,8 +132,14 @@
                     {/each}
                 </ol>
                 <div id="tile-education" class="education-list">
-                    <h3>Education & certification</h3>
-                    {#each education as item}<p>{item.degree}<span>{item.school} · {item.period}</span></p>{/each}
+                    <div class="education-group">
+                        <h3>Education</h3>
+                        {#each academicEducation as item}<p>{item.degree}<span>{item.major} · {item.school} · {item.period}</span></p>{/each}
+                    </div>
+                    <div class="education-group">
+                        <h3>Certifications</h3>
+                        {#each certifications as item}<p>{item.degree}<span>{item.school} · {item.period}</span></p>{/each}
+                    </div>
                 </div>
             </div>
         </section>
@@ -121,8 +152,8 @@
         <section class="lately-section" aria-labelledby="lately-title">
             <div class="section-heading"><div><p class="eyebrow">Still figuring things out</p><h2 id="lately-title">On my desk lately.</h2></div></div>
             <div class="lately-columns">
-                <div class="learning-note"><h3>Learning AWS by building here.</h3><p>I’m using this portfolio to explore AWS services. GitHub activity gives me a real feature to work with as I learn.</p><a class="text-link" href={personalInfo.github} target="_blank" rel="noopener noreferrer">Find me on GitHub ↗</a>
-                    <div id="tile-notes-teaser" class="note-link"><span class="eyebrow">From my notes</span><a href="/notes">{technicalNotes[0].title} <span aria-hidden="true">↗</span></a></div>
+                <div class="learning-note"><h3>Learning AWS by building here.</h3><p>I’m using this portfolio to explore AWS services. GitHub activity gives me a real feature to work with as I learn.</p><a class="text-link" href={personalInfo.github} target="_blank" rel="noopener noreferrer" use:hoverSound onclick={() => sound.play('confirm')}>Find me on GitHub ↗</a>
+                    <div id="tile-notes-teaser" class="note-link"><span class="eyebrow">From my notes</span><a href="/notes" use:hoverSound onclick={() => sound.play('open')}>{technicalNotes[0].title} <span aria-hidden="true">↗</span></a></div>
                 </div>
                 <div id="tile-github"><CurrentlyBuilding {pulse} /></div>
             </div>
@@ -131,7 +162,7 @@
         <section id="contact" class="contact-section" aria-labelledby="contact-title">
             <p class="eyebrow">Thanks for stopping by</p><h2 id="contact-title">Something on your mind?</h2>
             <p>A role, a project, or a shared interest. I’d like to hear about it.</p>
-            <a class="contact-email" href={emailHref} onclick={() => sound.play('confirm')}>Let’s talk <span aria-hidden="true">↗</span></a>
+            <a class="contact-email" href={emailHref} use:hoverSound onclick={() => sound.play('confirm')}>Let’s talk <span aria-hidden="true">↗</span></a>
         </section>
     </main>
     <footer><span>Lowie Dave Dichoson <span class="muted">© {new Date().getFullYear()}</span></span><div><a href={personalInfo.linkedin} target="_blank" rel="noopener noreferrer">LinkedIn ↗</a><a href="/notes">Notes</a><a href="#tile-hero">Back to top ↑</a></div></footer>
@@ -165,6 +196,7 @@
     .text-link { font-size: .8rem; color: var(--ios-text-primary); text-underline-offset: 5px; }
     .portrait { min-width: 0; grid-area: portrait; }
     .portrait-image { display: block; aspect-ratio: 4 / 5; overflow: hidden; border-radius: 28px; background: var(--ios-chip-bg); border: 1px solid var(--ios-glass-border); }
+    .portrait-image :global(.portrait-canvas) { height: 100%; width: 100%; }
     .portrait img { width: 100%; height: 100%; object-fit: cover; object-position: 38% 100%; display: block; transform: scale(1.6); transform-origin: 38% 100%; filter: brightness(1.08); }
     figcaption { display: flex; align-items: center; justify-content: center; gap: 8px; margin-top: 16px; font-size: .68rem; color: var(--ios-text-secondary); }
     .small-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--lowie-warm); }
@@ -207,6 +239,7 @@
     h4 { color: var(--ios-text-primary); margin-top: 20px; font-weight: 650; }
     .career-details ul { list-style: disc; padding-left: 18px; }
     .career-details li { margin-top: 9px; }
+    .education-list { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: clamp(24px, 5vw, 56px); }
     .education-list h3 { font-size: .82rem; margin-bottom: 18px; }
     .education-list p { font-size: .83rem; margin-top: 14px; }
     .education-list span { display: block; font-size: .72rem; color: var(--ios-text-secondary); margin-top: 5px; }
@@ -229,7 +262,7 @@
         .about-section, .path-section, .tools-section { grid-template-columns: minmax(0, 1fr); gap: 28px; }
         .section-heading { display: block; }.section-aside { margin-top: 16px; }
         .project-row { grid-template-columns: 20px 1fr auto; gap: 12px; padding: 24px 0; }.project-description { grid-column: 2 / 4; }.project-link, .project-private { grid-column: 3; grid-row: 1; }
-        .lately-columns { grid-template-columns: minmax(0, 1fr); }.path-note { max-width: 48ch; }
+        .lately-columns { grid-template-columns: minmax(0, 1fr); }.path-note { max-width: 48ch; }.education-list { grid-template-columns: minmax(0, 1fr); gap: 32px; }
     }
     @media (max-width: 380px) { .site-header { gap: 12px; }nav { gap: 12px; font-size: .73rem; }.wordmark { font-size: 1.5rem; }.tools-list > div { grid-template-columns: 1fr; gap: 3px; } }
     @media (prefers-reduced-motion: reduce) {

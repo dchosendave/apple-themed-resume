@@ -4,6 +4,7 @@
     import { Button } from "$lib/components/ui/button/index.js";
     import { theme } from "$lib/stores/theme.svelte";
     import { sound } from "$lib/stores/sound.svelte";
+    import { playHoverSound } from "$lib/actions/hoverSound";
 
     let toggleLabel = $derived(
         theme.isDark ? "Switch to light theme" : "Switch to dark theme"
@@ -13,6 +14,7 @@
 </script>
 
 <Button
+    onpointerenter={playHoverSound}
     variant="ghost"
     size="icon"
     class="apple-icon-button size-11 rounded-full sm:size-9"

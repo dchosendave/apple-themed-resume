@@ -24,3 +24,6 @@ vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
 
 .playwright-cli
+
+.dev.vars*
+!.dev.vars.example

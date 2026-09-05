@@ -7,3 +7,4 @@ export { default as WeightWave } from './WeightWave.svelte';
 export { default as StackingWords } from './StackingWords.svelte';
 export { default as CardStack } from './CardStack.svelte';
 export { default as CardStackItem } from './CardStackItem.svelte';
+export { default as Fake3DImage } from './fake-3d-image/Fake3DImage.svelte';
