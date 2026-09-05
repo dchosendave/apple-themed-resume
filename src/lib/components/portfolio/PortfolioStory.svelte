@@ -26,6 +26,8 @@
         (item) => item.major === "Certification",
     );
     let portraitRipple = $state(false);
+    let portraitInView = $state(true);
+    let portraitElement: HTMLElement;
 
     onMount(() => {
         const motionQuery = window.matchMedia(
@@ -39,9 +41,15 @@
         updatePortraitMode();
         motionQuery.addEventListener("change", updatePortraitMode);
         pointerQuery.addEventListener("change", updatePortraitMode);
+        const portraitObserver = new IntersectionObserver(
+            ([entry]) => (portraitInView = entry.isIntersecting),
+            { rootMargin: "120px 0px", threshold: 0.01 },
+        );
+        portraitObserver.observe(portraitElement);
         return () => {
             motionQuery.removeEventListener("change", updatePortraitMode);
             pointerQuery.removeEventListener("change", updatePortraitMode);
+            portraitObserver.disconnect();
         };
     });
 </script>
@@ -117,7 +125,7 @@
                     >
                 </div>
             </div>
-            <figure class="portrait" use:enter={180}>
+            <figure bind:this={portraitElement} class="portrait" use:enter={180}>
                 <a
                     class="portrait-image"
                     href="/solo-picture-beach.jpeg"
@@ -125,7 +133,7 @@
                     rel="noopener noreferrer"
                     aria-label="View the full beach photograph in a new tab"
                 >
-                    {#if portraitRipple}
+                    {#if portraitRipple && portraitInView}
                         <WaterRipple
                             src="/solo-picture-beach.jpeg"
                             brushSize={40}

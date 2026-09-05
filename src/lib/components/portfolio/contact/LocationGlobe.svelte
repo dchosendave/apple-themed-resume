@@ -1,7 +1,9 @@
 <script lang="ts">
     import { onMount } from "svelte";
-    import Globe from "$lib/motion-core/globe/Globe.svelte";
     import type { GlobeMarker } from "$lib/motion-core/globe/types";
+
+    const loadGlobe = () => import("$lib/motion-core/globe/Globe.svelte");
+    type GlobeComponent = Awaited<ReturnType<typeof loadGlobe>>["default"];
 
     const taguig: [number, number] = [14.5176, 121.0509];
     const markers: GlobeMarker[] = [
@@ -15,6 +17,9 @@
 
     let canRenderGlobe = $state(false);
     let reduceMotion = $state(true);
+    let locationCard: HTMLElement;
+    let globeVisible = $state(false);
+    let Globe = $state<GlobeComponent | null>(null);
 
     onMount(() => {
         const motionQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -29,15 +34,29 @@
         updateMotionPreference();
         motionQuery.addEventListener("change", updateMotionPreference);
 
+        const observer = new IntersectionObserver(
+            ([entry]) => {
+                globeVisible = entry.isIntersecting;
+                if (entry.isIntersecting && !Globe) {
+                    void loadGlobe().then((module) => {
+                        Globe = module.default;
+                    });
+                }
+            },
+            { rootMargin: "240px 0px", threshold: 0.01 },
+        );
+        observer.observe(locationCard);
+
         return () => {
             motionQuery.removeEventListener("change", updateMotionPreference);
+            observer.disconnect();
         };
     });
 </script>
 
-<aside class="location-card" aria-label="Lowie is based in Taguig City, Philippines">
+<aside bind:this={locationCard} class="location-card" aria-label="Lowie is based in Taguig City, Philippines">
     <div class="globe-stage">
-        {#if canRenderGlobe}
+        {#if canRenderGlobe && globeVisible && Globe}
             <Globe
                 scale={1.12}
                 offsetY={0.02}
