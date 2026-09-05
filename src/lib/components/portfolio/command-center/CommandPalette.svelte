@@ -1,7 +1,5 @@
 <script lang="ts">
-    import { onDestroy } from "svelte";
     import * as Command from "$lib/components/ui/command/index.js";
-    import { avatarCommand } from "$lib/stores/avatar-command.svelte";
     import {
         createCommandActionGroups,
         type CommandAction,
@@ -9,14 +7,6 @@
 
     let open = $state(false);
     let search = $state("");
-
-    $effect(() => {
-        avatarCommand.syncFromPalette(open, search);
-    });
-
-    onDestroy(() => {
-        avatarCommand.reset();
-    });
 
     const dialogSurfaceClass =
         "top-1/2! w-[min(36rem,calc(100vw-1.5rem))] max-w-none -translate-y-1/2! overflow-hidden rounded-[1.5rem]! border p-0 ring-0 [background:color-mix(in_srgb,var(--ios-glass)_92%,transparent)] [border-color:var(--ios-glass-border)] shadow-[0_20px_60px_rgba(18,31,20,0.22)] backdrop-blur-[28px] dark:shadow-[0_24px_64px_rgba(0,0,0,0.45)]";

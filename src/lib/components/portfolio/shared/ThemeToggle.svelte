@@ -3,17 +3,23 @@
     import MoonStarIcon from "@lucide/svelte/icons/moon-star";
     import { Button } from "$lib/components/ui/button/index.js";
     import { theme } from "$lib/stores/theme.svelte";
+    import { sound } from "$lib/stores/sound.svelte";
 
     let toggleLabel = $derived(
         theme.isDark ? "Switch to light theme" : "Switch to dark theme"
     );
+
+    sound.init();
 </script>
 
 <Button
     variant="ghost"
     size="icon"
     class="apple-icon-button size-11 rounded-full sm:size-9"
-    onclick={theme.toggle}
+    onclick={() => {
+        theme.toggle();
+        sound.play('toggle');
+    }}
     aria-label={toggleLabel}
     title={toggleLabel}
 >

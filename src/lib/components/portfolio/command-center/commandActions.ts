@@ -18,7 +18,7 @@ function scrollToTile(id: string) {
     const target = document.getElementById(id);
 
     if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
+        target.scrollIntoView({ behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? "instant" : "smooth", block: "start" });
         return;
     }
 
@@ -56,7 +56,7 @@ export function createCommandActionGroups(): CommandActionGroup[] {
             actions: [
                 {
                     value: "hero",
-                    label: "Open home card",
+                    label: "Meet Lowie",
                     category: "Navigate",
                     meta: "Home",
                     keywords: ["intro", "top", "hero", "profile"],
@@ -72,7 +72,7 @@ export function createCommandActionGroups(): CommandActionGroup[] {
                 },
                 {
                     value: "skills",
-                    label: "Scan full-stack loadout",
+                    label: "View my toolkit",
                     category: "Navigate",
                     meta: "Stack",
                     keywords: ["skills", "stack", "tools", "tech"],
@@ -80,7 +80,7 @@ export function createCommandActionGroups(): CommandActionGroup[] {
                 },
                 {
                     value: "projects",
-                    label: "Open product case files",
+                    label: "Explore my projects",
                     category: "Navigate",
                     meta: "Cases",
                     keywords: ["projects", "portfolio", "case study"],

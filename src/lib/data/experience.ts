@@ -5,6 +5,7 @@ export const experience: Experience[] = [
         company: "Vantage Financial Corporation",
         role: "Analyst Programmer",
         period: "Aug 2023 - Present",
+        disclosureLabel: "What I built and improved",
         highlights: [
             "Solo Backend Developer",
             "Financial Systems",
@@ -92,6 +93,7 @@ export const experience: Experience[] = [
         company: "EastWest Banking Corporation",
         role: "Software QA Tester Intern",
         period: "Apr 2023 - Jul 2023",
+        disclosureLabel: "How I tested and supported delivery",
         highlights: [
             "Manual & Automated Testing",
             "Bug Documentation",
@@ -117,6 +119,7 @@ export const experience: Experience[] = [
         company: "University of Makati",
         role: "Computer Science Student",
         period: "Aug 2019 - Aug 2023",
+        disclosureLabel: "What I learned and made",
         highlights: [
             "BS Computer Science",
             "Unity 2D Thesis Game",

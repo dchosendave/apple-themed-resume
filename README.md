@@ -88,4 +88,8 @@ npm run build
 
 ## Updating Resume Content
 
-Most content lives in `src/lib/data/resume.ts`. Update that file to change personal details, work experience, skills, education, and project copy without restructuring the UI.
+The homepage layout lives in `src/lib/components/portfolio/PortfolioStory.svelte`.
+Content lives in `src/lib/data/`: `about.ts`, `personal-information.ts`, `projects.ts`,
+`experience.ts`, `skills.ts`, `education.ts`, and `technical-notes.ts`.
+Project drawers and the `/notes` route provide supporting detail. AWS setup is
+documented in `aws/README.md`.

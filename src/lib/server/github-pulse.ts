@@ -330,7 +330,7 @@ async function fetchGraphQLPulse(apiFetch: Fetch, username: string, token: strin
     ).length;
     const busiestDay = getBusiestDay(allDays);
     const topRepositories = buildTopRepositories(collection);
-    const recentActivity = await fetchRecentActivity(apiFetch, username, token);
+    const recentActivity = await fetchRecentActivity(apiFetch, username, token).catch(() => []);
 
     return {
         username: payload.data.user.login,
@@ -367,7 +367,7 @@ async function fetchPublicEventsPulse(
     token: string | null,
     message: string,
 ): Promise<GitHubPulseData> {
-    const recentActivity = await fetchRecentActivity(apiFetch, username, token);
+    const recentActivity = await fetchRecentActivity(apiFetch, username, token).catch(() => []);
 
     return {
         username,

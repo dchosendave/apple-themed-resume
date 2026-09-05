@@ -1,5 +1,6 @@
 <script lang="ts">
     import type { GitHubPulseData } from "$lib/types/github-pulse";
+    import GitHubHeatmap from './GitHubHeatmap.svelte';
     let { pulse }: { pulse: GitHubPulseData } = $props();
     const updated = $derived(new Date(pulse.fetchedAt));
     const validDate = $derived(Number.isFinite(updated.getTime()));
@@ -14,17 +15,20 @@
     <p class="mt-1 text-xs leading-relaxed [color:var(--ios-text-secondary)]">Recent public work, captured in the latest activity snapshot.</p>
     {#if pulse.status === 'unavailable'}
         <p class="mt-3 text-sm [color:var(--ios-text-secondary)]">The activity snapshot is temporarily unavailable.</p>
-    {:else if recent.length}
-        <ol class="mt-3 grid gap-3">
-            {#each recent as activity (activity.id)}
-                <li class="min-w-0">
-                    <a href={activity.url} target="_blank" rel="noopener noreferrer" class="block break-words text-sm font-semibold underline decoration-[var(--ios-glass-border)] underline-offset-4 hover:[color:var(--ios-blue)]">{activity.repo.split('/').at(-1)}</a>
-                    <p class="mt-1 text-xs [color:var(--ios-text-secondary)]">{activity.title}</p>
-                </li>
-            {/each}
-        </ol>
     {:else}
-        <p class="mt-3 text-sm [color:var(--ios-text-secondary)]">No recent public updates in this snapshot. Browse my projects for completed work.</p>
+        <GitHubHeatmap weeks={pulse.calendar.weeks} />
+        {#if recent.length}
+            <ol class="mt-3 grid gap-3">
+                {#each recent as activity (activity.id)}
+                    <li class="min-w-0">
+                        <a href={activity.url} target="_blank" rel="noopener noreferrer" class="block break-words text-sm font-semibold underline decoration-[var(--ios-glass-border)] underline-offset-4 hover:[color:var(--ios-blue)]">{activity.repo.split('/').at(-1)}</a>
+                        <p class="mt-1 text-xs [color:var(--ios-text-secondary)]">{activity.title}</p>
+                    </li>
+                {/each}
+            </ol>
+        {:else}
+            <p class="mt-3 text-sm [color:var(--ios-text-secondary)]">No recent public updates in this snapshot. Browse my projects for completed work.</p>
+        {/if}
     {/if}
     {#if validDate && pulse.status !== 'unavailable'}
         <p class="mt-4 text-xs [color:var(--ios-text-tertiary)]">Snapshot updated <time datetime={pulse.fetchedAt}>{updated.toLocaleString('en-US', { month: 'short', day: 'numeric', year: 'numeric', hour: 'numeric', minute: '2-digit', timeZone: 'UTC' })} UTC</time></p>

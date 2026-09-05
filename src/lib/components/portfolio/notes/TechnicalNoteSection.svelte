@@ -7,6 +7,7 @@
     import PortfolioCard from "$lib/components/portfolio/shared/PortfolioCard.svelte";
     import TechnicalNoteCard from "$lib/components/portfolio/notes/TechnicalNoteCard.svelte";
     import TechnicalNoteDrawer from "$lib/components/portfolio/notes/TechnicalNoteDrawer.svelte";
+    import { sound } from "$lib/stores/sound.svelte";
 
     const NOTE_OPEN_DELAY_MS = 140;
     const reduceMotion = new MediaQuery("prefers-reduced-motion: reduce", false);
@@ -19,8 +20,8 @@
         class?: ClassValue;
     } = $props();
 
-    const teaserNotes = variant === "teaser" ? technicalNotes.slice(0, 1) : technicalNotes;
-    const remainingCount = technicalNotes.length - teaserNotes.length;
+    const teaserNotes = $derived(variant === "teaser" ? technicalNotes.slice(0, 1) : technicalNotes);
+    const remainingCount = $derived(technicalNotes.length - teaserNotes.length);
 
     let selectedNote = $state<TechnicalNote | null>(null);
     let openingNoteSlug = $state<string | null>(null);
@@ -34,6 +35,7 @@
     }
 
     function openNote(note: TechnicalNote) {
+        sound.play('open');
         clearOpenNoteTimer();
         openingNoteSlug = note.slug;
 
@@ -51,6 +53,7 @@
     }
 
     function closeNote() {
+        if (selectedNote) sound.play('close');
         clearOpenNoteTimer();
         openingNoteSlug = null;
         selectedNote = null;

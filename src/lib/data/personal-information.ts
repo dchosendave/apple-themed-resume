@@ -9,5 +9,3 @@ export const personalInfo: PersonalInformation = {
     github: "https://github.com/dchosendave",
     resumePdf: "/ldd-resume-january-2026-v2.pdf"
 }
-
-export const professionalFocus = "Full-stack software engineer building finance-grade systems where correctness, handoff clarity, and calm delivery matter. I turn messy workflows into dependable portals, APIs, reports, and documentation recruiters can verify fast.";
