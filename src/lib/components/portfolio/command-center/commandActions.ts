@@ -25,15 +25,6 @@ function scrollToTile(id: string) {
     window.location.href = `/#${id}`;
 }
 
-function openRoute(path: string) {
-    if (window.location.pathname === path) {
-        window.scrollTo({ top: 0, behavior: "smooth" });
-        return;
-    }
-
-    window.location.href = path;
-}
-
 async function copyEmail() {
     try {
         await navigator.clipboard.writeText(personalInfo.email);
@@ -85,14 +76,6 @@ export function createCommandActionGroups(): CommandActionGroup[] {
                     meta: "Cases",
                     keywords: ["projects", "portfolio", "case study"],
                     run: () => scrollToTile("tile-projects"),
-                },
-                {
-                    value: "notes",
-                    label: "Open field notes",
-                    category: "Navigate",
-                    meta: "Notes",
-                    keywords: ["notes", "memos", "technical notes", "field notes"],
-                    run: () => openRoute("/notes"),
                 },
                 {
                     value: "education",
