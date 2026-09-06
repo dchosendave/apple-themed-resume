@@ -1,6 +1,6 @@
 import { browser } from '$app/environment';
 
-export type SoundCue = 'hover' | 'open' | 'close' | 'confirm' | 'toggle';
+export type SoundCue = 'hover' | 'open' | 'close' | 'confirm' | 'toggle' | 'signature';
 
 const STORAGE_KEY = 'portfolio-sound';
 
@@ -43,7 +43,14 @@ function createSound() {
         return context;
     }
 
-    function tone(frequency: number, duration: number, volume: number, delay = 0) {
+    function tone(
+        frequency: number,
+        duration: number,
+        volume: number,
+        delay = 0,
+        type: OscillatorType = 'sine',
+        endFrequency = frequency,
+    ) {
         const audio = getContext();
         if (!audio) return;
 
@@ -51,8 +58,9 @@ function createSound() {
         const oscillator = audio.createOscillator();
         const gain = audio.createGain();
 
-        oscillator.type = 'sine';
+        oscillator.type = type;
         oscillator.frequency.setValueAtTime(frequency, start);
+        oscillator.frequency.exponentialRampToValueAtTime(endFrequency, start + duration);
         gain.gain.setValueAtTime(0.0001, start);
         gain.gain.exponentialRampToValueAtTime(volume, start + 0.012);
         gain.gain.exponentialRampToValueAtTime(0.0001, start + duration);
@@ -77,16 +85,24 @@ function createSound() {
             navigator.vibrate(cue === 'confirm' ? [8, 28, 8] : 8);
         }
 
-        if (cue === 'hover') tone(520, 0.035, 0.006);
-        if (cue === 'open') tone(392, 0.08, 0.022);
-        if (cue === 'close') tone(294, 0.07, 0.018);
+        if (cue === 'hover') tone(460, 0.04, 0.0045, 0, 'triangle', 500);
+        if (cue === 'open') {
+            tone(330, 0.075, 0.014, 0, 'sine', 349);
+            tone(494, 0.09, 0.009, 0.025, 'triangle', 523);
+        }
+        if (cue === 'close') tone(392, 0.075, 0.014, 0, 'triangle', 262);
         if (cue === 'confirm') {
-            tone(440, 0.08, 0.018);
-            tone(587, 0.11, 0.018, 0.055);
+            tone(392, 0.07, 0.014, 0, 'triangle');
+            tone(523, 0.11, 0.016, 0.05, 'sine');
         }
         if (cue === 'toggle') {
-            tone(392, 0.08, 0.018);
-            tone(523, 0.12, 0.02, 0.06);
+            tone(330, 0.07, 0.013, 0, 'triangle');
+            tone(440, 0.11, 0.015, 0.055, 'sine');
+        }
+        if (cue === 'signature') {
+            tone(294, 0.08, 0.012, 0, 'triangle');
+            tone(392, 0.1, 0.014, 0.065, 'triangle');
+            tone(587, 0.16, 0.012, 0.135, 'sine', 622);
         }
     }
 

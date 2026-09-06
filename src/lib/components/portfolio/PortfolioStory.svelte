@@ -29,6 +29,10 @@
     let portraitInView = $state(true);
     let portraitElement: HTMLElement;
 
+    function playSignature() {
+        sound.play("signature");
+    }
+
     onMount(() => {
         const motionQuery = window.matchMedia(
             "(prefers-reduced-motion: reduce)",
@@ -61,6 +65,7 @@
             href="#tile-hero"
             class="wordmark"
             aria-label="Lowie, back to introduction"
+            onclick={playSignature}
             >lowie<span aria-hidden="true">.</span></a
         >
         <nav aria-label="Main navigation">
@@ -442,6 +447,11 @@
     }
     .wordmark span {
         color: var(--ios-blue);
+        display: inline-block;
+        transition: transform 320ms cubic-bezier(0.16, 1, 0.3, 1);
+    }
+    .wordmark:is(:hover, :focus-visible) span {
+        transform: translateY(-2px) scale(1.18);
     }
     nav {
         display: flex;
@@ -934,6 +944,8 @@
     }
     @media (prefers-reduced-motion: reduce) {
         .project-identity, .disclosure-icon { transition: none; }
+        .wordmark span { transition: none; }
+        .wordmark:is(:hover, :focus-visible) span { transform: none; }
         .project-row:is(:hover, :focus-within) .project-identity { transform: none; }
         .career-details[open] .career-content { animation: none; }
         .project-row,
