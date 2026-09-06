@@ -7,15 +7,15 @@
     import { projects } from "$lib/data/projects";
     import { experience } from "$lib/data/experience";
     import { education } from "$lib/data/education";
-    import { skills } from "$lib/data/skills";
     import ThemeToggle from "./shared/ThemeToggle.svelte";
     import SoundToggle from "./shared/SoundToggle.svelte";
     import { sound } from "$lib/stores/sound.svelte";
-    import CurrentlyBuilding from "./github/CurrentlyBuilding.svelte";
-    import LoadoutRail from "./about/LoadoutRail.svelte";
-    import LocationGlobe from "./contact/LocationGlobe.svelte";
+    import CurrentlyBuilding from "./CurrentlyBuilding.svelte";
+    import LoadoutRail from "./LoadoutRail.svelte";
+    import LocationGlobe from "./LocationGlobe.svelte";
     import type { GitHubPulseData } from "$lib/types/github-pulse";
     import WaterRipple from "$lib/motion-core/water-ripple/WaterRipple.svelte";
+    import ToolkitCarousel from "./shared/ToolkitCarousel.svelte";
 
     let { pulse }: { pulse: GitHubPulseData } = $props();
     const emailHref = `mailto:${personalInfo.email}`;
@@ -210,7 +210,7 @@
             </div>
             <div class="project-list">
                 {#each projects as project, index (project.name)}
-                    <article class="project-row" use:enter>
+                    <article class="project-row" use:enter use:hoverSound>
                         <span class="project-number" aria-hidden="true"
                             >{String(index + 1).padStart(2, "0")}</span
                         >
@@ -232,7 +232,6 @@
                                 href={project.url}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                use:hoverSound
                                 onclick={() => sound.play("confirm")}
                                 aria-label={`Visit ${project.name}`}
                                 >Visit <span aria-hidden="true">↗</span></a
@@ -266,7 +265,8 @@
                             <h3>{job.role}</h3>
                             <p class="company">{job.company}</p>
                             <details class="career-details">
-                                <summary>{job.disclosureLabel}</summary>
+                                <summary onclick={(event) => sound.play(event.currentTarget.parentElement?.hasAttribute('open') ? 'close' : 'open')}>{job.disclosureLabel}<span class="disclosure-icon" aria-hidden="true">+</span></summary>
+                                <div class="career-content">
                                 {#each job.categories as category}
                                     <h4>{category.title}</h4>
                                     <ul>
@@ -275,6 +275,7 @@
                                             </li>{/each}
                                     </ul>
                                 {/each}
+                                </div>
                             </details>
                         </li>
                     {/each}
@@ -309,14 +310,9 @@
                 <p class="eyebrow">In the toolkit</p>
                 <h2 id="tools-title">What I work with.</h2>
             </div>
-            <dl class="tools-list">
-                {#each Object.entries(skills) as [group, entries]}<div>
-                        <dt>{group}</dt>
-                        <dd>
-                            {entries.map((entry) => entry.name).join(" · ")}
-                        </dd>
-                    </div>{/each}
-            </dl>
+            <div class="toolkit-content">
+                <ToolkitCarousel />
+            </div>
         </section>
 
         <section class="lately-section" aria-labelledby="lately-title">
@@ -644,9 +640,20 @@
         border-top: 1px solid var(--ios-glass-border);
         transition: background 0.2s ease-out;
     }
-    .project-row:hover {
+    .project-row:hover,
+    .project-row:focus-within {
         background: var(--ios-chip-bg);
     }
+    .project-identity { transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1); }
+    @media (hover: hover) and (pointer: fine) {
+        .project-row:hover .project-identity { transform: translateX(4px); }
+    }
+    .project-row:focus-within .project-identity { transform: translateX(4px); }
+    .toolkit-content { min-width: 0; }
+    .disclosure-icon { display: inline-block; margin-left: 12px; color: var(--ios-blue); transition: transform 240ms cubic-bezier(0.16, 1, 0.3, 1); }
+    .career-details[open] .disclosure-icon { transform: rotate(45deg); }
+    .career-details[open] .career-content { animation: career-reveal 280ms cubic-bezier(0.16, 1, 0.3, 1); }
+    @keyframes career-reveal { from { opacity: 0; transform: translateY(-6px); } to { opacity: 1; transform: translateY(0); } }
     .primary-link {
         transition:
             transform 180ms cubic-bezier(0.16, 1, 0.3, 1),
@@ -759,10 +766,12 @@
         color: var(--ios-text-secondary);
     }
     summary {
+        list-style: none;
         cursor: pointer;
         width: fit-content;
         color: var(--ios-text-primary);
     }
+    summary::-webkit-details-marker { display: none; }
     h4 {
         color: var(--ios-text-primary);
         margin-top: 20px;
@@ -793,20 +802,6 @@
         font-size: 0.72rem;
         color: var(--ios-text-secondary);
         margin-top: 5px;
-    }
-    .tools-list > div {
-        display: grid;
-        grid-template-columns: 85px 1fr;
-        gap: 16px;
-        margin-bottom: 16px;
-        font-size: 0.82rem;
-        line-height: 1.8;
-    }
-    .tools-list dt {
-        color: var(--ios-blue);
-    }
-    .tools-list dd {
-        color: var(--ios-text-secondary);
     }
     .lately-columns {
         display: grid;
@@ -936,12 +931,11 @@
         .wordmark {
             font-size: 1.5rem;
         }
-        .tools-list > div {
-            grid-template-columns: 1fr;
-            gap: 3px;
-        }
     }
     @media (prefers-reduced-motion: reduce) {
+        .project-identity, .disclosure-icon { transition: none; }
+        .project-row:is(:hover, :focus-within) .project-identity { transform: none; }
+        .career-details[open] .career-content { animation: none; }
         .project-row,
         .project-link span,
         .primary-link,

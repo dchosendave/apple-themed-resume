@@ -2,6 +2,7 @@ export { default as CardStack } from "./CardStack.svelte";
 export { default as CardStackItem } from "./CardStackItem.svelte";
 export { default as Fake3DImage } from "./fake-3d-image/Fake3DImage.svelte";
 export { default as Globe } from "./globe/Globe.svelte";
+export { default as LogoCarousel } from "./logo-carousel/LogoCarousel.svelte";
 export { default as Magnetic } from "./Magnetic.svelte";
 export { default as Marquee } from "./Marquee.svelte";
 export { default as Slideshow } from "./slideshow/Slideshow.svelte";

@@ -1,95 +1,68 @@
-# resume-portfolio
+# Lowie Dichoson — Portfolio
 
-An Apple-inspired resume portfolio for **Lowie Dave Dichoson**, built with **SvelteKit**, **Tailwind CSS v4**, and **shadcn-svelte** primitives.
+A one-page personal portfolio built with SvelteKit 5 and deployed manually to Cloudflare Workers. The interface combines a restrained editorial layout with Motion Core interactions, including the reactive portrait, desk slideshow, and location globe.
 
-## Overview
+## Stack
 
-This project turns a traditional PDF resume into a polished one-page web experience with:
+- SvelteKit 5 and TypeScript
+- Tailwind CSS v4
+- Motion Core, GSAP, and OGL
+- Cloudflare Workers with static assets
+- AWS API Gateway and Lambda for the cached GitHub activity snapshot
 
-- Apple-style glass surfaces and theme tokens
-- Tailwind-first layout and spacing
-- shadcn-svelte primitives for accessible interactions
-- Svelte 5 runes for local state and component logic
+## Local development
 
-The app is intentionally being migrated in phases rather than rewritten all at once. The current implementation keeps the visual identity custom while moving interaction-heavy UI onto shadcn foundations.
-
-## Tech Stack
-
-| Layer | Technology |
-| --- | --- |
-| Framework | [SvelteKit](https://svelte.dev/docs/kit) |
-| Language | TypeScript |
-| Styling | [Tailwind CSS v4](https://tailwindcss.com/) + shared Apple theme classes |
-| UI Primitives | [shadcn-svelte](https://shadcn-svelte.com/) + [bits-ui](https://www.bits-ui.com/) |
-| Icons | [lucide-svelte](https://lucide.dev/) |
-
-## Current Features
-
-- Apple-style glass cards, chips, badges, and panel surfaces
-- Dark and light mode with persisted preference
-- Command palette built with shadcn `Dialog` + `Command`
-- Project case study drawer built with shadcn `Sheet`
-- Experience disclosures built with shadcn `Accordion`
-- Resume download and external profile links
-- Centralized resume content in `src/lib/data/resume.ts`
-
-## Project Structure
-
-```text
-src/
-|-- app.css                             # Tailwind entry + shadcn tokens + shared Apple theme classes
-|-- lib/
-|   |-- actions/                        # Reveal, count-up, focus helpers
-|   |-- components/
-|   |   |-- portfolio/                  # Resume-specific UI sections
-|   |   |-- ui/                         # Generated shadcn-svelte primitives
-|   |-- data/
-|   |   `-- resume.ts                   # Typed portfolio content
-|   |-- stores/
-|   |   `-- theme.svelte.ts             # Svelte 5 theme store
-|   |-- types/                          # Content model types
-|   `-- utils/                          # Shared helpers and tech icon mapping
-`-- routes/
-    |-- +layout.svelte                  # Global app shell
-    `-- +page.svelte                    # One-page portfolio layout
-```
-
-## Available UI Primitives
-
-The project currently includes these generated shadcn-svelte primitives in `src/lib/components/ui/`:
-
-- `button`
-- `dialog`
-- `command`
-- `sheet`
-- `separator`
-- `accordion`
-- `input`
-- `input-group`
-- `textarea`
-
-These were added to support the incremental migration plan in `docs/apple-theme-tailwind-shadcn-implementation-plan.md`.
-
-## Getting Started
+Install dependencies and start Vite:
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open `http://localhost:5173` in your browser.
+Wrangler loads local server variables from `.env`. Copy `.env.example` and provide the AWS endpoint when setting up a new checkout. Keep `.env` out of source control.
 
-## Validation
+## Validation and build
 
 ```bash
 npm run check
 npm run build
 ```
 
-## Updating Resume Content
+`npm run check` clears only generated Cloudflare adapter output, regenerates `worker-configuration.d.ts`, and then checks Svelte and TypeScript. Clearing that output prevents Wrangler from importing an old compiled Worker into the source type-check. CI should use `npm run check:ci`, which verifies that the committed Cloudflare types are already current instead of changing them.
 
-The homepage layout lives in `src/lib/components/portfolio/PortfolioStory.svelte`.
-Content lives in `src/lib/data/`: `about.ts`, `personal-information.ts`, `projects.ts`,
-`experience.ts`, `skills.ts`, `education.ts`, and `technical-notes.ts`.
-Project drawers and the `/notes` route provide supporting detail. AWS setup is
-documented in `aws/README.md`.
+To exercise the complete deployment bundle without uploading anything:
+
+```bash
+npm run deploy:dry
+```
+
+## Production deployment
+
+Production deploys are intentionally manual. This repository is not connected to Cloudflare Builds.
+
+```bash
+npm run deploy
+```
+
+The `predeploy` lifecycle runs the source checks and production build automatically before `wrangler deploy` uploads anything. Wrangler may still display configuration metadata differences reported by the Dashboard; review the diff and ensure neither custom-domain pattern nor a required variable is marked for removal.
+
+Cloudflare configuration lives in `wrangler.jsonc`. It explicitly owns these production settings:
+
+- `lowiedichoson.com` and `www.lowiedichoson.com` as custom domains
+- `workers.dev` and preview URLs disabled
+- the public `GITHUB_PULSE_API_URL` runtime variable
+- Dashboard variables preserved through `keep_vars`
+
+`GITHUB_TOKEN` is currently an empty optional variable. If a real token is ever required, store it as an encrypted Worker secret:
+
+```bash
+npx wrangler secret put GITHUB_TOKEN
+```
+
+Never place a real token in `.env.example`, `wrangler.jsonc`, or committed source.
+
+## Content and components
+
+The page composition is in `src/lib/components/portfolio/PortfolioStory.svelte`. Portfolio copy and structured content live in `src/lib/data/`. Local Motion Core components are kept in `src/lib/motion-core/` so their behavior can be tailored to the portfolio.
+
+The AWS GitHub activity integration and its deployment commands are documented in `aws/README.md`.

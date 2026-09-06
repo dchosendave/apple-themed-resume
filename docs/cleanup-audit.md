@@ -1,45 +1,39 @@
-# Post-redesign cleanup audit
+# Cleanup audit
 
-## Scope
+Historical cleanup record, reconciled with current source on September 6, 2026.
 
-Traced references from the homepage, notes route, project and technical-note drawers,
-and command palette. This is a source/dependency cleanup, not a visual or security audit.
+[Documentation index](README.md)
 
-## Removed
+## Historical record
 
-- Superseded hero components, contact prompts, and avatar-command store.
-- Unmounted bento experience, skills, education, exploring, statistics, and GitHub sections.
-- Duplicate project grid, project card, featured ClientEase component, and experience guide.
-- Unused count-up and focus-trapping actions and their obsolete supporting types/data.
-- Command-palette effects that updated an avatar no longer displayed.
+The earlier audit recorded removal of superseded hero/contact components, an avatar command store, unmounted bento sections, duplicate project components, an experience guide, unused actions, and supporting data/types. It also recorded a technical-note prop fix and corrections to README content paths.
 
-## Fixed
+It reported a successful `npm.cmd run check` with zero errors/warnings, a successful build, and no references to the removed component trees. These are historical results, not validation of the current working tree.
 
-- Technical-note selection now derives from the current variant prop, removing the
-  stale-prop warning.
-- README content-editing instructions now point to the actual data files.
+That audit retained a notes route, project drawer, and technical-note components. Those are absent from the current source inventory. The former retention list is no longer an architecture map.
 
-## Deliberately retained
+## Current source review
 
-- Notes-page card, footer, shared icons, and technical-note components: still imported.
-- Project drawer, theme switch, command palette, and GitHub server integration: active.
-- Motion library and its dependencies: reserved for the requested motion pass.
-- Shared UI primitives and theme CSS: reusable infrastructure; dynamic classes make
-  a blanket CSS deletion unsafe without a separate visual pass.
-- Original illustrated portraits: retained as creative assets for possible secondary use.
+- The homepage mounts PortfolioStory, CommandPalette, and AmbientBackground.
+- Projects, work history, skills, and education render within PortfolioStory.
+- Theme/sound controls, desk slideshow, location globe, and GitHub activity remain active.
+- Local Motion Core code is used by the page; GSAP and OGL support that code.
+- Shared UI components and theme CSS remain infrastructure. Check imports, dynamic classes, and browser behavior before removing individual pieces.
 
-The removed stats panel included an “8+ systems built & enhanced” aggregate. Its
-other metrics remain represented in the experience content. The old exploring list
-covered Docker, Go/Python, and AI; the active learning section now focuses on AWS.
+See the [architecture map](architecture.md) for current source paths.
 
-## Validation and remaining dependency cleanup
+## Dependency follow-up
 
-- `npm.cmd run check`: zero errors and zero warnings.
-- `npm.cmd run build`: passed.
-- Reference search: no remaining source references to the removed component trees.
-- Four unused dependency declarations remain: `three`, `@types/three`,
-  `@fontsource/fira-mono`, and `@neoconfetti/svelte`. Npm could not regenerate the
-  lockfile because remote package fetching is disabled (`EALLOWREMOTE`) for an
-  existing Tailwind oxide archive. Package files were left unchanged rather than
-  manually creating an inconsistent lockfile. Retry the uninstall after resolving
-  that npm restriction.
+`three`, `@types/three`, `@fontsource/fira-mono`, and `@neoconfetti/svelte` remain declared in [package.json](../package.json). A text search of `src/` found no references to those package names. They are removal candidates; source search alone does not prove they are unused by all tooling.
+
+The earlier uninstall attempt was blocked by npm remote-fetch restrictions (`EALLOWREMOTE`) involving a Tailwind oxide archive. That historical failure was not retried in this documentation update.
+
+To complete cleanup:
+
+1. Confirm the candidates are unused in source, configuration, and tooling.
+2. Use npm uninstall so package.json and package-lock.json change together.
+3. Run `npm run check` and `npm run build`.
+4. Verify portrait, slideshow, globe, and command palette behavior in the browser.
+5. Record the actual results and close the [implementation follow-up](apple-theme-tailwind-shadcn-implementation-plan.md).
+
+No dependencies or application files were changed by this documentation review.

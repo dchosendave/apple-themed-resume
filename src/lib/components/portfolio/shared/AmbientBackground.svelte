@@ -11,13 +11,12 @@
         z-index: 0;
         pointer-events: none;
         overflow: hidden;
-        background:
-            linear-gradient(
-                135deg,
-                color-mix(in srgb, var(--ios-bg) 94%, var(--ios-blue)) 0%,
-                var(--ios-bg) 42%,
-                color-mix(in srgb, var(--ios-bg) 92%, var(--lowie-warm)) 100%
-            );
+        background: linear-gradient(
+            135deg,
+            color-mix(in srgb, var(--ios-bg) 94%, var(--ios-blue)) 0%,
+            var(--ios-bg) 42%,
+            color-mix(in srgb, var(--ios-bg) 92%, var(--lowie-warm)) 100%
+        );
     }
 
     .ambient-grid,
@@ -28,8 +27,7 @@
 
     .ambient-grid {
         opacity: 0.28;
-        background-image:
-            linear-gradient(
+        background-image: linear-gradient(
                 color-mix(in srgb, var(--ios-blue) 14%, transparent) 1px,
                 transparent 1px
             ),

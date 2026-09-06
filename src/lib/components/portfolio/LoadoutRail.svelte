@@ -31,7 +31,7 @@
     <div class="loadout-stage" use:hoverSound>
         <Slideshow
             images={loadout.map(({ src, alt }) => ({ src, alt }))}
-            imageFit="contain"
+            imageFit="cover"
             onChange={selectSlide}
         />
     </div>
@@ -52,7 +52,7 @@
     h3 { margin-top: 6px; color: var(--ios-text-primary); font-size: 1.05rem; font-weight: 650; }
     .slide-count { color: var(--ios-text-secondary); font-variant-numeric: tabular-nums; font-size: .68rem; }
     .loadout-stage { height: clamp(250px, 36vw, 390px); margin-top: 16px; overflow: hidden; border: 1px solid var(--ios-glass-border); border-radius: 20px; background: oklch(.95 .008 145); }
-    .loadout-stage :global(img) { padding: clamp(26px, 5vw, 58px); mix-blend-mode: multiply; }
+    .loadout-stage :global(img) { object-position: center; }
     .loadout-caption { align-items: flex-start; margin-top: 14px; }
     .loadout-caption strong, .loadout-caption span { display: block; }
     .loadout-caption strong { color: var(--ios-text-primary); font-size: .82rem; font-weight: 650; }

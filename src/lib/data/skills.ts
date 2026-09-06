@@ -20,7 +20,8 @@ export const skills: Record<string, Skill[]> = {
         { name: "MS SQL", level: "expert" },
         { name: "PostgreSQL", level: "proficient" },
         { name: "Oracle SQL", level: "proficient" },
-        { name: "MySQL", level: "familiar" }
+        { name: "MySQL", level: "familiar" },
+        { name: "Cloud Firestore", level: "familiar" }
     ],
     Tooling: [
         { name: "Git", level: "proficient" },

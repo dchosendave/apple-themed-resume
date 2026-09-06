@@ -10,16 +10,36 @@ function createSound() {
     let context: AudioContext | null = null;
     let lastHoverAt = 0;
 
+    function removeUnlockListeners() {
+        if (!browser) return;
+        window.removeEventListener('pointerdown', unlock, true);
+        window.removeEventListener('keydown', unlock, true);
+    }
+
+    function unlock() {
+        const audio = getContext();
+        if (!audio) return;
+        if (audio.state === 'running') {
+            removeUnlockListeners();
+            return;
+        }
+        void audio.resume().then(removeUnlockListeners).catch(() => {});
+    }
+
     function init() {
         if (!browser || initialized) return;
-        enabled = localStorage.getItem(STORAGE_KEY) !== 'off';
+        try { enabled = localStorage.getItem(STORAGE_KEY) !== 'off'; } catch { /* Storage may be unavailable. */ }
         initialized = true;
+        if (enabled) {
+            window.addEventListener('pointerdown', unlock, true);
+            window.addEventListener('keydown', unlock, true);
+        }
     }
 
     function getContext() {
-        if (!browser) return null;
-        context ??= new AudioContext();
-        if (context.state === 'suspended') void context.resume();
+        if (!browser || typeof AudioContext === 'undefined') return null;
+        try { context ??= new AudioContext(); } catch { return null; }
+        if (context.state === 'suspended') void context.resume().catch(() => {});
         return context;
     }
 
@@ -43,7 +63,9 @@ function createSound() {
     }
 
     function play(cue: SoundCue, force = false) {
+        init();
         if (!browser || (!enabled && !force)) return;
+        if (cue === 'hover' && (!context || context.state !== 'running')) return;
 
         if (cue === 'hover') {
             const now = performance.now();
@@ -51,7 +73,7 @@ function createSound() {
             lastHoverAt = now;
         }
 
-        if ('vibrate' in navigator && (cue === 'open' || cue === 'confirm' || cue === 'toggle')) {
+        if ('vibrate' in navigator && cue !== 'hover' && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
             navigator.vibrate(cue === 'confirm' ? [8, 28, 8] : 8);
         }
 
@@ -71,8 +93,13 @@ function createSound() {
     function toggle() {
         init();
         enabled = !enabled;
-        localStorage.setItem(STORAGE_KEY, enabled ? 'on' : 'off');
-        if (enabled) play('toggle', true);
+        try { localStorage.setItem(STORAGE_KEY, enabled ? 'on' : 'off'); } catch { /* Keep the preference for this visit. */ }
+        if (enabled) {
+            unlock();
+            play('toggle', true);
+        } else {
+            removeUnlockListeners();
+        }
     }
 
     return {
